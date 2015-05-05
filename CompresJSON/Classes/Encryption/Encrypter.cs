@@ -33,7 +33,7 @@ namespace CompresJSON
             CryptLib _crypt = new CryptLib();
             string cypherText = str;
             String iv = "EzJ9RvaqpLf-OZSR"; //CryptLib.GenerateRandomIV(16); //16 bytes = 128 bits
-            string key = CryptLib.getHashSha256(CompresJSONDefaults.EncryptionKey, 31); //32 bytes = 256 bits
+            string key = CryptLib.getHashSha256(CompresJSONDefaults.EncryptionKey, 32); //32 bytes = 256 bits
 
             return _crypt.decrypt(cypherText, key, iv);
         }

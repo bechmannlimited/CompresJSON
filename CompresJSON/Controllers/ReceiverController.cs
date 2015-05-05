@@ -52,6 +52,21 @@ namespace CompresJSON.Controllers
             return View();
         }
 
+        //[EncryptHttpBody]
+        //public ActionResult SendEncryptedData()
+        //{
+        //    var key = Encrypter.Encrypt("hello");
+        //    var value = Encrypter.Encrypt("hasdfaslkdf");
+
+        //    return RedirectToAction("ReceiveEncryptedData", new { key = value });
+        //}
+
+        [EncryptHttpBody]
+        public JsonResult ReceiveEncryptedData(string hello)
+        {
+            return Json(hello, JsonRequestBehavior.AllowGet);
+        }
+
         private string GetDocumentContents(System.Web.HttpRequestBase Request)
         {
             string documentContents;
@@ -64,6 +79,8 @@ namespace CompresJSON.Controllers
             }
             return documentContents;
         }
+
+        
     }
 
     public class User
@@ -71,4 +88,63 @@ namespace CompresJSON.Controllers
         public int UserID { get; set; }
         public DateTime dob { get; set; }
     }
+
+    public class EncryptHttpBody : ActionFilterAttribute
+    {
+
+        //after
+        public override void OnActionExecuted(ActionExecutedContext filterContext)
+        {
+            //filterContext.HttpContext.Request.InputStream
+            //Stream req = filterContext.HttpContext.Request.InputStream;
+            //req.Seek(0, System.IO.SeekOrigin.Begin);
+            //string httpbody = new StreamReader(req).ReadToEnd();
+            //httpbody = Encrypter.Decrypt(httpbody);
+
+            //using (Stream s = GenerateStreamFromString(httpbody))
+            //{
+            //    filterContext.HttpContext.Request.InputStream = s;
+            //}
+
+            base.OnActionExecuted(filterContext);
+        }
+
+        //before
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
+        {
+
+            var de = Encrypter.Encrypt("hello");
+            var ve = Encrypter.Encrypt("there");
+
+            Stream req = filterContext.HttpContext.Request.InputStream;
+            req.Seek(0, System.IO.SeekOrigin.Begin);
+            string httpbody = new StreamReader(req).ReadToEnd();
+            //httpbody = Encrypter.Decrypt(httpbody);
+
+            Dictionary<string, string> httpBodyDictionary = Converter.QueryStringToDictionary(httpbody);
+
+            foreach (var k in httpBodyDictionary.Keys)
+            {
+                var key = Encrypter.Decrypt(k);
+                var value = Encrypter.Decrypt(httpBodyDictionary[k]);
+                filterContext.ActionParameters[key] = value;
+            }
+
+            base.OnActionExecuting(filterContext);
+        }
+
+        public Stream GenerateStreamFromString(string s)
+        {
+            MemoryStream stream = new MemoryStream();
+            StreamWriter writer = new StreamWriter(stream);
+            writer.Write(s);
+            writer.Flush();
+            stream.Position = 0;
+            return stream;
+        }
+    }
+
+
 }
+
+
