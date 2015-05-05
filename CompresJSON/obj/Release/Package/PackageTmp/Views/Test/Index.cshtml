@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<a onclick="go('', false)" class="btn btn-lg">normal</a>
+<a onclick="go('deflate', false)" class="btn btn-lg">deflate</a>
+<a onclick="go('gzip', false)" class="btn btn-lg">gzip</a>
+<br /><br />
+<a onclick="go('', true)" class="btn btn-lg">normal</a>
+<a onclick="go('deflate', true)" class="btn btn-lg">deflate</a>
+<a onclick="go('gzip',true)" class="btn btn-lg">gzip</a>
+
+<pre id="json"></pre>
+
+<br /><br />
+<input id="ccompress" />
+<a onclick="ccompress()">c compress</a>
+
+<pre id="ccompressJson"></pre>
+
+<script>
+    function ccompress() {
+
+        $('#ccompressJson').empty();
+        $.ajax({
+            url: "@Url.Action("compressManually", "Home")",
+            data: { "str": $('#ccompress').val() },
+            type: "POST"
+        }).done(function (result) {
+
+            $('#ccompressJson').html(result);
+        });
+    }
+
+    function go(compressionmethod, https) {
+        $('#json').empty();
+
+        var url = "";
+
+        if (https) {
+            url = "https://localhost:44300/Home/compressWithFilter"
+        }
+        else {
+            url = '@Url.Action("compressWithFilter", "Home")';
+        }
+
+        var ajaxParams = {
+            accepts: 'text/html',
+            async: true,
+            cache: false,
+            contentType: 'text/html',
+            url: url,
+            dataType: "jsonp",
+            type: 'POST',
+            beforeSend: function (jqXHR) {
+                // set request headers here rather than in the ajax 'headers' object
+                //jqXHR.setRequestHeader('Accept-Encoding', 'deflate');
+                jqXHR.setRequestHeader('JSON-Accept-Encoding', compressionmethod);
+                jqXHR.setRequestHeader('JSON-Security', 'aes');
+            },
+            success: function (data, textStatus, jqXHR) {
+                console.log('Yay!');
+                $('#json').text(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.log('Oh no!');
+            },
+            complete: function (jqXHR, textStatus) {
+                console.log(textStatus);
+                console.log(jqXHR.status);
+                console.log(jqXHR.responseText);
+
+                $('#json').text(jqXHR.responseText);
+            }
+        };
+
+        $.ajax(ajaxParams);
+    }
+</script>

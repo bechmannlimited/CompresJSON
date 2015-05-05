@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "sendEncryptedData";
+}
+
+<h2>sendEncryptedData</h2>
+
+@using (Html.BeginForm("Index", "Receiver", FormMethod.Post))
+{
+    
+    @Html.TextBox("encryptedJSON")
+    @Html.TextBox("foo")
+    <button type="submit"></button>
+}
