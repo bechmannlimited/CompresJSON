@@ -1,0 +1,52 @@
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\CompresJSON.dll.config
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\CompresJSON.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\CompresJSON.pdb
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\Newtonsoft.Json.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Net.Http.Formatting.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Helpers.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Http.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Http.WebHost.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Mvc.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Razor.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Webpages.Deployment.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Webpages.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Webpages.Razor.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Razor.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Webpages.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Webpages.Deployment.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Webpages.Razor.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Helpers.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Mvc.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\Newtonsoft.Json.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Net.Http.Formatting.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Http.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\bin\System.Web.Http.WebHost.xml
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\obj\Debug\CompresJSON.csprojResolveAssemblyReference.cache
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\obj\Debug\CompresJSON.dll
+e:\users\alex\documents\visual studio 2013\Projects\CompresJSON\CompresJSON\obj\Debug\CompresJSON.pdb
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\CompresJSON.dll.config
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\CompresJSON.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\CompresJSON.pdb
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Newtonsoft.Json.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Net.Http.Formatting.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Helpers.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.WebHost.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Mvc.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Razor.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Webpages.Deployment.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Webpages.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Webpages.Razor.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Razor.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Webpages.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Webpages.Deployment.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Webpages.Razor.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Helpers.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Mvc.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Newtonsoft.Json.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Net.Http.Formatting.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.WebHost.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.csprojResolveAssemblyReference.cache
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.pdb
