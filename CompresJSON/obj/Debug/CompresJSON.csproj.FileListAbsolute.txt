@@ -77,3 +77,4 @@ E:\Source\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.csprojResolveAsse
 E:\Source\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.dll
 E:\Source\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.pdb
 E:\Source\GitHub\CompresJSON\CompresJSON\bin\Microsoft.Web.Infrastructure.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Microsoft.Web.Infrastructure.dll
