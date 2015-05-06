@@ -15,23 +15,33 @@ namespace CompresJSON
         //after
         public override void OnActionExecuted(ActionExecutedContext filterContext)
         {
-            //filterContext.HttpContext.Request.InputStream
-            //Stream req = filterContext.HttpContext.Request.InputStream;
-            //req.Seek(0, System.IO.SeekOrigin.Begin);
-            //string httpbody = new StreamReader(req).ReadToEnd();
-            //httpbody = Encrypter.Decrypt(httpbody);
-
-            //using (Stream s = GenerateStreamFromString(httpbody))
-            //{
-            //    filterContext.HttpContext.Request.InputStream = s;
-            //}
-
             if (filterContext.Result is JsonResult)
             {
                 JsonResult result = (JsonResult)filterContext.Result;
-                var str = result.Data.ToString();
+                
+                var dict = (Dictionary<string, object>)result.Data;
+                foreach (var key in dict.Keys)
+                {
+                    if (dict[key] is object) // string is object????
+                    {
+                        var d = "";
+                        // turn into dictionary
+                        //set parameters to result.Data[]
+                    }
+                }
 
-                //var str = new JsonSerializer().dese
+                string str = (new JavaScriptSerializer()).Serialize(result.Data);
+
+                var encryptedString = Encrypter.Encrypt(str);
+
+                var rc = new Dictionary<string, object>();
+                rc["encryptedData"] = encryptedString;
+
+                filterContext.Result = new JsonResult()
+                {
+                    Data = rc,
+                    JsonRequestBehavior = JsonRequestBehavior.AllowGet
+                };
             }
 
             base.OnActionExecuted(filterContext);
@@ -74,48 +84,6 @@ namespace CompresJSON
             }
 
             base.OnActionExecuting(filterContext);
-        }
-
-        public class Generic<T>
-        {
-            public Generic()
-            {
-                Console.WriteLine("T={0}", typeof(T));
-            }
-        }
-
-        //THIS ONE DECRYPTS ALL KEYS SEPERATELY
-        //public override void OnActionExecuting(ActionExecutingContext filterContext)
-        //{
-
-        //    var de = Encrypter.Encrypt("hello");
-        //    var ve = Encrypter.Encrypt("there");
-
-        //    Stream req = filterContext.HttpContext.Request.InputStream;
-        //    req.Seek(0, System.IO.SeekOrigin.Begin);
-        //    string httpbody = new StreamReader(req).ReadToEnd();
-        //    //httpbody = Encrypter.Decrypt(httpbody);
-
-        //    Dictionary<string, string> httpBodyDictionary = Converter.QueryStringToDictionary(httpbody);
-
-        //    foreach (var k in httpBodyDictionary.Keys)
-        //    {
-        //        var key = Encrypter.Decrypt(k);
-        //        var value = Encrypter.Decrypt(httpBodyDictionary[k]);
-        //        filterContext.ActionParameters[key] = value;
-        //    }
-
-        //    base.OnActionExecuting(filterContext);
-        //}
-
-        public Stream GenerateStreamFromString(string s)
-        {
-            MemoryStream stream = new MemoryStream();
-            StreamWriter writer = new StreamWriter(stream);
-            writer.Write(s);
-            writer.Flush();
-            stream.Position = 0;
-            return stream;
         }
     }
 }

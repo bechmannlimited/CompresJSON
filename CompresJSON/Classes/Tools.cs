@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Web;
@@ -23,19 +25,6 @@ namespace CompresJSON
 
             return dict;
         }
-
-        //public static Dictionary<string, object> ConvertToDictionary(object obj)
-        //{
-        //    return obj.GetType()
-        //    .GetProperties()
-        //    .Select(pi => new { Name = pi.Name, Value = pi.GetValue(this, null) })
-        //    .Union(
-        //        obj.GetType()
-        //        .GetFields()
-        //        .Select(fi => new { Name = fi.Name, Value = fi.GetValue(this) })
-        //     )
-        //    .ToDictionary(ks => ks.Name, vs => vs.Value);
-        //}
 
         public static object ToObject(this IDictionary<string, object> source, object someObject)
         {
@@ -81,12 +70,6 @@ namespace CompresJSON
             }
 
             return null;
-        }
-
-
-        public static void setParametersFromDictionary(object obj, Dictionary<string, object> dict)
-        {
-
         }
     }
 }
