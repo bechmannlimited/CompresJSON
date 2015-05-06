@@ -25,7 +25,7 @@ namespace CompresJSON.Controllers
 
 
         [ApplyDecryptionAndDecompression]
-        //[ApplyEncryptionAndCompression]
+        [ApplyEncryptionAndCompression]
         public JsonResult LookAtUser(User user, FormCollection formc, string testString)
         {
             var rc = new Dictionary<string, object>();
@@ -42,6 +42,28 @@ namespace CompresJSON.Controllers
 
             ViewBag.Json = json;
             return View();
+        }
+
+        [ApplyEncryptionAndCompression]
+        public JsonResult StressTest()
+        {
+            var rc = new List<object>();
+
+            for (int i = 0; i < 1000; i++)
+            {
+                var user = new User
+                {
+                    UserID = i,
+                    Name = "Nameofperson",
+                    dob = DateTime.Now,
+                    CountForSomething = i * 150,
+                    AdLine1 = "Address line 1"
+                };
+
+                rc.Add(user);
+            }
+
+            return Json(rc);
         }
 
 
