@@ -8,7 +8,7 @@ namespace CompresJSON
     public class User
     {
         public int UserID { get; set; }
-        public DateTime dob { get; set; }
+        //public DateTime dob { get; set; }
         public string Name { get; set; }
         public string AdLine1 { get; set; }
         public int CountForSomething { get; set; }

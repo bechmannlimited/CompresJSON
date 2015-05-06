@@ -49,13 +49,13 @@ namespace CompresJSON.Controllers
         {
             var rc = new List<object>();
 
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 20; i++)
             {
                 var user = new User
                 {
                     UserID = i,
                     Name = "Nameofperson",
-                    dob = DateTime.Now,
+                    //dob = DateTime.Now,
                     CountForSomething = i * 150,
                     AdLine1 = "Address line 1"
                 };
