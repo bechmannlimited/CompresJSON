@@ -8,7 +8,7 @@
 @using (Html.BeginForm("LookAtUser", "Receiver", FormMethod.Post))
 {
     
-    @Html.TextBox("encryptedData", (string)ViewBag.Json)
+    @Html.TextBox("data", (string)ViewBag.Json)
     //@Html.TextBox("BBtb6h9ojMDvaw1F2CYRXQ==", "8q9gYtBd4UTfI6AhTrOZFg==")
     //@Html.TextBox("foo")
     <button type="submit">GO</button>
@@ -27,7 +27,7 @@
     function json() {
         $.ajax({
             url: "@Url.Action("LookAtUser", "Receiver")/",
-            data: { encryptedData: "@((string)ViewBag.Json)" },
+            data: { data: "@((string)ViewBag.Json)" },
             type: "POST"
         }).done(function (result) {
             console.log(result);
@@ -37,7 +37,7 @@
     function webapipost() {
         $.ajax({
             url: "/api/Users/1/",
-            data: { encryptedData: "@((string)ViewBag.Json)" },
+            data: { data: "@((string)ViewBag.Json)" },
             type: "POST"
         }).done(function (result) {
             console.log(result);
@@ -47,7 +47,7 @@
     function stressTest() {
         $.ajax({
             url: "@Url.Action("StressTest", "Receiver")",
-            data: { encryptedData: "@((string)ViewBag.Json)" },
+            data: { data: "@((string)ViewBag.Json)" },
             type: "POST"
         }).done(function (result) {
             console.log(result);

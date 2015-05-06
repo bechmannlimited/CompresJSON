@@ -40,7 +40,6 @@ namespace CompresJSON
             base.OnActionExecuted(filterContext);
         }
 
-        
     }
 
     public class ApplyDecryptionAndDecompression : ActionFilterAttribute
