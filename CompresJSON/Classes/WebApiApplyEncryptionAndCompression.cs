@@ -20,42 +20,17 @@ namespace CompresJSON
             var data = actionExecutedContext.Response.Content.ReadAsStringAsync().Result;
 
             string serializedString = (new JavaScriptSerializer()).Serialize(data);
-            var encryptedString = Encrypter.Encrypt(serializedString);
+
+            //compress
+            string compressedString = Compressor.Compress(serializedString).encodedOutput;
+
+            //encrypt
+            var encryptedString = Encrypter.Encrypt(compressedString);
 
             var rc = new Dictionary<string, object>();
             rc["encryptedData"] = encryptedString;
 
-            //var jsonresult = new System.Web.Mvc.JsonResult()
-            //{
-            //    Data = rc,
-            //    JsonRequestBehavior = System.Web.Mvc.JsonRequestBehavior.AllowGet
-            //};
-
-            //actionExecutedContext.Response.Content = new StringContent("{ \"EncryptedData\": \"" + rc["encryptedData"] + "\" }"); // new System.Net.Http.ByteArrayContent(
             actionExecutedContext.Response.Content = new StringContent((new JavaScriptSerializer()).Serialize(rc));
-
-                //.Data);
-
-            //var xx = new ByteArrayContent(jsonresult.Data);
-            
-
-
-            //if (actionExecutedContext.Response is System.Web.Mvc.JsonResult)
-            //{
-            //    System.Web.Mvc.JsonResult result = (System.Web.Mvc.JsonResult)filterContext.Result;
-
-            //    string serializedString = (new JavaScriptSerializer()).Serialize(result.Data);
-            //    var encryptedString = Encrypter.Encrypt(serializedString);
-
-            //    var rc = new Dictionary<string, object>();
-            //    rc["encryptedData"] = encryptedString;
-
-            //    filterContext.Result = new System.Web.Mvc.JsonResult()
-            //    {
-            //        Data = rc,
-            //        JsonRequestBehavior = System.Web.Mvc.JsonRequestBehavior.AllowGet
-            //    };
-            //}
 
             base.OnActionExecuted(actionExecutedContext);
         }
@@ -79,7 +54,18 @@ namespace CompresJSON
             if (httpBodyDictionary.ContainsKey("encryptedData") && httpBodyDictionary["encryptedData"] != null)
             {
                 //assume encrypted + compressed for now
-                string json = Encrypter.Decrypt(httpBodyDictionary["encryptedData"]);
+
+                //decrypt
+                string decryptedString = Encrypter.Decrypt(httpBodyDictionary["encryptedData"]);
+
+                //decompress
+                string json = Compressor.Decompress(new CompressedResult
+                {
+                    encodingMethod = CompresJSONDefaults.encodingMethod,
+                    compressionMethod = CompresJSONDefaults.compressionMethod,
+                    encodedOutput = decryptedString
+                }).decompressedOutput;
+
                 var dict = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(json);
 
                 foreach (var key in dict.Keys)

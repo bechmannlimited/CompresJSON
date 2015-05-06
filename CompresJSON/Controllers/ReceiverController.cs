@@ -37,10 +37,13 @@ namespace CompresJSON.Controllers
 
         public ActionResult sendEncryptedData()
         {
-            var json = Encrypter.Encrypt("{ \"UserID\": 5, \"Name\": \"Alex\", \"testString\": \"hellooooo\", \"c\": \"Receiver\", \"a\": \"LookAtUser\" }");
+            string compressedString = Compressor.Compress("{ \"UserID\": 5, \"Name\": \"Alex\", \"testString\": \"hellooooo\", \"c\": \"Receiver\", \"a\": \"LookAtUser\" }").encodedOutput;
+            var json = Encrypter.Encrypt(compressedString);
+
             ViewBag.Json = json;
             return View();
         }
+
 
     }
 }
