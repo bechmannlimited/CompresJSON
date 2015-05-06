@@ -11,6 +11,8 @@ namespace CompresJSON
         {
             // Web API configuration and services
 
+            //config.Filters.Add(App);
+
             // Web API routes
             config.MapHttpAttributeRoutes();
 

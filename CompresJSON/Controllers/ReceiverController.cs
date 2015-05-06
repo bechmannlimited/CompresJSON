@@ -13,6 +13,7 @@ using System.Web.Script.Serialization;
 
 namespace CompresJSON.Controllers
 {
+
     public class ReceiverController : Controller
     {
         public JsonResult RouteErrorJsonResult()
@@ -21,6 +22,7 @@ namespace CompresJSON.Controllers
             rc["error"] = "Route value failure";
             return Json(rc);
         }
+
 
         [ApplyDecryptionAndDecompression]
         //[ApplyEncryptionAndCompression]

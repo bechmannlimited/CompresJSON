@@ -16,11 +16,25 @@
 
 
 <a href="#" onclick="json()">JSON</a>
+<br />
+<a href="#" onclick="webapipost()">web api post</a>
+
+<pre id="pre"></pre>
 
 <script>
     function json() {
         $.ajax({
             url: "@Url.Action("LookAtUser", "Receiver")/",
+            data: { encryptedData: "@((string)ViewBag.Json)" },
+            type: "POST"
+        }).done(function (result) {
+            console.log(result);
+        });
+    }
+
+    function webapipost() {
+        $.ajax({
+            url: "/api/Users/1/",
             data: { encryptedData: "@((string)ViewBag.Json)" },
             type: "POST"
         }).done(function (result) {

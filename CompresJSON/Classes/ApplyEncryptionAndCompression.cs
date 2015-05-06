@@ -50,7 +50,7 @@ namespace CompresJSON
 
             Dictionary<string, string> httpBodyDictionary = Converter.QueryStringToDictionary(httpbody);
 
-            if (httpBodyDictionary["encryptedData"] != null)
+            if (httpBodyDictionary.ContainsKey("encryptedData") && httpBodyDictionary["encryptedData"] != null)
             {
                 //assume encrypted + compressed for now
                 string json = Encrypter.Decrypt(httpBodyDictionary["encryptedData"]);

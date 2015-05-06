@@ -130,9 +130,11 @@
     <Compile Include="Classes\Library\CompresJsonRequest.cs" />
     <Compile Include="Classes\Mapper.cs" />
     <Compile Include="Classes\Tools.cs" />
+    <Compile Include="Classes\WebApiApplyEncryptionAndCompression.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReceiverController.cs" />
     <Compile Include="Controllers\TestController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
