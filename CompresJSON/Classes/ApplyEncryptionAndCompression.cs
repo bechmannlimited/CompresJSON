@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 
 namespace CompresJSON
 {
-    public class EncryptOrDecryptHttpBody : ActionFilterAttribute
+    public class ApplyEncryptionAndCompression : ActionFilterAttribute
     {
 
         //after
@@ -18,21 +18,9 @@ namespace CompresJSON
             if (filterContext.Result is JsonResult)
             {
                 JsonResult result = (JsonResult)filterContext.Result;
-                
-                var dict = (Dictionary<string, object>)result.Data;
-                foreach (var key in dict.Keys)
-                {
-                    if (dict[key] is object) // string is object????
-                    {
-                        var d = "";
-                        // turn into dictionary
-                        //set parameters to result.Data[]
-                    }
-                }
 
-                string str = (new JavaScriptSerializer()).Serialize(result.Data);
-
-                var encryptedString = Encrypter.Encrypt(str);
+                string serializedString = (new JavaScriptSerializer()).Serialize(result.Data);
+                var encryptedString = Encrypter.Encrypt(serializedString);
 
                 var rc = new Dictionary<string, object>();
                 rc["encryptedData"] = encryptedString;
@@ -47,6 +35,11 @@ namespace CompresJSON
             base.OnActionExecuted(filterContext);
         }
 
+        
+    }
+
+    public class ApplyDecryptionAndDecompression : ActionFilterAttribute
+    {
         //before
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

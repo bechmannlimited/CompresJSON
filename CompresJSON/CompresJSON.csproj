@@ -113,7 +113,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Classes\EncryptOrDecryptHttpBody.cs" />
+    <Compile Include="Classes\ApplyEncryptionAndCompression.cs" />
     <Compile Include="Classes\Library\CompresJSONDefaults.cs" />
     <Compile Include="Classes\CompressFilter.cs" />
     <Compile Include="Classes\Compressor\CompressedResult.cs" />

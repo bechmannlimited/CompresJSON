@@ -11,5 +11,20 @@
     @Html.TextBox("encryptedData", (string)ViewBag.Json)
     //@Html.TextBox("BBtb6h9ojMDvaw1F2CYRXQ==", "8q9gYtBd4UTfI6AhTrOZFg==")
     //@Html.TextBox("foo")
-    <button type="submit"></button>
+    <button type="submit">GO</button>
 }
+
+
+<a href="#" onclick="json()">JSON</a>
+
+<script>
+    function json() {
+        $.ajax({
+            url: "@Url.Action("LookAtUser", "Receiver")/",
+            data: { encryptedData: "@((string)ViewBag.Json)" },
+            type: "POST"
+        }).done(function (result) {
+            console.log(result);
+        });
+    }
+</script>

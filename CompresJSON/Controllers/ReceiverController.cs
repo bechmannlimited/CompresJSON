@@ -22,14 +22,15 @@ namespace CompresJSON.Controllers
             return Json(rc);
         }
 
-        [EncryptOrDecryptHttpBody]
+        [ApplyDecryptionAndDecompression]
+        //[ApplyEncryptionAndCompression]
         public JsonResult LookAtUser(User user, FormCollection formc, string testString)
         {
             var rc = new Dictionary<string, object>();
             rc["user"] = user;
             rc["test"] = testString;
             rc["formc"] = formc;
-            return Json(rc, JsonRequestBehavior.AllowGet);
+            return Json(user, JsonRequestBehavior.AllowGet);
         }
 
         public ActionResult sendEncryptedData()
@@ -39,11 +40,6 @@ namespace CompresJSON.Controllers
             return View();
         }
 
-        [EncryptOrDecryptHttpBody]
-        public JsonResult ReceiveEncryptedData(string hello)
-        {
-            return Json(hello, JsonRequestBehavior.AllowGet);
-        }
     }
 }
 
