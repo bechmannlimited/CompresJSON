@@ -11,13 +11,7 @@ namespace CompresJSON
     {
         public static void RegisterRoutes(RouteCollection routes)
         {
-            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
-
-            //routes.MapRoute(
-            //    name: "Hide",
-            //    url: Encrypter.Encrypt("hideurl") + "/{c}/{a}/{id}",
-            //    defaults: new { controller = "", action = "", id = UrlParameter.Optional }
-            //);
+            routes.IgnoreRoute("{resource}.axd/{*pathInfo}");    
 
             routes.MapRoute(
                 name: "Default",

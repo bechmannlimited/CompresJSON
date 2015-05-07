@@ -16,8 +16,15 @@ namespace CompresJSON
         {
             // Code that runs on application startup
             AreaRegistration.RegisterAllAreas();
+
+            //Setup secret routes
+            GlobalConfiguration.Configure(CompresJSONRouteConfig.Register);
+            CompresJSONRouteConfig.RegisterRoutes(RouteTable.Routes);
+
             GlobalConfiguration.Configure(WebApiConfig.Register);
-            RouteConfig.RegisterRoutes(RouteTable.Routes);            
+            RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            
         }
     }
 }

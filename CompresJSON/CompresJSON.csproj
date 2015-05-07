@@ -128,6 +128,7 @@
     <Compile Include="Classes\Encryption\CryptLib.cs" />
     <Compile Include="Classes\Encryption\Encrypter.cs" />
     <Compile Include="Classes\Library\CompresJsonRequest.cs" />
+    <Compile Include="Classes\Library\CompresJSONRouteConfig.cs" />
     <Compile Include="Classes\Mapper.cs" />
     <Compile Include="Classes\Tools.cs" />
     <Compile Include="Classes\WebApiApplyEncryptionAndCompression.cs" />
