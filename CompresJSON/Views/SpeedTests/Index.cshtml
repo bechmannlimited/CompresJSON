@@ -51,11 +51,13 @@
 
 <h2>Index</h2>
 
-<table>
+<table class="table table-striped">
     <caption>Speed tests</caption>
     <thead>
         <tr>
             <th>Description</th>
+            <th></th>
+            <th>Request info</th>
         </tr>
     </thead>
     <tbody>
@@ -69,7 +71,7 @@
             <tr>
                 <td>@test.description</td>
                 <td>
-                    <a href="#" onclick="getJSON(@i, '/@url')">
+                    <a class="btn btn-default" href="#" onclick="getJSON(@i, '/@url')">
                         Send request
                     </a>
                 </td>
@@ -84,14 +86,18 @@
 
 <script>
     function getJSON(requestID, url) {
+        var startTime = new Date().getTime();;
         $('#request' + requestID).text('loading...');
-        $.ajax({
+        var xhr = $.ajax({
             url: url,
             data: { "data": "oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
             type: "POST"
         }).done(function (result) {
+            var elapsed = new Date().getTime() - startTime;
             console.log(result);
-            $('#request' + requestID).text('done');
+            $('#request' + requestID).text('time: ' + elapsed + 'ms | ' 
+                + xhr.getResponseHeader('Content-Length') + ' bytes'
+            );
         });
     }
 </script>
