@@ -18,13 +18,11 @@ namespace CompresJSON
             AreaRegistration.RegisterAllAreas();
 
             //Setup secret routes
-            GlobalConfiguration.Configure(CompresJSONRouteConfig.Register);
-            CompresJSONRouteConfig.RegisterRoutes(RouteTable.Routes);
+            GlobalConfiguration.Configure(CompresJSONRouteManager.Register);
+            CompresJSONRouteManager.RegisterRoutes(RouteTable.Routes);
 
             GlobalConfiguration.Configure(WebApiConfig.Register);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            
         }
     }
 }

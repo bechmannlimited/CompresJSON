@@ -37,8 +37,10 @@ namespace CompresJSON.Controllers
 
         public ActionResult sendEncryptedData()
         {
-            var controller = HttpUtility.UrlEncode(Encrypter.Encrypt("Receiver")).Replace("%", "!");
-            var action = HttpUtility.UrlEncode(Encrypter.Encrypt("sendEncryptedData")).Replace("%", "!");
+            //var d = Encrypter.Encrypt("{ \"UserID\" : 18818 }");
+            //var d = Compressor.Compress("{ \"UserID\" : 18818 }").encodedOutput;
+            var controller = CompresJSONRouteManager.EncryptSecretUrlComponent("Receiver");
+            var action = CompresJSONRouteManager.EncryptSecretUrlComponent("sendEncryptedData");
 
             ViewBag.Controller = controller;
             ViewBag.Action = action;
@@ -55,14 +57,12 @@ namespace CompresJSON.Controllers
         {
             var rc = new List<object>();
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 50; i++)
             {
                 var user = new User
                 {
                     UserID = i,
                     Name = "Nameofperson",
-                    //dob = DateTime.Now,
-                    CountForSomething = i * 150,
                     AdLine1 = "Address line 1"
                 };
 

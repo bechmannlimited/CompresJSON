@@ -11,6 +11,5 @@ namespace CompresJSON
         //public DateTime dob { get; set; }
         public string Name { get; set; }
         public string AdLine1 { get; set; }
-        public int CountForSomething { get; set; }
     }
 }

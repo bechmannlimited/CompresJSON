@@ -21,6 +21,7 @@
     <IISExpressUseClassicPipelineMode />
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
+    <UseGlobalApplicationHostFile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -127,13 +128,14 @@
     <Compile Include="Classes\Compressor\LZ77.cs" />
     <Compile Include="Classes\Encryption\CryptLib.cs" />
     <Compile Include="Classes\Encryption\Encrypter.cs" />
-    <Compile Include="Classes\Library\CompresJsonRequest.cs" />
-    <Compile Include="Classes\Library\CompresJSONRouteConfig.cs" />
+    <Compile Include="Classes\Library\CompresJSONRouteManager.cs" />
+    <Compile Include="Classes\Library\CompresJSONUtilities.cs" />
     <Compile Include="Classes\Mapper.cs" />
     <Compile Include="Classes\Tools.cs" />
     <Compile Include="Classes\WebApiApplyEncryptionAndCompression.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReceiverController.cs" />
+    <Compile Include="Controllers\SpeedTestsController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
@@ -153,6 +155,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Receiver\sendEncryptedData.cshtml" />
+    <Content Include="Views\SpeedTests\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

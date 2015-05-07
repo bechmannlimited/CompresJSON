@@ -8,15 +8,17 @@ using System.Web.Routing;
 
 namespace CompresJSON
 {
-    public class CompresJSONRouteConfig
+    public class CompresJSONRouteManager
     {
+        public static string SecretUrlPrefix = Encrypter.Encrypt("hide");
+
         //MVC route setup
         public static void RegisterRoutes(RouteCollection routes)
         {
             //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.Add(
             new Route(
-                    "hide/{c}/{a}/{id}",
+                    SecretUrlPrefix + "/{c}/{a}/{id}",
                     new RouteValueDictionary(new { controller = "", action = "", id = UrlParameter.Optional }),
                     new CustomRouteHandler()));
         }
@@ -24,13 +26,25 @@ namespace CompresJSON
         //Web Api Route setup
         public static void Register(HttpConfiguration config)
         {
+            config.MapHttpAttributeRoutes();
+
             // Web API secret route
             config.Routes.MapHttpRoute(
                 name: "SecretDefaultApi",
-                routeTemplate: "hide/api/{c}/{a}/{id}",
+                routeTemplate: SecretUrlPrefix + "/api/{c}/{a}/{id}",
                 defaults: new RouteValueDictionary(new { controller = "", action = "", id = UrlParameter.Optional }),
                 constraints: new CustomRouteHandler()
                 );
+        }
+
+        public static string EncryptSecretUrlComponent(string str)
+        {
+            return HttpUtility.UrlEncode(Encrypter.Encrypt(str)).Replace("%", "!");
+        }
+
+        public static string DecryptSecretUrlComponent(string str)
+        {
+            return HttpUtility.UrlDecode(str.Replace("!", "%"));
         }
     }
 
@@ -40,8 +54,8 @@ namespace CompresJSON
         {
             var routeValues = requestContext.RouteData.Values;
 
-            var c = HttpUtility.UrlDecode(routeValues["c"].ToString().Replace("!", "%"));
-            var a = HttpUtility.UrlDecode(routeValues["a"].ToString().Replace("!", "%"));
+            var c = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
+            var a = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["a"].ToString());
 
             var controller = Encrypter.Decrypt(c);
             var action = Encrypter.Decrypt(a);
