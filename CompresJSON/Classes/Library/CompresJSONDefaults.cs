@@ -6,7 +6,7 @@ using System.Web;
 
 namespace CompresJSON
 {
-    public class CompresJSONDefaults
+    public class CompresJSONSettings
     {
         public static string EncryptionKey = "password";
 

@@ -22,7 +22,7 @@ namespace CompresJSON.Controllers
             return Json(OneUser());
         }
 
-        [ApplyEncryptionAndCompression]
+        [EncryptAndCompressAsNecessary]
         public JsonResult GetOneUserEncrypted()
         {
             return Json(OneUser());
@@ -33,7 +33,7 @@ namespace CompresJSON.Controllers
             return Json(ManyUsers());
         }
 
-        [ApplyEncryptionAndCompression]
+        [EncryptAndCompressAsNecessary]
         public JsonResult GetManyUsersEncrypted()
         {
             return Json(ManyUsers());
@@ -74,5 +74,16 @@ namespace CompresJSON
         public string action = "";
         public bool encryptResponse = false;
         public bool encryptUrl = false;
+        public string type = "POST";
+    }
+
+    public class SpeedTestWebApi
+    {
+        public string description = "";
+        public string table = "";
+        //public bool encryptResponse = false;
+        public bool encryptUrl = false;
+        public string data = "";
+        public string type = "POST";
     }
 }

@@ -24,8 +24,8 @@ namespace CompresJSON.Controllers
         }
 
 
-        [ApplyDecryptionAndDecompression]
-        [ApplyEncryptionAndCompression]
+        [DecryptAndDecompressAsNecessary]
+        [EncryptAndCompressAsNecessary]
         public JsonResult LookAtUser(User user, FormCollection formc, string testString)
         {
             var rc = new Dictionary<string, object>();
@@ -37,22 +37,14 @@ namespace CompresJSON.Controllers
 
         public ActionResult sendEncryptedData()
         {
-            //var d = Encrypter.Encrypt("{ \"UserID\" : 18818 }");
-            //var d = Compressor.Compress("{ \"UserID\" : 18818 }").encodedOutput;
-            var controller = CompresJSONRouteManager.EncryptSecretUrlComponent("Receiver");
-            var action = CompresJSONRouteManager.EncryptSecretUrlComponent("sendEncryptedData");
+            ViewBag.Controller = CompresJSONRouteManager.EncryptSecretUrlComponent("Receiver");
+            ViewBag.Action = CompresJSONRouteManager.EncryptSecretUrlComponent("sendEncryptedData");
+            ViewBag.Json = CompresJSONUtilities.EncryptAndCompressAsNecessary("{ \"UserID\": 5, \"Name\": \"Alex\", \"testString\": \"hellooooo\", \"c\": \"Receiver\", \"a\": \"LookAtUser\" }");
 
-            ViewBag.Controller = controller;
-            ViewBag.Action = action;
-
-            string compressedString = Compressor.Compress("{ \"UserID\": 5, \"Name\": \"Alex\", \"testString\": \"hellooooo\", \"c\": \"Receiver\", \"a\": \"LookAtUser\" }").encodedOutput;
-            var json = Encrypter.Encrypt(compressedString);
-
-            ViewBag.Json = json;
             return View();
         }
 
-        [ApplyEncryptionAndCompression]
+        [EncryptAndCompressAsNecessary]
         public JsonResult StressTest()
         {
             var rc = new List<object>();

@@ -28,8 +28,8 @@ namespace CompresJSON.Controllers
         }
 
         // POST: api/Users
-        [WebApiApplyDecryptionAndDecompression]
-        [WebApiApplyEncryptionAndCompression]
+        [DecryptAndDecompressAsNecessaryWebApi]
+        //[EncryptAndCompressAsNecessaryWebApi]
         public IHttpActionResult Post(User user)
         {
             return Json(user);

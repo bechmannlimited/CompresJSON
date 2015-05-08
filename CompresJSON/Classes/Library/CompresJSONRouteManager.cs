@@ -18,9 +18,11 @@ namespace CompresJSON
             //routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.Add(
             new Route(
-                    SecretUrlPrefix + "/{c}/{a}/{id}",
-                    new RouteValueDictionary(new { controller = "", action = "", id = UrlParameter.Optional }),
-                    new CustomRouteHandler()));
+                SecretUrlPrefix + "/{c}/{a}/{id}",
+                new RouteValueDictionary(new { controller = "", action = "", id = UrlParameter.Optional }),
+                null,
+                new DecryptMVCRouteHandler())
+            );
         }
 
         //Web Api Route setup
@@ -28,13 +30,13 @@ namespace CompresJSON
         {
             config.MapHttpAttributeRoutes();
 
-            // Web API secret route
             config.Routes.MapHttpRoute(
                 name: "SecretDefaultApi",
-                routeTemplate: SecretUrlPrefix + "/api/{c}/{a}/{id}",
-                defaults: new RouteValueDictionary(new { controller = "", action = "", id = UrlParameter.Optional }),
-                constraints: new CustomRouteHandler()
-                );
+                routeTemplate: "apih/{c}/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: null,
+                handler: new DecryptWebApiRouteHandler(GlobalConfiguration.Configuration)
+            );
         }
 
         public static string EncryptSecretUrlComponent(string str)
@@ -48,7 +50,7 @@ namespace CompresJSON
         }
     }
 
-    public class CustomRouteHandler : IRouteHandler
+    public class DecryptMVCRouteHandler : IRouteHandler
     {
         public IHttpHandler GetHttpHandler(RequestContext requestContext)
         {
@@ -57,11 +59,11 @@ namespace CompresJSON
             var c = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
             var a = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["a"].ToString());
 
-            var controller = Encrypter.Decrypt(c);
-            var action = Encrypter.Decrypt(a);
+            routeValues["c"] = null;
+            routeValues["a"] = null;
 
-            routeValues["Controller"] = controller;
-            routeValues["Action"] = action;
+            routeValues["Controller"] = Encrypter.Decrypt(c);
+            routeValues["Action"] = Encrypter.Decrypt(a);
 
             var mvcRouteHandler = new MvcRouteHandler();
             return (mvcRouteHandler as IRouteHandler).GetHttpHandler(requestContext);

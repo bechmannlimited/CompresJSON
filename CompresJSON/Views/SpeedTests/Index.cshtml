@@ -47,6 +47,18 @@
             encryptUrl = true
         },
     };
+
+    List<SpeedTestWebApi> webApiTests = new List<SpeedTestWebApi>()
+    {
+        new SpeedTestWebApi
+        {
+            table = "Customers",
+            description = "Get many customers",
+            type = "GET",
+            encryptUrl = true
+        }
+
+    };
 }
 
 <h2>Index</h2>
@@ -71,7 +83,37 @@
             <tr>
                 <td>@test.description</td>
                 <td>
-                    <a class="btn btn-default" href="#" onclick="getJSON(@i, '/compresjson/@url')">
+                    <a class="btn btn-default" href="#!" onclick="getJSON(@i, '/@url', '@test.type')">
+                        Send request
+                    </a>
+                </td>
+                <td>
+                    <p id="request@(i)"></p>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <caption>Web api Speed tests</caption>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th></th>
+            <th>Request info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var test in webApiTests)
+        {
+            var url = "apih/" + CompresJSONRouteManager.EncryptSecretUrlComponent(test.table);
+
+            <tr>
+                <td>@test.description</td>
+                <td>
+                    <a class="btn btn-default" href="#!" onclick="getJSON(@i, '/@url')">
                         Send request
                     </a>
                 </td>
@@ -85,13 +127,13 @@
 </table>
 
 <script>
-    function getJSON(requestID, url) {
+    function getJSON(requestID, url, type) {
         var startTime = new Date().getTime();;
         $('#request' + requestID).text('loading...');
         var xhr = $.ajax({
             url: url,
             data: { "data": "oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
-            type: "POST"
+            type: type
         }).done(function (result) {
             var elapsed = new Date().getTime() - startTime;
             console.log(result);
