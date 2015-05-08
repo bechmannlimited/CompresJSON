@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AESCryptoTest;
 
 namespace CompresJSON.Controllers
 {
@@ -12,9 +13,10 @@ namespace CompresJSON.Controllers
         public ActionResult Index()
         {
             var s = Encrypter.Encrypt("hello");
+            var d = Encrypter.Decrypt(s);
+
             return View();
         }
-
 
         //Results
 

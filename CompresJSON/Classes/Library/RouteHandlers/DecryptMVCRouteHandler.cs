@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace CompresJSON.Classes.Action_filters
+namespace CompresJSON
 {
     public class DecryptMVCRouteHandler : IRouteHandler
     {

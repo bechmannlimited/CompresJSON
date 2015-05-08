@@ -14,7 +14,7 @@ namespace CompresJSON.Controllers
 {
 
     [DecryptAndDecompressAsNecessaryWebApi]
-    //[EncryptAndCompressAsNecessaryWebApi]
+    [EncryptAndCompressAsNecessaryWebApi]
     public class CustomersController : ApiController
     {
         private NORTHWNDEntities db = NORTHWNDEntities.JsonDB();

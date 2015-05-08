@@ -153,6 +153,7 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Library\Action filters\ApplyEncryptionAndCompression.cs" />
+    <Compile Include="Classes\Library\Encryption\SwiftNETEncrypt\EncryptedString.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptMVCRouteHandler.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptWebApiRouteHandler.cs" />
     <Compile Include="Classes\Library\Extensions\EF_Extension.cs" />
@@ -167,7 +168,6 @@
     <Compile Include="Classes\Library\Encoder\EncodingMethod.cs" />
     <Compile Include="Classes\Library\Compressor\GZip.cs" />
     <Compile Include="Classes\Library\Compressor\LZ77.cs" />
-    <Compile Include="Classes\Library\Encryption\CryptLib.cs" />
     <Compile Include="Classes\Library\Encryption\Encrypter.cs" />
     <Compile Include="Classes\Library\CompresJSONRouteManager.cs" />
     <Compile Include="Classes\Library\Utilities\CompresJSONUtilities.cs" />

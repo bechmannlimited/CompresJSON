@@ -49,24 +49,4 @@ namespace CompresJSON
             return HttpUtility.UrlDecode(str.Replace("!", "%"));
         }
     }
-
-    public class DecryptMVCRouteHandler : IRouteHandler
-    {
-        public IHttpHandler GetHttpHandler(RequestContext requestContext)
-        {
-            var routeValues = requestContext.RouteData.Values;
-
-            var c = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
-            var a = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["a"].ToString());
-
-            routeValues["c"] = null;
-            routeValues["a"] = null;
-
-            routeValues["Controller"] = Encrypter.Decrypt(c);
-            routeValues["Action"] = Encrypter.Decrypt(a);
-
-            var mvcRouteHandler = new MvcRouteHandler();
-            return (mvcRouteHandler as IRouteHandler).GetHttpHandler(requestContext);
-        }
-    }
 }
