@@ -11,6 +11,7 @@ namespace CompresJSON.Controllers
         // GET: SpeedTests
         public ActionResult Index()
         {
+            var s = Encrypter.Encrypt("hello");
             return View();
         }
 

@@ -16,7 +16,6 @@ namespace CompresJSON
             String iv = "EzJ9RvaqpLf-OZSR"; // CryptLib.GenerateRandomIV(16); //16 bytes = 128 bits
             string key = CryptLib.getHashSha256(CompresJSONSettings.EncryptionKey, 32); //32 bytes = 256 bits
 
-
             String cypherText = _crypt.encrypt(plainText, key, iv);
             Console.WriteLine("iv=" + iv);
             Console.WriteLine("key=" + key);
@@ -37,7 +36,9 @@ namespace CompresJSON
 
             return _crypt.decrypt(cypherText, key, iv);
         }
-        
+
+   
+
 
     }
 }
