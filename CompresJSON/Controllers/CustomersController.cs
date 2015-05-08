@@ -12,12 +12,14 @@ using CompresJSON;
 
 namespace CompresJSON.Controllers
 {
+
+    [DecryptAndDecompressAsNecessaryWebApi]
+    //[EncryptAndCompressAsNecessaryWebApi]
     public class CustomersController : ApiController
     {
         private NORTHWNDEntities db = NORTHWNDEntities.JsonDB();
 
         // GET: api/Customers
-        [EncryptAndCompressAsNecessaryWebApi]
         public IQueryable<Customer> GetCustomers()
         {
             return db.Customers;
@@ -25,8 +27,6 @@ namespace CompresJSON.Controllers
 
         // GET: api/Customers/5
         [ResponseType(typeof(Customer))]
-        [DecryptAndDecompressAsNecessaryWebApi]
-        [EncryptAndCompressAsNecessaryWebApi]
         public IHttpActionResult GetCustomer(string id)
         {
             Customer customer = db.Customers.Find(id);
@@ -40,8 +40,6 @@ namespace CompresJSON.Controllers
 
         // PUT: api/Customers/5
         [ResponseType(typeof(void))]
-        [DecryptAndDecompressAsNecessaryWebApi]
-        [EncryptAndCompressAsNecessaryWebApi]
         public IHttpActionResult PutCustomer(string id, Customer customer)
         {
             if (!ModelState.IsValid)
@@ -77,8 +75,6 @@ namespace CompresJSON.Controllers
 
         // POST: api/Customers
         [ResponseType(typeof(Customer))]
-        [DecryptAndDecompressAsNecessaryWebApi]
-        [EncryptAndCompressAsNecessaryWebApi]
         public IHttpActionResult PostCustomer(Customer customer)
         {
             if (!ModelState.IsValid)
@@ -109,7 +105,6 @@ namespace CompresJSON.Controllers
 
         // DELETE: api/Customers/5
         [ResponseType(typeof(Customer))]
-        [EncryptAndCompressAsNecessaryWebApi]
         public IHttpActionResult DeleteCustomer(string id)
         {
             Customer customer = db.Customers.Find(id);
