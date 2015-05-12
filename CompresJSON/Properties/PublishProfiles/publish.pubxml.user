@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <_PublishTargetUrl>\\192.168.2.42\HostsE\Alex\CompresJSON</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="AlexDb.edmx.diagram">
+      <publishTime>05/12/2015 20:18:09</publishTime>
+    </File>
+    <File Include="App_Data/NORTHWND.MDF">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="App_Data/NORTHWND_log.ldf">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>05/12/2015 20:19:58</publishTime>
+    </File>
+    <File Include="bin/CompresJSON.dll">
+      <publishTime>05/12/2015 20:20:36</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>05/12/2015 20:20:09</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.SqlServer.dll">
+      <publishTime>05/12/2015 20:20:09</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>05/12/2015 20:20:03</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>05/12/2015 20:20:12</publishTime>
+    </File>
+    <File Include="bin/System.Net.Http.Formatting.dll">
+      <publishTime>05/12/2015 20:20:02</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>05/12/2015 20:20:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.dll">
+      <publishTime>05/12/2015 20:20:02</publishTime>
+    </File>
+    <File Include="bin/System.Web.Http.WebHost.dll">
+      <publishTime>05/12/2015 20:20:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>05/12/2015 20:20:00</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>05/12/2015 20:19:58</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>05/12/2015 20:20:10</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Deployment.dll">
+      <publishTime>05/12/2015 20:20:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.dll">
+      <publishTime>05/12/2015 20:20:05</publishTime>
+    </File>
+    <File Include="bin/System.Web.Webpages.Razor.dll">
+      <publishTime>05/12/2015 20:20:05</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>05/12/2015 20:20:08</publishTime>
+    </File>
+    <File Include="Content/bootstrap.css">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="Content/bootstrap.min.css">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="Content/Site.css">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.eot">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.svg">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.ttf">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="fonts/glyphicons-halflings-regular.woff">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>05/12/2015 20:18:01</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.js">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>05/12/2015 20:17:59</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/aes.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/base64-string.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/Base64.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/Compress_Encrypt.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/lz-string.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/pbkdf2.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/jquery-1.10.2.min.map">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Scripts/modernizr-2.6.2.js">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Views/Receiver/sendEncryptedData.cshtml">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Views/SpeedTests/Index.cshtml">
+      <publishTime>05/12/2015 20:18:09</publishTime>
+    </File>
+    <File Include="Views/Test/Index.cshtml">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Views/web.config">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>05/12/2015 20:18:00</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/12/2015 20:32:46</publishTime>
+    </File>
+  </ItemGroup>
+</Project>
