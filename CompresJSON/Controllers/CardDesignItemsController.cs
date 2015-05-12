@@ -76,6 +76,8 @@ namespace CompresJSON.Controllers
         [ResponseType(typeof(CardDesignItem))]
         public IHttpActionResult PostCardDesignItem(CardDesignItem cardDesignItem)
         {
+            return Json(cardDesignItem);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

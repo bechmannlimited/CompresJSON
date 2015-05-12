@@ -78,7 +78,7 @@ namespace CompresJSON.Controllers
         public JsonResult decrypt(String str)
         {
             //str = HttpUtility.UrlDecode(str);
-            return Json(Encrypter.Decrypt(str), JsonRequestBehavior.AllowGet);
+            return Json(CompresJSONUtilities.EncryptAndCompressAsNecessary(str), JsonRequestBehavior.AllowGet);
         }
     }
 }

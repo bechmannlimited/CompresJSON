@@ -169,11 +169,17 @@
 
     function go() {
 
+        var str = "{ #FontID# :15 }"
+        //var str = ""
 
+        var data = Compress(str);
+        console.log(data);
+        data = Encrypt(data, "@CompresJSONSettings.EncryptionKey");
+        console.log(data)
 
         $.ajax({
             url: "/api/CardDesignItems",
-            data: { "data": "U2FsdGVkX19YuGeVCwskBpIk3+WLjZ2+q15hA/DYhTRKNh1i/5eaFv5iJQg/TRUlXAZzFkRHyBvjDutIlVI1OEpNDgs6hrWUnE5CvkD665FaU57ZzITGvURFvwUrhWpqD/WNHaLC8H9hxzo//AK73LWHXrjXcBfy+UhYGxLhsLdO9fdhX9gNqXDRvE9PJ0aEOxOoobel1Iwzne6Uh7tPfW9IOKQFeGFj5cprBuGjF1ZyjY8o9dCfl65m9K2blVYK" },
+            data: { "data": data }, // "U2FsdGVkX19YuGeVCwskBpIk3+WLjZ2+q15hA/DYhTRKNh1i/5eaFv5iJQg/TRUlXAZzFkRHyBvjDutIlVI1OEpNDgs6hrWUnE5CvkD665FaU57ZzITGvURFvwUrhWpqD/WNHaLC8H9hxzo//AK73LWHXrjXcBfy+UhYGxLhsLdO9fdhX9gNqXDRvE9PJ0aEOxOoobel1Iwzne6Uh7tPfW9IOKQFeGFj5cprBuGjF1ZyjY8o9dCfl65m9K2blVYK" },
             type: "POST"
         }).done(function (result) {
             //console.log("result:" + result);
