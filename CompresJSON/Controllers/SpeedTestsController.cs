@@ -22,7 +22,7 @@ namespace CompresJSON.Controllers
             rc["compr"] = Compressor.Compress(message);
             rc["encr"] = Encrypter.Encrypt(message);
             rc["all"] = CompresJSONUtilities.EncryptAndCompressAsNecessary(message);
-            return Json(CompresJSONUtilities.DecryptAndDecompressAsNecessary("U2FsdGVkX1+sB1LqUdw2UEGijQ/LDKFzMgOjkbc5Pju5NU3uL4WMEnkzsX0q7h4E"), JsonRequestBehavior.AllowGet);
+            return Json(CompresJSONUtilities.DecryptAndDecompressAsNecessary("U2FsdGVkX1+yyEwqmp14UYvVax3ej/74+HFBaJQWogIkx+c9bngjLwrKOoqPVORdRGHREQiPmNxoFZNKW45vrfSVagdVqJCcQMrO8L0nzC0="), JsonRequestBehavior.AllowGet);
             //return View();
         }
 
