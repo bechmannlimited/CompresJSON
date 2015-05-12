@@ -82,3 +82,8 @@ E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.dll
 E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.SqlServer.dll
 E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.xml
 E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.SqlServer.xml
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Antlr3.Runtime.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Optimization.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\WebGrease.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Antlr3.Runtime.pdb
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Optimization.xml

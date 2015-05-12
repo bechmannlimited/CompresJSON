@@ -13,22 +13,17 @@ namespace CompresJSON.Controllers
         // GET: SpeedTests
         public ActionResult Index()
         {
-            var messages = new List<string>() {
-                "12345",
-                "hello",
-                "asdfasdf",
-                "!!!!!!",
-                "~~~''''"
-            };
+            var message = "hello really";
 
-            for (int i = 0; i < messages.Count; i++)
-            {
-                messages[i] = LZString.compressToBase64(messages[i]);
-            }
+            //message = CompresJSONUtilities.EncryptAndCompressAsNecessary(message);
 
-            //return Content(Compressor.Decompress("BYUwNmD2QAA="));
-            //return Json(messages, JsonRequestBehavior.AllowGet);
-            return View();
+            var rc = new Dictionary<string, object>();
+            rc["original"] = message;
+            rc["compr"] = Compressor.Compress(message);
+            rc["encr"] = Encrypter.Encrypt(message);
+            rc["all"] = CompresJSONUtilities.EncryptAndCompressAsNecessary(message);
+            return Json(CompresJSONUtilities.DecryptAndDecompressAsNecessary("U2FsdGVkX1+sB1LqUdw2UEGijQ/LDKFzMgOjkbc5Pju5NU3uL4WMEnkzsX0q7h4E"), JsonRequestBehavior.AllowGet);
+            //return View();
         }
 
         //Results
@@ -80,10 +75,10 @@ namespace CompresJSON.Controllers
             return rc;
         }
 
-        public JsonResult decompress(String str)
+        public JsonResult decrypt(String str)
         {
             //str = HttpUtility.UrlDecode(str);
-            return Json(Compressor.Decompress(str), JsonRequestBehavior.AllowGet);
+            return Json(Encrypter.Decrypt(str), JsonRequestBehavior.AllowGet);
         }
     }
 }

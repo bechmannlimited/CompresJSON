@@ -11,12 +11,16 @@ namespace CompresJSON
 
         public static string Encrypt(string str)
         {
-            return EncryptedString.EncryptString(str, CompresJSONSettings.EncryptionKey);
+            var p = new CryptoJS();
+            return p.OpenSSLEncrypt(str, CompresJSONSettings.EncryptionKey);
+            //return EncryptedString.EncryptString(str, CompresJSONSettings.EncryptionKey);
         }
 
         public static string Decrypt(string str)
         {
-            return EncryptedString.DecryptString(str, CompresJSONSettings.EncryptionKey);
+            var p = new CryptoJS();
+            return p.OpenSSLDecrypt(str, CompresJSONSettings.EncryptionKey);
+            //return EncryptedString.DecryptString(str, CompresJSONSettings.EncryptionKey);
         }
       
 
