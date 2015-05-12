@@ -1,0 +1,215 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AlexDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="CardDesignItems">
+    <Key>
+      <PropertyRef Name="CardDesignItemID" />
+    </Key>
+    <Property Name="CardDesignItemID" Type="int" Nullable="false" />
+    <Property Name="CardDesignID" Type="int" />
+    <Property Name="CardDesignItem" Type="nvarchar" MaxLength="50" />
+    <Property Name="FontID" Type="int" />
+    <Property Name="ColourID" Type="int" />
+    <Property Name="FontSizeID" Type="int" />
+    <Property Name="ItemText" Type="text" />
+    <Property Name="ItemAttributes" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CardDesigns">
+    <Key>
+      <PropertyRef Name="CardDesignID" />
+    </Key>
+    <Property Name="CardDesignID" Type="int" Nullable="false" />
+    <Property Name="SessionID" Type="nvarchar" MaxLength="40" />
+    <Property Name="ImageID" Type="int" />
+    <Property Name="OwnImageID" Type="int" />
+    <Property Name="LayoutID" Type="int" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="RecipientID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="MailToMeID" Type="int" />
+    <Property Name="EnvelopeID" Type="int" />
+    <Property Name="PostageID" Type="int" />
+    <Property Name="DispatchDate" Type="smalldatetime" />
+    <Property Name="AddOnID" Type="int" />
+    <Property Name="OrderLineID" Type="int" />
+    <Property Name="DiscountID" Type="int" />
+    <Property Name="ProcessedDate" Type="smalldatetime" />
+    <Property Name="PDFSentDate" Type="smalldatetime" />
+    <Property Name="EnteredDate" Type="smalldatetime" />
+  </EntityType>
+  <EntityType Name="Categories">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="int" Nullable="false" />
+    <Property Name="Category" Type="nvarchar" MaxLength="100" />
+    <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="SortOrder" Type="int" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="PageID" Type="int" />
+  </EntityType>
+  <EntityType Name="Customers">
+    <Key>
+      <PropertyRef Name="CustomerID" />
+    </Key>
+    <Property Name="CustomerID" Type="int" Nullable="false" />
+    <Property Name="CustomerName" Type="nvarchar" MaxLength="150" />
+    <Property Name="EMail" Type="nvarchar" MaxLength="150" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="CurrencyCode" Type="nvarchar" MaxLength="3" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address3" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address4" Type="nvarchar" MaxLength="100" />
+    <Property Name="Address5" Type="nvarchar" MaxLength="100" />
+    <Property Name="CountryCode" Type="nvarchar" MaxLength="2" />
+    <Property Name="Discount" Type="float" />
+  </EntityType>
+  <EntityType Name="OrderLineItems">
+    <Key>
+      <PropertyRef Name="OrderLineItemID" />
+    </Key>
+    <Property Name="OrderLineItemID" Type="int" Nullable="false" />
+    <Property Name="OrderLineID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="ItemPrice" Type="float" />
+    <Property Name="ItemTotal" Type="float" />
+  </EntityType>
+  <EntityType Name="OrderLines">
+    <Key>
+      <PropertyRef Name="OrderLineID" />
+    </Key>
+    <Property Name="OrderLineID" Type="int" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="LinePrice" Type="float" />
+    <Property Name="DesignID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="int" Nullable="false" />
+    <Property Name="SessionID" Type="nvarchar" MaxLength="40" />
+    <Property Name="CustomerID" Type="int" />
+    <Property Name="OrderDate" Type="smalldatetime" />
+    <Property Name="CurrencyCode" Type="char" MaxLength="3" />
+    <Property Name="TotalPrice" Type="float" />
+    <Property Name="TotalDiscount" Type="float" />
+    <Property Name="Status" Type="nvarchar" MaxLength="50" />
+    <Property Name="TransactionID" Type="nvarchar" MaxLength="50" />
+    <Property Name="AffiliateID" Type="int" />
+    <Property Name="CustomerEMail" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="SubCategories">
+    <Key>
+      <PropertyRef Name="SubCategoryID" />
+    </Key>
+    <Property Name="SubCategoryID" Type="int" Nullable="false" />
+    <Property Name="CategoryID" Type="int" />
+    <Property Name="SubCategory" Type="nvarchar" MaxLength="100" />
+    <Property Name="SubCategoryDescription" Type="nvarchar" MaxLength="255" />
+    <Property Name="SortOrder" Type="int" />
+    <Property Name="Active" Type="char" MaxLength="1" />
+    <Property Name="MetaTags" Type="nvarchar" MaxLength="1500" />
+  </EntityType>
+  <Association Name="FK_CardDesignItems_CardDesigns">
+    <End Role="CardDesigns" Type="Self.CardDesigns" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CardDesignItems" Type="Self.CardDesignItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CardDesigns">
+        <PropertyRef Name="CardDesignID" />
+      </Principal>
+      <Dependent Role="CardDesignItems">
+        <PropertyRef Name="CardDesignID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLineItems_OrderLines">
+    <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderLineItems" Type="Self.OrderLineItems" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="OrderLines">
+        <PropertyRef Name="OrderLineID" />
+      </Principal>
+      <Dependent Role="OrderLineItems">
+        <PropertyRef Name="OrderLineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrderLines_Orders">
+    <End Role="Orders" Type="Self.Orders" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrderLines">
+        <PropertyRef Name="OrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orders_Customers">
+    <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Customers">
+        <PropertyRef Name="CustomerID" />
+      </Principal>
+      <Dependent Role="Orders">
+        <PropertyRef Name="CustomerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SubCategories_Categories">
+    <End Role="Categories" Type="Self.Categories" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SubCategories" Type="Self.SubCategories" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Categories">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="SubCategories">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AlexDbModelStoreContainer">
+    <EntitySet Name="CardDesignItems" EntityType="Self.CardDesignItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CardDesigns" EntityType="Self.CardDesigns" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderLineItems" EntityType="Self.OrderLineItems" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubCategories" EntityType="Self.SubCategories" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CardDesignItems_CardDesigns" Association="Self.FK_CardDesignItems_CardDesigns">
+      <End Role="CardDesigns" EntitySet="CardDesigns" />
+      <End Role="CardDesignItems" EntitySet="CardDesignItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLineItems_OrderLines" Association="Self.FK_OrderLineItems_OrderLines">
+      <End Role="OrderLines" EntitySet="OrderLines" />
+      <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrderLines_Orders" Association="Self.FK_OrderLines_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrderLines" EntitySet="OrderLines" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+      <End Role="Customers" EntitySet="Customers" />
+      <End Role="Orders" EntitySet="Orders" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SubCategories_Categories" Association="Self.FK_SubCategories_Categories">
+      <End Role="Categories" EntitySet="Categories" />
+      <End Role="SubCategories" EntitySet="SubCategories" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

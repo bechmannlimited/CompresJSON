@@ -16,14 +16,16 @@ namespace CompresJSON
     {
         public Category()
         {
-            this.Products = new HashSet<Product>();
+            this.SubCategories = new HashSet<SubCategory>();
         }
     
         public int CategoryID { get; set; }
-        public string CategoryName { get; set; }
-        public string Description { get; set; }
-        public byte[] Picture { get; set; }
+        public string Category1 { get; set; }
+        public string CategoryDescription { get; set; }
+        public Nullable<int> SortOrder { get; set; }
+        public string Active { get; set; }
+        public Nullable<int> PageID { get; set; }
     
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual ICollection<SubCategory> SubCategories { get; set; }
     }
 }

@@ -1,0 +1,146 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+
+    List<SpeedTest> tests = new List<SpeedTest>()
+    {
+        new SpeedTest
+        {
+            action = "GetOneUserUnencrypted",
+            description = "Get one user",
+            encryptResponse = false,
+            encryptUrl = false
+        },
+        new SpeedTest
+        {
+            action = "GetOneUserEncrypted",
+            description = "Get one user (encrypted)",
+            encryptResponse = true,
+            encryptUrl = false
+        },
+        new SpeedTest
+        {
+            action = "GetOneUserEncrypted",
+            description = "Get one user (encrypted + encrypted url)",
+            encryptResponse = true,
+            encryptUrl = true
+        },
+        new SpeedTest
+        {
+            action = "GetManyUsersUnencrypted",
+            description = "Get many users",
+            encryptResponse = true,
+            encryptUrl = false
+        },
+        new SpeedTest
+        {
+            action = "GetManyUsersEncrypted",
+            description = "Get many users (encrypted)",
+            encryptResponse = false,
+            encryptUrl = false
+        },
+        new SpeedTest
+        {
+            action = "GetManyUsersEncrypted",
+            description = "(encrypted + encrypted url)",
+            encryptResponse = true,
+            encryptUrl = true
+        },
+    };
+
+    List<SpeedTestWebApi> webApiTests = new List<SpeedTestWebApi>()
+    {
+        new SpeedTestWebApi
+        {
+            table = "Customers",
+            description = "Get many customers",
+            type = "GET",
+            encryptUrl = true
+        }
+
+    };
+
+}
+
+<h2>Index</h2>
+
+<table class="table table-striped">
+    <caption>Speed tests</caption>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th></th>
+            <th>Request info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{ int i = 0;}
+        @foreach (var test in tests)
+        {
+            var url = test.encryptUrl ?
+                CompresJSONRouteManager.SecretUrlPrefix + "/" + CompresJSONRouteManager.EncryptSecretUrlComponent("SpeedTests") + "/" + CompresJSONRouteManager.EncryptSecretUrlComponent(test.action) :
+                "SpeedTests/" + test.action;
+
+            <tr>
+                <td>@test.description</td>
+                <td>
+                    <a class="btn btn-default" href="#!" onclick="getJSON(@i, '/@url', '@test.type')">
+                        Send request
+                    </a>
+                </td>
+                <td>
+                    <p id="request@(i)"></p>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
+<table class="table table-striped">
+    <caption>Web api Speed tests</caption>
+    <thead>
+        <tr>
+            <th>Description</th>
+            <th></th>
+            <th>Request info</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var test in webApiTests)
+        {
+            var url = "apih/" + CompresJSONRouteManager.EncryptSecretUrlComponent(test.table);
+
+            <tr>
+                <td>@test.description</td>
+                <td>
+                    <a class="btn btn-default" href="#!" onclick="getJSON(@i, '/@url', '@test.type')">
+                        Send request
+                    </a>
+                </td>
+                <td>
+                    <p id="request@(i)"></p>
+                </td>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>
+
+<script>
+    function getJSON(requestID, url, type) {
+        var startTime = new Date().getTime();;
+        $('#request' + requestID).text('loading...');
+        var xhr = $.ajax({
+            url: url,
+            //data: { "data": "@CompresJSONUtilities.EncryptAndCompressAsNecessary("{ \"CustomerID\" : \"5\" }")" },//"oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
+            type: type
+        }).done(function (result) {
+            var elapsed = new Date().getTime() - startTime;
+            console.log(result);
+            $('#request' + requestID).text('time: ' + elapsed + 'ms | ' 
+                + xhr.getResponseHeader('Content-Length') + ' bytes'
+            );
+        });
+    }
+</script>

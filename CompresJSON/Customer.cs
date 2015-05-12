@@ -17,22 +17,21 @@ namespace CompresJSON
         public Customer()
         {
             this.Orders = new HashSet<Order>();
-            this.CustomerDemographics = new HashSet<CustomerDemographic>();
         }
     
-        public string CustomerID { get; set; }
-        public string CompanyName { get; set; }
-        public string ContactName { get; set; }
-        public string ContactTitle { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string Region { get; set; }
-        public string PostalCode { get; set; }
-        public string Country { get; set; }
-        public string Phone { get; set; }
-        public string Fax { get; set; }
+        public int CustomerID { get; set; }
+        public string CustomerName { get; set; }
+        public string EMail { get; set; }
+        public string Password { get; set; }
+        public string CurrencyCode { get; set; }
+        public string Address1 { get; set; }
+        public string Address2 { get; set; }
+        public string Address3 { get; set; }
+        public string Address4 { get; set; }
+        public string Address5 { get; set; }
+        public string CountryCode { get; set; }
+        public Nullable<double> Discount { get; set; }
     
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<CustomerDemographic> CustomerDemographics { get; set; }
     }
 }

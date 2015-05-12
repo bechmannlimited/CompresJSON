@@ -5,11 +5,11 @@ using System.Web;
 
 namespace CompresJSON
 {
-    public partial class NORTHWNDEntities
+    public partial class AlexDbEntities
     {
-        public static NORTHWNDEntities JsonDB()
+        public static AlexDbEntities JsonDB()
         {
-            var db = new NORTHWNDEntities();
+            var db = new AlexDbEntities();
             db.Configuration.LazyLoadingEnabled = false;
             db.Configuration.ProxyCreationEnabled = false;
             return db;

@@ -1,0 +1,596 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AlexDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CardDesignItems">
+          <Key>
+            <PropertyRef Name="CardDesignItemID" />
+          </Key>
+          <Property Name="CardDesignItemID" Type="int" Nullable="false" />
+          <Property Name="CardDesignID" Type="int" />
+          <Property Name="CardDesignItem" Type="nvarchar" MaxLength="50" />
+          <Property Name="FontID" Type="int" />
+          <Property Name="ColourID" Type="int" />
+          <Property Name="FontSizeID" Type="int" />
+          <Property Name="ItemText" Type="text" />
+          <Property Name="ItemAttributes" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CardDesigns">
+          <Key>
+            <PropertyRef Name="CardDesignID" />
+          </Key>
+          <Property Name="CardDesignID" Type="int" Nullable="false" />
+          <Property Name="SessionID" Type="nvarchar" MaxLength="40" />
+          <Property Name="ImageID" Type="int" />
+          <Property Name="OwnImageID" Type="int" />
+          <Property Name="LayoutID" Type="int" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="RecipientID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="MailToMeID" Type="int" />
+          <Property Name="EnvelopeID" Type="int" />
+          <Property Name="PostageID" Type="int" />
+          <Property Name="DispatchDate" Type="smalldatetime" />
+          <Property Name="AddOnID" Type="int" />
+          <Property Name="OrderLineID" Type="int" />
+          <Property Name="DiscountID" Type="int" />
+          <Property Name="ProcessedDate" Type="smalldatetime" />
+          <Property Name="PDFSentDate" Type="smalldatetime" />
+          <Property Name="EnteredDate" Type="smalldatetime" />
+        </EntityType>
+        <EntityType Name="Categories">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Category" Type="nvarchar" MaxLength="100" />
+          <Property Name="CategoryDescription" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="Active" Type="char" MaxLength="1" />
+          <Property Name="PageID" Type="int" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="int" Nullable="false" />
+          <Property Name="CustomerName" Type="nvarchar" MaxLength="150" />
+          <Property Name="EMail" Type="nvarchar" MaxLength="150" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="CurrencyCode" Type="nvarchar" MaxLength="3" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address3" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address4" Type="nvarchar" MaxLength="100" />
+          <Property Name="Address5" Type="nvarchar" MaxLength="100" />
+          <Property Name="CountryCode" Type="nvarchar" MaxLength="2" />
+          <Property Name="Discount" Type="float" />
+        </EntityType>
+        <EntityType Name="OrderLineItems">
+          <Key>
+            <PropertyRef Name="OrderLineItemID" />
+          </Key>
+          <Property Name="OrderLineItemID" Type="int" Nullable="false" />
+          <Property Name="OrderLineID" Type="int" />
+          <Property Name="ProductID" Type="int" />
+          <Property Name="Quantity" Type="int" />
+          <Property Name="ItemPrice" Type="float" />
+          <Property Name="ItemTotal" Type="float" />
+        </EntityType>
+        <EntityType Name="OrderLines">
+          <Key>
+            <PropertyRef Name="OrderLineID" />
+          </Key>
+          <Property Name="OrderLineID" Type="int" Nullable="false" />
+          <Property Name="OrderID" Type="int" />
+          <Property Name="LinePrice" Type="float" />
+          <Property Name="DesignID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="SessionID" Type="nvarchar" MaxLength="40" />
+          <Property Name="CustomerID" Type="int" />
+          <Property Name="OrderDate" Type="smalldatetime" />
+          <Property Name="CurrencyCode" Type="char" MaxLength="3" />
+          <Property Name="TotalPrice" Type="float" />
+          <Property Name="TotalDiscount" Type="float" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+          <Property Name="TransactionID" Type="nvarchar" MaxLength="50" />
+          <Property Name="AffiliateID" Type="int" />
+          <Property Name="CustomerEMail" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="SubCategories">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="int" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
+          <Property Name="SubCategory" Type="nvarchar" MaxLength="100" />
+          <Property Name="SubCategoryDescription" Type="nvarchar" MaxLength="255" />
+          <Property Name="SortOrder" Type="int" />
+          <Property Name="Active" Type="char" MaxLength="1" />
+          <Property Name="MetaTags" Type="nvarchar" MaxLength="1500" />
+        </EntityType>
+        <Association Name="FK_CardDesignItems_CardDesigns">
+          <End Role="CardDesigns" Type="Self.CardDesigns" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CardDesignItems" Type="Self.CardDesignItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CardDesigns">
+              <PropertyRef Name="CardDesignID" />
+            </Principal>
+            <Dependent Role="CardDesignItems">
+              <PropertyRef Name="CardDesignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLineItems_OrderLines">
+          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLineItems" Type="Self.OrderLineItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderLines">
+              <PropertyRef Name="OrderLineID" />
+            </Principal>
+            <Dependent Role="OrderLineItems">
+              <PropertyRef Name="OrderLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLines_Orders">
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLines" Type="Self.OrderLines" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderLines">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategories_Categories">
+          <End Role="Categories" Type="Self.Categories" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubCategories" Type="Self.SubCategories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SubCategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlexDbModelStoreContainer">
+          <EntitySet Name="CardDesignItems" EntityType="Self.CardDesignItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CardDesigns" EntityType="Self.CardDesigns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categories" EntityType="Self.Categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLineItems" EntityType="Self.OrderLineItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderLines" EntityType="Self.OrderLines" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SubCategories" EntityType="Self.SubCategories" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_CardDesignItems_CardDesigns" Association="Self.FK_CardDesignItems_CardDesigns">
+            <End Role="CardDesigns" EntitySet="CardDesigns" />
+            <End Role="CardDesignItems" EntitySet="CardDesignItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLineItems_OrderLines" Association="Self.FK_OrderLineItems_OrderLines">
+            <End Role="OrderLines" EntitySet="OrderLines" />
+            <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLines_Orders" Association="Self.FK_OrderLines_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategories_Categories" Association="Self.FK_SubCategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="SubCategories" EntitySet="SubCategories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AlexDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CardDesignItem">
+          <Key>
+            <PropertyRef Name="CardDesignItemID" />
+          </Key>
+          <Property Name="CardDesignItemID" Type="Int32" Nullable="false" />
+          <Property Name="CardDesignID" Type="Int32" />
+          <Property Name="CardDesignItem1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FontID" Type="Int32" />
+          <Property Name="ColourID" Type="Int32" />
+          <Property Name="FontSizeID" Type="Int32" />
+          <Property Name="ItemText" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ItemAttributes" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CardDesign" Relationship="Self.FK_CardDesignItems_CardDesigns" FromRole="CardDesignItems" ToRole="CardDesigns" />
+        </EntityType>
+        <EntityType Name="CardDesign">
+          <Key>
+            <PropertyRef Name="CardDesignID" />
+          </Key>
+          <Property Name="CardDesignID" Type="Int32" Nullable="false" />
+          <Property Name="SessionID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="ImageID" Type="Int32" />
+          <Property Name="OwnImageID" Type="Int32" />
+          <Property Name="LayoutID" Type="Int32" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="RecipientID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="MailToMeID" Type="Int32" />
+          <Property Name="EnvelopeID" Type="Int32" />
+          <Property Name="PostageID" Type="Int32" />
+          <Property Name="DispatchDate" Type="DateTime" Precision="0" />
+          <Property Name="AddOnID" Type="Int32" />
+          <Property Name="OrderLineID" Type="Int32" />
+          <Property Name="DiscountID" Type="Int32" />
+          <Property Name="ProcessedDate" Type="DateTime" Precision="0" />
+          <Property Name="PDFSentDate" Type="DateTime" Precision="0" />
+          <Property Name="EnteredDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="CardDesignItems" Relationship="Self.FK_CardDesignItems_CardDesigns" FromRole="CardDesigns" ToRole="CardDesignItems" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryID" />
+          </Key>
+          <Property Name="CategoryID" Type="Int32" Nullable="false" />
+          <Property Name="Category1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="PageID" Type="Int32" />
+          <NavigationProperty Name="SubCategories" Relationship="Self.FK_SubCategories_Categories" FromRole="Categories" ToRole="SubCategories" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="CustomerID" />
+          </Key>
+          <Property Name="CustomerID" Type="Int32" Nullable="false" />
+          <Property Name="CustomerName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EMail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Address5" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Double" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Orders_Customers" FromRole="Customers" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="OrderLineItem">
+          <Key>
+            <PropertyRef Name="OrderLineItemID" />
+          </Key>
+          <Property Name="OrderLineItemID" Type="Int32" Nullable="false" />
+          <Property Name="OrderLineID" Type="Int32" />
+          <Property Name="ProductID" Type="Int32" />
+          <Property Name="Quantity" Type="Int32" />
+          <Property Name="ItemPrice" Type="Double" />
+          <Property Name="ItemTotal" Type="Double" />
+          <NavigationProperty Name="OrderLine" Relationship="Self.FK_OrderLineItems_OrderLines" FromRole="OrderLineItems" ToRole="OrderLines" />
+        </EntityType>
+        <EntityType Name="OrderLine">
+          <Key>
+            <PropertyRef Name="OrderLineID" />
+          </Key>
+          <Property Name="OrderLineID" Type="Int32" Nullable="false" />
+          <Property Name="OrderID" Type="Int32" />
+          <Property Name="LinePrice" Type="Double" />
+          <Property Name="DesignID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderLineItems" Relationship="Self.FK_OrderLineItems_OrderLines" FromRole="OrderLines" ToRole="OrderLineItems" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderLines_Orders" FromRole="OrderLines" ToRole="Orders" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="SessionID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerID" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="0" />
+          <Property Name="CurrencyCode" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Name="TotalPrice" Type="Double" />
+          <Property Name="TotalDiscount" Type="Double" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TransactionID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AffiliateID" Type="Int32" />
+          <Property Name="CustomerEMail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Orders_Customers" FromRole="Orders" ToRole="Customers" />
+          <NavigationProperty Name="OrderLines" Relationship="Self.FK_OrderLines_Orders" FromRole="Orders" ToRole="OrderLines" />
+        </EntityType>
+        <EntityType Name="SubCategory">
+          <Key>
+            <PropertyRef Name="SubCategoryID" />
+          </Key>
+          <Property Name="SubCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="CategoryID" Type="Int32" />
+          <Property Name="SubCategory1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SubCategoryDescription" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SortOrder" Type="Int32" />
+          <Property Name="Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="MetaTags" Type="String" MaxLength="1500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_SubCategories_Categories" FromRole="SubCategories" ToRole="Categories" />
+        </EntityType>
+        <Association Name="FK_CardDesignItems_CardDesigns">
+          <End Role="CardDesigns" Type="Self.CardDesign" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="CardDesignItems" Type="Self.CardDesignItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CardDesigns">
+              <PropertyRef Name="CardDesignID" />
+            </Principal>
+            <Dependent Role="CardDesignItems">
+              <PropertyRef Name="CardDesignID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SubCategories_Categories">
+          <End Role="Categories" Type="Self.Category" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SubCategories" Type="Self.SubCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categories">
+              <PropertyRef Name="CategoryID" />
+            </Principal>
+            <Dependent Role="SubCategories">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Orders_Customers">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="CustomerID" />
+            </Principal>
+            <Dependent Role="Orders">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLineItems_OrderLines">
+          <End Role="OrderLines" Type="Self.OrderLine" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLineItems" Type="Self.OrderLineItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderLines">
+              <PropertyRef Name="OrderLineID" />
+            </Principal>
+            <Dependent Role="OrderLineItems">
+              <PropertyRef Name="OrderLineID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderLines_Orders">
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="OrderLines" Type="Self.OrderLine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderLines">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AlexDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CardDesignItems" EntityType="Self.CardDesignItem" />
+          <EntitySet Name="CardDesigns" EntityType="Self.CardDesign" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="OrderLineItems" EntityType="Self.OrderLineItem" />
+          <EntitySet Name="OrderLines" EntityType="Self.OrderLine" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="SubCategories" EntityType="Self.SubCategory" />
+          <AssociationSet Name="FK_CardDesignItems_CardDesigns" Association="Self.FK_CardDesignItems_CardDesigns">
+            <End Role="CardDesigns" EntitySet="CardDesigns" />
+            <End Role="CardDesignItems" EntitySet="CardDesignItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SubCategories_Categories" Association="Self.FK_SubCategories_Categories">
+            <End Role="Categories" EntitySet="Categories" />
+            <End Role="SubCategories" EntitySet="SubCategories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Orders_Customers" Association="Self.FK_Orders_Customers">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="Orders" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLineItems_OrderLines" Association="Self.FK_OrderLineItems_OrderLines">
+            <End Role="OrderLines" EntitySet="OrderLines" />
+            <End Role="OrderLineItems" EntitySet="OrderLineItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderLines_Orders" Association="Self.FK_OrderLines_Orders">
+            <End Role="Orders" EntitySet="Orders" />
+            <End Role="OrderLines" EntitySet="OrderLines" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AlexDbModelStoreContainer" CdmEntityContainer="AlexDbEntities">
+          <EntitySetMapping Name="CardDesignItems">
+            <EntityTypeMapping TypeName="AlexDbModel.CardDesignItem">
+              <MappingFragment StoreEntitySet="CardDesignItems">
+                <ScalarProperty Name="CardDesignItemID" ColumnName="CardDesignItemID" />
+                <ScalarProperty Name="CardDesignID" ColumnName="CardDesignID" />
+                <ScalarProperty Name="CardDesignItem1" ColumnName="CardDesignItem" />
+                <ScalarProperty Name="FontID" ColumnName="FontID" />
+                <ScalarProperty Name="ColourID" ColumnName="ColourID" />
+                <ScalarProperty Name="FontSizeID" ColumnName="FontSizeID" />
+                <ScalarProperty Name="ItemText" ColumnName="ItemText" />
+                <ScalarProperty Name="ItemAttributes" ColumnName="ItemAttributes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CardDesigns">
+            <EntityTypeMapping TypeName="AlexDbModel.CardDesign">
+              <MappingFragment StoreEntitySet="CardDesigns">
+                <ScalarProperty Name="CardDesignID" ColumnName="CardDesignID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+                <ScalarProperty Name="OwnImageID" ColumnName="OwnImageID" />
+                <ScalarProperty Name="LayoutID" ColumnName="LayoutID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="RecipientID" ColumnName="RecipientID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="MailToMeID" ColumnName="MailToMeID" />
+                <ScalarProperty Name="EnvelopeID" ColumnName="EnvelopeID" />
+                <ScalarProperty Name="PostageID" ColumnName="PostageID" />
+                <ScalarProperty Name="DispatchDate" ColumnName="DispatchDate" />
+                <ScalarProperty Name="AddOnID" ColumnName="AddOnID" />
+                <ScalarProperty Name="OrderLineID" ColumnName="OrderLineID" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="ProcessedDate" ColumnName="ProcessedDate" />
+                <ScalarProperty Name="PDFSentDate" ColumnName="PDFSentDate" />
+                <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="AlexDbModel.Category">
+              <MappingFragment StoreEntitySet="Categories">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="Category1" ColumnName="Category" />
+                <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="AlexDbModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Address3" ColumnName="Address3" />
+                <ScalarProperty Name="Address4" ColumnName="Address4" />
+                <ScalarProperty Name="Address5" ColumnName="Address5" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLineItems">
+            <EntityTypeMapping TypeName="AlexDbModel.OrderLineItem">
+              <MappingFragment StoreEntitySet="OrderLineItems">
+                <ScalarProperty Name="OrderLineItemID" ColumnName="OrderLineItemID" />
+                <ScalarProperty Name="OrderLineID" ColumnName="OrderLineID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+                <ScalarProperty Name="ItemTotal" ColumnName="ItemTotal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderLines">
+            <EntityTypeMapping TypeName="AlexDbModel.OrderLine">
+              <MappingFragment StoreEntitySet="OrderLines">
+                <ScalarProperty Name="OrderLineID" ColumnName="OrderLineID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="LinePrice" ColumnName="LinePrice" />
+                <ScalarProperty Name="DesignID" ColumnName="DesignID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="AlexDbModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+                <ScalarProperty Name="AffiliateID" ColumnName="AffiliateID" />
+                <ScalarProperty Name="CustomerEMail" ColumnName="CustomerEMail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SubCategories">
+            <EntityTypeMapping TypeName="AlexDbModel.SubCategory">
+              <MappingFragment StoreEntitySet="SubCategories">
+                <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="SubCategory1" ColumnName="SubCategory" />
+                <ScalarProperty Name="SubCategoryDescription" ColumnName="SubCategoryDescription" />
+                <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="MetaTags" ColumnName="MetaTags" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
