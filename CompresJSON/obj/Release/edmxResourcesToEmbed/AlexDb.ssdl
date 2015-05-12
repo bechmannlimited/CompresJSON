@@ -4,7 +4,7 @@
     <Key>
       <PropertyRef Name="CardDesignItemID" />
     </Key>
-    <Property Name="CardDesignItemID" Type="int" Nullable="false" />
+    <Property Name="CardDesignItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="CardDesignID" Type="int" />
     <Property Name="CardDesignItem" Type="nvarchar" MaxLength="50" />
     <Property Name="FontID" Type="int" />

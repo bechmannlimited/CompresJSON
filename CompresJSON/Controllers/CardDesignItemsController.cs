@@ -87,8 +87,9 @@ namespace CompresJSON.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
+                string error = ex.Message;
                 if (CardDesignItemExists(cardDesignItem.CardDesignItemID))
                 {
                     return Conflict();

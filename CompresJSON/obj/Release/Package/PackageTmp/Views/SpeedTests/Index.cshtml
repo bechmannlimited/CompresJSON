@@ -168,44 +168,17 @@
     }*@
 
     function go() {
-        var string = "@str";
-        //alert("Size of sample is: " + string.length); //compressToBase64  /decompressFromBase64
-        var compressed = LZString.compress(string);
 
-        //console.log(Compress(string) + "    " + "@com");
-        //alert("Size of compressed sample is: " + compressed.length);
-        //string = LZString.decompress("@com");
-        //console.log(LZString.decompress(compressed));
 
-        //alert("Sample is: " + string);
-
-        //console.log("de:
-        //console.log("de: @Compressor.Decompress(com)");
-
-        //console.log(Base64.encode(compressed));
-        //console.log('@com')
-
-        @{
-            var text = Encrypter.Encrypt("hi another long message!! :)");
-            var de = Encrypter.Decrypt(text);
-        }
-
-        //console.log(Decrypt("@text"))
-
-        var encrypted = Encrypt("helloooo this is looong!!");
 
         $.ajax({
-            url: "@Url.Action("decrypt")/",
-            data: { "str": encrypted },
-            type: "GET"
+            url: "/api/CardDesignItems",
+            data: { "data": "U2FsdGVkX19D1Ho3AHgtNTPtSK22whMKAapnsi5HY8AeUO4mbjIuCp7Edfj07QZo9/Gg9o+VSmzK42LYGZCnu1um7i8NXRjZB5Gece9uMPIEWpqHN9X7SGZ3wPR/8NJRWGOJ1jpNx3ICBg9NUU+GCw==" },
+            type: "POST"
         }).done(function (result) {
             //console.log("result:" + result);
         });
 
-
-        var enc = Encrypt("hellooooooo");
-        var de = Decrypt(enc);
-        console.log("@de");
 
     }
     go()
