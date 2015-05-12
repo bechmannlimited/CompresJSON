@@ -16,7 +16,7 @@ namespace CompresJSON.Controllers
     [DecryptAndDecompressAsNecessaryWebApi]
     public class CardDesignItemsController : ApiController
     {
-        private AlexDbEntities db = new AlexDbEntities();
+        private AlexDbEntities db = AlexDbEntities.JsonDB();
 
         // GET: api/CardDesignItems
         public IQueryable<CardDesignItem> GetCardDesignItems()

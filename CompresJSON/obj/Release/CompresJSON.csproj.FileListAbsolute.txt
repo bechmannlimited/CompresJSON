@@ -25,3 +25,12 @@ E:\Source\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.WebHost.xml
 E:\Source\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.dll
 E:\Source\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.pdb
 E:\Source\GitHub\CompresJSON\CompresJSON\bin\Microsoft.Web.Infrastructure.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\Antlr3.Runtime.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.SqlServer.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\System.Web.Optimization.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\WebGrease.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\Antlr3.Runtime.pdb
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.xml
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\EntityFramework.SqlServer.xml
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\System.Web.Optimization.xml

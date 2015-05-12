@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AlexDbModelStoreContainer" CdmEntityContainer="AlexDbEntities">
+    <EntitySetMapping Name="CardDesignItems">
+      <EntityTypeMapping TypeName="AlexDbModel.CardDesignItem">
+        <MappingFragment StoreEntitySet="CardDesignItems">
+          <ScalarProperty Name="CardDesignItemID" ColumnName="CardDesignItemID" />
+          <ScalarProperty Name="CardDesignID" ColumnName="CardDesignID" />
+          <ScalarProperty Name="CardDesignItem1" ColumnName="CardDesignItem" />
+          <ScalarProperty Name="FontID" ColumnName="FontID" />
+          <ScalarProperty Name="ColourID" ColumnName="ColourID" />
+          <ScalarProperty Name="FontSizeID" ColumnName="FontSizeID" />
+          <ScalarProperty Name="ItemText" ColumnName="ItemText" />
+          <ScalarProperty Name="ItemAttributes" ColumnName="ItemAttributes" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CardDesigns">
+      <EntityTypeMapping TypeName="AlexDbModel.CardDesign">
+        <MappingFragment StoreEntitySet="CardDesigns">
+          <ScalarProperty Name="CardDesignID" ColumnName="CardDesignID" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="ImageID" ColumnName="ImageID" />
+          <ScalarProperty Name="OwnImageID" ColumnName="OwnImageID" />
+          <ScalarProperty Name="LayoutID" ColumnName="LayoutID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="RecipientID" ColumnName="RecipientID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="MailToMeID" ColumnName="MailToMeID" />
+          <ScalarProperty Name="EnvelopeID" ColumnName="EnvelopeID" />
+          <ScalarProperty Name="PostageID" ColumnName="PostageID" />
+          <ScalarProperty Name="DispatchDate" ColumnName="DispatchDate" />
+          <ScalarProperty Name="AddOnID" ColumnName="AddOnID" />
+          <ScalarProperty Name="OrderLineID" ColumnName="OrderLineID" />
+          <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+          <ScalarProperty Name="ProcessedDate" ColumnName="ProcessedDate" />
+          <ScalarProperty Name="PDFSentDate" ColumnName="PDFSentDate" />
+          <ScalarProperty Name="EnteredDate" ColumnName="EnteredDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Categories">
+      <EntityTypeMapping TypeName="AlexDbModel.Category">
+        <MappingFragment StoreEntitySet="Categories">
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="Category1" ColumnName="Category" />
+          <ScalarProperty Name="CategoryDescription" ColumnName="CategoryDescription" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="PageID" ColumnName="PageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="AlexDbModel.Customer">
+        <MappingFragment StoreEntitySet="Customers">
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+          <ScalarProperty Name="EMail" ColumnName="EMail" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+          <ScalarProperty Name="Address1" ColumnName="Address1" />
+          <ScalarProperty Name="Address2" ColumnName="Address2" />
+          <ScalarProperty Name="Address3" ColumnName="Address3" />
+          <ScalarProperty Name="Address4" ColumnName="Address4" />
+          <ScalarProperty Name="Address5" ColumnName="Address5" />
+          <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderLineItems">
+      <EntityTypeMapping TypeName="AlexDbModel.OrderLineItem">
+        <MappingFragment StoreEntitySet="OrderLineItems">
+          <ScalarProperty Name="OrderLineItemID" ColumnName="OrderLineItemID" />
+          <ScalarProperty Name="OrderLineID" ColumnName="OrderLineID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="ItemPrice" ColumnName="ItemPrice" />
+          <ScalarProperty Name="ItemTotal" ColumnName="ItemTotal" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderLines">
+      <EntityTypeMapping TypeName="AlexDbModel.OrderLine">
+        <MappingFragment StoreEntitySet="OrderLines">
+          <ScalarProperty Name="OrderLineID" ColumnName="OrderLineID" />
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="LinePrice" ColumnName="LinePrice" />
+          <ScalarProperty Name="DesignID" ColumnName="DesignID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="AlexDbModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+          <ScalarProperty Name="SessionID" ColumnName="SessionID" />
+          <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+          <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+          <ScalarProperty Name="CurrencyCode" ColumnName="CurrencyCode" />
+          <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+          <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="TransactionID" ColumnName="TransactionID" />
+          <ScalarProperty Name="AffiliateID" ColumnName="AffiliateID" />
+          <ScalarProperty Name="CustomerEMail" ColumnName="CustomerEMail" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SubCategories">
+      <EntityTypeMapping TypeName="AlexDbModel.SubCategory">
+        <MappingFragment StoreEntitySet="SubCategories">
+          <ScalarProperty Name="SubCategoryID" ColumnName="SubCategoryID" />
+          <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+          <ScalarProperty Name="SubCategory1" ColumnName="SubCategory" />
+          <ScalarProperty Name="SubCategoryDescription" ColumnName="SubCategoryDescription" />
+          <ScalarProperty Name="SortOrder" ColumnName="SortOrder" />
+          <ScalarProperty Name="Active" ColumnName="Active" />
+          <ScalarProperty Name="MetaTags" ColumnName="MetaTags" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
