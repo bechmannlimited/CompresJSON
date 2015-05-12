@@ -21,7 +21,7 @@ namespace CompresJSON.Controllers
         // GET: api/CardDesignItems
         public IQueryable<CardDesignItem> GetCardDesignItems()
         {
-            return db.CardDesignItems;
+            return db.CardDesignItems.Take(10);
         }
 
         // GET: api/CardDesignItems/5
@@ -34,13 +34,16 @@ namespace CompresJSON.Controllers
                 return NotFound();
             }
 
-            return Ok(cardDesignItem);
+            return Json(cardDesignItem);
+            //return Ok(cardDesignItem);
         }
 
         // PUT: api/CardDesignItems/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCardDesignItem(int id, CardDesignItem cardDesignItem)
         {
+            //return Json(cardDesignItem);
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -69,7 +72,8 @@ namespace CompresJSON.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Json(cardDesignItem);
+            //return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST: api/CardDesignItems
@@ -102,7 +106,8 @@ namespace CompresJSON.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = cardDesignItem.CardDesignItemID }, cardDesignItem);
+            return Json(cardDesignItem);
+            //return CreatedAtRoute("DefaultApi", new { id = cardDesignItem.CardDesignItemID }, cardDesignItem);
         }
 
         // DELETE: api/CardDesignItems/5

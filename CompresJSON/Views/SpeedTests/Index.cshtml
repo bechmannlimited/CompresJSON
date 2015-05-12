@@ -169,7 +169,7 @@
 
     function go() {
 
-        var str = "{ #FontID# :15 }"
+        var str = "{ #FontID# :15, #CardDesignItemID# : 8354, #ItemText# : #abcdef#}"
         //var str = ""
 
         var data = Compress(str);
@@ -178,9 +178,9 @@
         console.log(data)
 
         $.ajax({
-            url: "/api/CardDesignItems",
+            url: "/api/CardDesignItems/8354",
             data: { "data": data }, // "U2FsdGVkX19YuGeVCwskBpIk3+WLjZ2+q15hA/DYhTRKNh1i/5eaFv5iJQg/TRUlXAZzFkRHyBvjDutIlVI1OEpNDgs6hrWUnE5CvkD665FaU57ZzITGvURFvwUrhWpqD/WNHaLC8H9hxzo//AK73LWHXrjXcBfy+UhYGxLhsLdO9fdhX9gNqXDRvE9PJ0aEOxOoobel1Iwzne6Uh7tPfW9IOKQFeGFj5cprBuGjF1ZyjY8o9dCfl65m9K2blVYK" },
-            type: "POST"
+            type: "PUT"
         }).done(function (result) {
             //console.log("result:" + result);
         });
