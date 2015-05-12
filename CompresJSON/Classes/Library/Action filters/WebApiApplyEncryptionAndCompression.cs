@@ -64,8 +64,14 @@ namespace CompresJSON
                 foreach (var parameter in mvcActionModelParameters)
                 {
                     string typeName = parameter.ParameterType.FullName; // "System.String";
-                    var o = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(typeName);
-                    o = Tools.ToObject(actionContext.ControllerContext.RouteData.Values, o);
+
+                    object o = null;
+
+                    if (!typeName.Contains("System"))
+                    {
+                        o = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(typeName);
+                        o = Tools.ToObject(actionContext.ControllerContext.RouteData.Values, o);
+                    }
 
                     if (o != null)
                     {

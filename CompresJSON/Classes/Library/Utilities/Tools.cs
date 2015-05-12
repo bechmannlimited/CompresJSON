@@ -40,10 +40,16 @@ namespace CompresJSON
 
                     if (targetProperty != null)
                     {
-
-                        if (targetProperty.PropertyType == typeof(string))
+                        if (targetProperty.PropertyType.FullName == "System.String") // == typeof(string))
                         {
                             targetProperty.SetValue(someObject, item.Value);
+                        }
+                        else if (targetProperty.PropertyType.GenericTypeArguments.Count() > 0)
+                        {
+                            if (targetProperty.PropertyType.GenericTypeArguments.FirstOrDefault().FullName == "System.Int32")
+                            {
+                                targetProperty.SetValue(someObject, Convert.ToInt32(item.Value));
+                            }
                         }
                         else
                         {
