@@ -42,7 +42,7 @@ namespace CompresJSON.Controllers
         [ResponseType(typeof(void))]
         public IHttpActionResult PutCardDesignItem(int id, CardDesignItem cardDesignItem)
         {
-            return Json(cardDesignItem);
+            //return Json(cardDesignItem);
 
             if (!ModelState.IsValid)
             {
