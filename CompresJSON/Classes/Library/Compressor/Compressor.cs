@@ -3,94 +3,143 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
+using lz_string_csharp;
 
 namespace CompresJSON
 {
     public class Compressor
     {
-        public static CompressedResult Compress(string str)
+        //public static CompressedResult Compress(string str)
+        //{
+        //    byte[] dataBytes = CompresJSONSettings.encoder.GetBytes(str);
+        //    byte[] compressedData = Converter.StringToBytes("");
+
+        //    var compressionMethod = CompresJSONSettings.compressionMethod;
+        //    var encodingMethod = CompresJSONSettings.encodingMethod;
+
+        //    return Compress(str, compressionMethod, encodingMethod);
+        //}
+
+        //public static CompressedResult Compress(string str, CompressionMethod compressionMethod, EncodingMethod encodingMethod)
+        //{
+        //    byte[] dataBytes = CompresJSONSettings.encoder.GetBytes(str);
+        //    byte[] compressedData = compressData(dataBytes, compressionMethod);
+
+        //    var result = new CompressedResult();
+
+        //    result.compressedOutput = compressedData;
+        //    result.encodedOutput = Encoder.StringFromBytes(compressedData, encodingMethod);
+        //    result.compressionMethod = compressionMethod;
+        //    result.encodingMethod = encodingMethod;
+
+        //    return result;
+        //}
+
+        //public static DecompressedResult Decompress(CompressedResult compressedResult)
+        //{
+        //    byte[] dataBytes = Encoder.BytesFromString(compressedResult.encodedOutput, compressedResult.encodingMethod);
+        //    byte[] decompressedData = decompressData(dataBytes, compressedResult.compressionMethod);
+
+        //    var result = new DecompressedResult();
+
+        //    result.decompressedData = decompressedData;
+        //    result.decompressedOutput = Converter.BytesToString(decompressedData);
+        //    result.compressedResult = compressedResult;
+
+        //    return result;
+        //}
+
+        //private static byte[] decompressData(byte[] data, CompressionMethod compressionMethod)
+        //{
+        //    var decompressedData = Converter.StringToBytes("");
+
+        //    switch (compressionMethod)
+        //    {
+        //        case CompressionMethod.GZip:
+
+        //            decompressedData = GZip.Decompress(data);
+        //            break;
+
+        //        case CompressionMethod.LZ77:
+
+        //            decompressedData = LZ77.Decompress(data);
+        //            break;
+
+        //        default: break;
+        //    }
+
+        //    return decompressedData;
+        //}
+
+        //private static byte[] compressData(byte[] data, CompressionMethod compressionMethod)
+        //{
+        //    var compressedData = Converter.StringToBytes("");
+
+        //    switch (compressionMethod)
+        //    {
+        //        case CompressionMethod.GZip:
+
+        //            compressedData = GZip.Compress(data);
+        //            break;
+
+        //        case CompressionMethod.LZ77:
+
+        //            compressedData = LZ77.Compress(data);
+        //            break;
+
+
+        //        //case CompressionMethod.LZString:
+        //        //    compressedData = LZString.c;
+        //        //    break;
+
+        //        default:
+
+        //            //compressedData = ZLib.Compress(data);
+
+        //            break;
+        //    }
+
+        //    return compressedData;
+        //}
+
+        public static string Compress(string str)
         {
-            byte[] dataBytes = CompresJSONSettings.encoder.GetBytes(str);
-            byte[] compressedData = Converter.StringToBytes("");
+//            using (JavascriptContext context = new JavascriptContext())
+//            {
 
-            var compressionMethod = CompresJSONSettings.compressionMethod;
-            var encodingMethod = CompresJSONSettings.encodingMethod;
+//                // Setting external parameters for the context
+//                //context.SetParameter("console", new SystemConsole());
+//                context.SetParameter("message", "Hello World !");
+//                context.SetParameter("number", 1);
 
-            return Compress(str, compressionMethod, encodingMethod);
+//                // Script
+//                        string script = @"
+//                var i;
+//                for (i = 0; i < 5; i++)
+//                    console.Print(message + ' (' + i + ')');
+//                number += i;
+//            ";
+
+//                // Running the script
+//                context.Run(script);
+
+//                // Getting a parameter
+//                Console.WriteLine("number: " + context.GetParameter("number"));
+//                var a = context.GetParameter("number");
+//            }
+
+            var compressed = LZString.compress(str);
+            var compressedData = Converter.StringToBytes(compressed);
+            return Convert.ToBase64String(compressedData);
+
+            //return LZString.compress(str);
         }
 
-        public static CompressedResult Compress(string str, CompressionMethod compressionMethod, EncodingMethod encodingMethod)
+        public static string Decompress(string str)
         {
-            byte[] dataBytes = CompresJSONSettings.encoder.GetBytes(str);
-            byte[] compressedData = compressData(dataBytes, compressionMethod);
-
-            var result = new CompressedResult();
-
-            result.compressedOutput = compressedData;
-            result.encodedOutput = Encoder.StringFromBytes(compressedData, encodingMethod);
-            result.compressionMethod = compressionMethod;
-            result.encodingMethod = encodingMethod;
-
-            return result;
-        }
-
-        public static DecompressedResult Decompress(CompressedResult compressedResult)
-        {
-            byte[] dataBytes = Encoder.BytesFromString(compressedResult.encodedOutput, compressedResult.encodingMethod);
-            byte[] decompressedData = decompressData(dataBytes, compressedResult.compressionMethod);
-
-            var result = new DecompressedResult();
-
-            result.decompressedData = decompressedData;
-            result.decompressedOutput = Converter.BytesToString(decompressedData);
-            result.compressedResult = compressedResult;
-
-            return result;
-        }
-
-        private static byte[] decompressData(byte[] data, CompressionMethod compressionMethod)
-        {
-            var decompressedData = Converter.StringToBytes("");
-
-            switch (compressionMethod)
-            {
-                case CompressionMethod.GZip:
-
-                    decompressedData = GZip.Decompress(data);
-                    break;
-
-                case CompressionMethod.LZ77:
-
-                    decompressedData = LZ77.Decompress(data);
-                    break;
-
-                default: break;
-            }
-
-            return decompressedData;
-        }
-
-        private static byte[] compressData(byte[] data, CompressionMethod compressionMethod)
-        {
-            var compressedData = Converter.StringToBytes("");
-
-            switch (compressionMethod)
-            {
-                case CompressionMethod.GZip:
-
-                    compressedData = GZip.Compress(data);
-                    break;
-
-                case CompressionMethod.LZ77:
-
-                    compressedData = LZ77.Compress(data);
-                    break;
-
-                default: 
-                    break;
-            }
-
-            return compressedData;
+            var compressedData = Convert.FromBase64String(str);
+            var compressed = Converter.BytesToString(compressedData);
+            return LZString.decompress(compressed);
         }
     }
 }

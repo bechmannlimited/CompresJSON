@@ -1,4 +1,11 @@
-﻿
+﻿<script src="~/Scripts/compresjson_scripts/dependencies/base64-string.js"></script>
+<script src="~/Scripts/compresjson_scripts/dependencies/lz-string.js"></script>
+<script src="~/Scripts/compresjson_scripts/dependencies/Base64.js"></script>
+<script src="~/Scripts/compresjson_scripts/Compressor.js"></script>
+<script>
+
+</script>
+
 @{
     ViewBag.Title = "Index";
 
@@ -138,9 +145,59 @@
         }).done(function (result) {
             var elapsed = new Date().getTime() - startTime;
             console.log(result);
-            $('#request' + requestID).text('time: ' + elapsed + 'ms | ' 
+            $('#request' + requestID).text('time: ' + elapsed + 'ms | '
                 + xhr.getResponseHeader('Content-Length') + ' bytes'
             );
         });
     }
+
+    @{var str = "hello"; var com = Compressor.Compress(str);}
+
+    @*function go() {
+        var string = "@str";
+        //alert("Size of sample is: " + string.length); //compressToBase64  /decompressFromBase64
+        var compressed = LZString.compress(string);
+        console.log(compressed + "-" + "@Compressor.Compress(str)");
+        //alert("Size of compressed sample is: " + compressed.length);
+        string = LZString.decompress("@Compressor.Compress(str)");
+        console.log(string);
+        //alert("Sample is: " + string);
+    }*@
+
+    function go() {
+        var string = "@str";
+        //alert("Size of sample is: " + string.length); //compressToBase64  /decompressFromBase64
+        var compressed = LZString.compress(string);
+
+        //console.log(compressed + "    " + "@com");
+        //alert("Size of compressed sample is: " + compressed.length);
+        //string = LZString.decompress("@com");
+        //console.log(LZString.decompress(compressed));
+
+        //alert("Sample is: " + string);
+
+        //console.log("de: 
+        //console.log("de: @Compressor.Decompress(com)");
+
+        //console.log(Base64.encode(compressed));
+        //console.log('@com')
+
+        $.ajax({
+            url: "@Url.Action("decompress")/",
+            data: { "str": Compress(string) },
+        type: "GET"
+        }).done(function (result) {
+            console.log(result);
+        });
+
+        //console.log('---');
+        console.log(string);
+        var a = Compress(string);
+        console.log(a);
+        var d = Decompress(a);
+        console.log(d);
+
+        //console.log('---');
+    }
+    go()
 </script>

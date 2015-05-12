@@ -9,6 +9,7 @@ namespace CompresJSON
     {
         None,
         GZip,
-        LZ77
+        LZ77,
+        LZString
     };
 }

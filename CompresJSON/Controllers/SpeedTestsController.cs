@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AESCryptoTest;
+using lz_string_csharp;
 
 namespace CompresJSON.Controllers
 {
@@ -12,9 +13,21 @@ namespace CompresJSON.Controllers
         // GET: SpeedTests
         public ActionResult Index()
         {
-            var s = Encrypter.Encrypt("hello");
-            var d = Encrypter.Decrypt(s);
+            var messages = new List<string>() {
+                "12345",
+                "hello",
+                "asdfasdf",
+                "!!!!!!",
+                "~~~''''"
+            };
 
+            for (int i = 0; i < messages.Count; i++)
+            {
+                messages[i] = LZString.compressToBase64(messages[i]);
+            }
+
+            //return Content(Compressor.Decompress("BYUwNmD2QAA="));
+            //return Json(messages, JsonRequestBehavior.AllowGet);
             return View();
         }
 
@@ -65,6 +78,12 @@ namespace CompresJSON.Controllers
             }
 
             return rc;
+        }
+
+        public JsonResult decompress(String str)
+        {
+            //str = HttpUtility.UrlDecode(str);
+            return Json(Compressor.Decompress(str), JsonRequestBehavior.AllowGet);
         }
     }
 }

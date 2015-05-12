@@ -124,6 +124,8 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\compresjson_scripts\dependencies\base64-string.js" />
+    <Content Include="Scripts\compresjson_scripts\dependencies\Base64.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <EntityDeploy Include="Model1.edmx">
@@ -135,8 +137,10 @@
     </Content>
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\compresjson_scripts\Compressor.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\compresjson_scripts\dependencies\lz-string.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -153,6 +157,22 @@
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
     <Compile Include="Classes\Library\Action filters\ApplyEncryptionAndCompression.cs" />
+    <Compile Include="Classes\Library\Compressor\LZString.cs" />
+    <Compile Include="Classes\Library\Compressor\ZLib.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\Adler32.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\Deflate.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\InfBlocks.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\InfCodes.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\Inflate.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\InfTree.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\StaticTree.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\SupportClass.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\Tree.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\ZInputStream.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\Zlib.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\ZOutputStream.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\ZStream.cs" />
+    <Compile Include="Classes\Library\Compressor\zlib\ZStreamException.cs" />
     <Compile Include="Classes\Library\Encryption\SwiftNETEncrypt\EncryptedString.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptMVCRouteHandler.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptWebApiRouteHandler.cs" />
