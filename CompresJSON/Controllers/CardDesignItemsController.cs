@@ -34,7 +34,7 @@ namespace CompresJSON.Controllers
                 });
             }
 
-            return Json(items);
+            //return Json(items);
 
             return Json(db.CardDesignItems.Take(10));
         }
@@ -43,6 +43,11 @@ namespace CompresJSON.Controllers
         [ResponseType(typeof(CardDesignItem))]
         public IHttpActionResult GetCardDesignItem(int id)
         {
+            //return Json(new CardDesignItem
+                //{
+                  //  ItemText = "hello"
+                //});
+
             CardDesignItem cardDesignItem = db.CardDesignItems.Find(id);
             if (cardDesignItem == null)
             {

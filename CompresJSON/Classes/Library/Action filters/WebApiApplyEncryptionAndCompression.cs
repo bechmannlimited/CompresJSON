@@ -19,9 +19,9 @@ namespace CompresJSON
         {
             var data = actionExecutedContext.Response.Content.ReadAsStringAsync().Result;
 
-            string serializedString = (new JavaScriptSerializer()).Serialize(data);
-            serializedString = serializedString.Replace("\\\"", "#").Replace("\"", "");
-            string encryptedString = CompresJSONUtilities.EncryptAndCompressAsNecessary(serializedString);
+            //string serializedString = (new JavaScriptSerializer()).Serialize(data);
+            //serializedString = serializedString.Replace("\\\"", "#").Replace("\"", "");
+            string encryptedString = CompresJSONUtilities.EncryptAndCompressAsNecessary(data);
 
             var rc = new Dictionary<string, object>();
             rc["data"] = encryptedString;
