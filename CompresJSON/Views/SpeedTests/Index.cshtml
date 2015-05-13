@@ -199,5 +199,10 @@
 
 
     }
-    go()
+    //go()
+
+    var a = Decrypt("U2FsdGVkX1+/XBh4mS5oFBmuIngyVKy82T0h90gv1fLS7DNGHC8ASEl25PZA7fOgycQtxFf6DPtA571nwdA0RAU4oEcjhOPcLnvqx64ldvv5vhChd6Qu7mPUTr7mcGCFhHbWbo7nNZzazuBw/mCXI8pIg/VoXTF45EDQuKS7LpI7ITCF2CIzXJks5Uf/cqjYvYS9IMogDo7ib6FJWAHVSPS1+8OrKmDC6nSo7DA+1Bo=", "@CompresJSONSettings.EncryptionKey")
+    var b = Decompress(a);
+
+    console.log(a + '-' + b)
 </script>
