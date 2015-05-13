@@ -34,7 +34,7 @@ namespace CompresJSON.Controllers
                 });
             }
 
-            //return Json(items);
+            return Json(items);
 
             return Json(db.CardDesignItems.Take(10));
         }
