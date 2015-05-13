@@ -170,18 +170,30 @@
     function go() {
 
         var str = "{ #FontID# :15, #CardDesignItemID# : 8354, #ItemText# : #abcdef#}"
+        str = "[{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null}]"
         //var str = ""
+        
+        
 
-        var data = Compress(str);
+        @*var data = Compress(str);
         console.log(data);
         data = Encrypt(data, "@CompresJSONSettings.EncryptionKey");
         console.log(data)
+        console.log(Decompress(Decrypt("U2FsdGVkX1/YT/ShScwVTODOrLAw2UoOVeDoES2KmTodFJZN/76T/aEmxCMtD21KOYRiTwtZzDNIQ9QD34Jj5S3IZ/JvzTGQrWdnwfKRC6ioAcPXUa/8aOFiDP754r22wDsjMlz9cpnqVvi4fQqbM3JUrb9pKXDiqrPxcTrk8/KjJyCggBvvC6X1LIbwc/5sh+1vuFuct7kCAHkdOcA/AEti8z1nd0dHqPXtS0xXrcgkULU42o5WR/EamUfmtmo57Oglc098WgvpqnzBLiwVAc5WfMJuLXs48lrDhRU+l7D27YSf7KEPKiE2GTjlAzrL6ExGjoQRAUO9gCYgCcqNabe1Ry4YrzRG2m2Ye7UpuMyhXz9VfGyZQ2B5GdnnQ7qy6cstZ919cSeskuIKG3oti5HVh+sVhcFxe+YZgixc32vApZ8voMM+4R+PFVi4lPkOfYQfkBN4ntmCWL1NxlkI/ztMT/HcqnwE2frWqy4VwniM9OalH2DMuTGy8l+rOHEj7LtsemB5C6kPA3HPaC0Qrc47QPjitSm2du2GkIU2HCHwZmfRby3cd7fw5wZvPo0rcBO1panqowp+eDKyX0O5HqI/M3P/64R4iQ6sUji4+0JdwO+EiCwo1li7TFRUH9giYNxDgSLOccXZNlAbW2J0dJ+KajMf+GUhG0Q35tkZnN0tNylXvVDm1L3mE5bJHC+QdlfUMHXtNgxc3dzpzl90f2TysQkwJ+A8WGjxoC5MFDPpa8a2ZMcp05lrfpSs0CndE2K25bltRppFZSdXyY8igLXO4W1UWwmXxuTI8mEpsjLjyM30EAr5Lne8l+diWX4YOlMbJ1g1Usxjfw8uY1DGFqxZHNTakAFxGQM7UERrD9I=", "@CompresJSONSettings.EncryptionKey")))*@
 
         $.ajax({
-            url: "/api/CardDesignItems/8354",
-            data: { "data": data }, // "U2FsdGVkX19YuGeVCwskBpIk3+WLjZ2+q15hA/DYhTRKNh1i/5eaFv5iJQg/TRUlXAZzFkRHyBvjDutIlVI1OEpNDgs6hrWUnE5CvkD665FaU57ZzITGvURFvwUrhWpqD/WNHaLC8H9hxzo//AK73LWHXrjXcBfy+UhYGxLhsLdO9fdhX9gNqXDRvE9PJ0aEOxOoobel1Iwzne6Uh7tPfW9IOKQFeGFj5cprBuGjF1ZyjY8o9dCfl65m9K2blVYK" },
-            type: "PUT"
+            url: "/api/CardDesignItems",
+            //data: { "data": data }, // "U2FsdGVkX19YuGeVCwskBpIk3+WLjZ2+q15hA/DYhTRKNh1i/5eaFv5iJQg/TRUlXAZzFkRHyBvjDutIlVI1OEpNDgs6hrWUnE5CvkD665FaU57ZzITGvURFvwUrhWpqD/WNHaLC8H9hxzo//AK73LWHXrjXcBfy+UhYGxLhsLdO9fdhX9gNqXDRvE9PJ0aEOxOoobel1Iwzne6Uh7tPfW9IOKQFeGFj5cprBuGjF1ZyjY8o9dCfl65m9K2blVYK" },
+            type: "GET"
         }).done(function (result) {
+            //console.log(result)
+            var myobject = $.parseJSON(result);
+            console.log('data:' + myobject.data)
+
+            var a = Decrypt(myobject.data, "@CompresJSONSettings.EncryptionKey")
+            var b = Decompress(a);
+
+            console.log(a + '-' + b)
             //console.log("result:" + result);
         });
 

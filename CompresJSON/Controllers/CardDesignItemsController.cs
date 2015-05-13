@@ -21,19 +21,20 @@ namespace CompresJSON.Controllers
         // GET: api/CardDesignItems
         public IHttpActionResult GetCardDesignItems()
         {
-            //var items = new List<CardDesignItem>(){
-                
-            //};
+            var items = new List<CardDesignItem>()
+            {
 
-            //for (int i = 0; i < 10; i++)
-            //{
-            //    items.Add(new CardDesignItem
-            //    {
-            //        ItemText = "hello"
-            //    });
-            //}
+            };
 
-            //return Json(items);
+            for (int i = 0; i < 5; i++)
+            {
+                items.Add(new CardDesignItem
+                {
+                    ItemText = "hello"
+                });
+            }
+
+            return Json(items);
 
             return Json(db.CardDesignItems.Take(10));
         }
