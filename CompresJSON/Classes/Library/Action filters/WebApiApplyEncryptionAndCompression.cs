@@ -51,8 +51,10 @@ namespace CompresJSON
             {
                 //assume encrypted + compressed for now
                 var d = httpBodyDictionary["data"];
+                var x = Encrypter.Decrypt(d);
+                var y = Compressor.Decompress(x);
 
-                string json = CompresJSONUtilities.DecryptAndDecompressAsNecessary(d).Replace("#", "\"");
+                string json = CompresJSONUtilities.DecryptAndDecompressAsNecessary(d) ;//.Replace("#", "\"");
                 var dict = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(json);
 
                 foreach (var key in dict.Keys)
