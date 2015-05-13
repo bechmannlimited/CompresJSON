@@ -19,15 +19,35 @@ namespace CompresJSON.Controllers
         private AlexDbEntities db = AlexDbEntities.JsonDB();
 
         // GET: api/CardDesignItems
-        public IQueryable<CardDesignItem> GetCardDesignItems()
+        public IHttpActionResult GetCardDesignItems()
         {
-            return db.CardDesignItems.Take(10);
+            var items = new List<CardDesignItem>()
+            {
+
+            };
+
+            for (int i = 0; i < 5; i++)
+            {
+                items.Add(new CardDesignItem
+                {
+                    ItemText = "hello"
+                });
+            }
+
+            //return Json(items);
+
+            return Json(db.CardDesignItems.Take(10));
         }
 
         // GET: api/CardDesignItems/5
         [ResponseType(typeof(CardDesignItem))]
         public IHttpActionResult GetCardDesignItem(int id)
         {
+            //return Json(new CardDesignItem
+                //{
+                  //  ItemText = "hello"
+                //});
+
             CardDesignItem cardDesignItem = db.CardDesignItems.Find(id);
             if (cardDesignItem == null)
             {
