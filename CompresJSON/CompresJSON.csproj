@@ -207,7 +207,7 @@
     <Compile Include="Classes\Library\RouteHandlers\DecryptMVCRouteHandler.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptWebApiRouteHandler.cs" />
     <Compile Include="Classes\Library\Extensions\EF_Extension.cs" />
-    <Compile Include="Classes\Library\CompresJSONDefaults.cs" />
+    <Compile Include="Classes\Library\CompresJSONSettings.cs" />
     <Compile Include="Classes\Library\TEMP\CompressFilter.cs" />
     <Compile Include="Classes\Library\Compressor\CompressedResult.cs" />
     <Compile Include="Classes\Library\Compressor\CompressionMethod.cs" />
@@ -225,6 +225,7 @@
     <Compile Include="Classes\Library\Utilities\Tools.cs" />
     <Compile Include="Classes\Library\Action filters\WebApiApplyEncryptionAndCompression.cs" />
     <Compile Include="Controllers\CardDesignItemsController.cs" />
+    <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ReceiverController.cs" />
     <Compile Include="Controllers\SpeedTestsController.cs" />
@@ -288,7 +289,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>22058</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>

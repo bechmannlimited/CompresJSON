@@ -169,31 +169,30 @@
 
     function go() {
 
-        var str = "{\"FontID\":15,\"ItemText\": \" hello\", \"CardDesignItemID\":8386}"
+        @*var str = "[{\"CustomerID\":0,\"CustomerName\":\"New\",\"EMail\":null,\"Password\":null,\"CurrencyCode\":\\"GBP\\",\\"Address1\\":null,\\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":0.0,\"Orders\":[]},{\"CustomerID\":2,\"CustomerName\":\"Torben\",\"EMail\":\"torben@bechmann-ltd.com\",\"Password\":\"trefork\",\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":\"UK\",\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":3,\"CustomerName\":\"Fiona\",\"EMail\":\"fiona@bechmann-ltd.com\",\"Password\":\"klavier\",\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":4,\"CustomerName\":\"Alex\",\"EMail\":\"alex@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":\"DK\",\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":5,\"CustomerName\":\"Sebastian\",\"EMail\":\"sebra54@gmail.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":6,\"CustomerName\":\"Natalie\",\"EMail\":\"natalie@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":7,\"CustomerName\":\"Worldwidecards\",\"EMail\":\"wwc@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":8,\"CustomerName\":\"David Bridge\",\"EMail\":null,\"Password\":null,\"CurrencyCode\":null,\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":25.0,\"Orders\":[]}]\"
        // str = "[{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null}]"
         //var str = ""
         
-        
-
-        @*var data = Compress(str);
+        var data = Compress(str);
         console.log(data);
         data = Encrypt(data, "@CompresJSONSettings.EncryptionKey");
         console.log(data)
-        console.log(Decompress(Decrypt("U2FsdGVkX1/YT/ShScwVTODOrLAw2UoOVeDoES2KmTodFJZN/76T/aEmxCMtD21KOYRiTwtZzDNIQ9QD34Jj5S3IZ/JvzTGQrWdnwfKRC6ioAcPXUa/8aOFiDP754r22wDsjMlz9cpnqVvi4fQqbM3JUrb9pKXDiqrPxcTrk8/KjJyCggBvvC6X1LIbwc/5sh+1vuFuct7kCAHkdOcA/AEti8z1nd0dHqPXtS0xXrcgkULU42o5WR/EamUfmtmo57Oglc098WgvpqnzBLiwVAc5WfMJuLXs48lrDhRU+l7D27YSf7KEPKiE2GTjlAzrL6ExGjoQRAUO9gCYgCcqNabe1Ry4YrzRG2m2Ye7UpuMyhXz9VfGyZQ2B5GdnnQ7qy6cstZ919cSeskuIKG3oti5HVh+sVhcFxe+YZgixc32vApZ8voMM+4R+PFVi4lPkOfYQfkBN4ntmCWL1NxlkI/ztMT/HcqnwE2frWqy4VwniM9OalH2DMuTGy8l+rOHEj7LtsemB5C6kPA3HPaC0Qrc47QPjitSm2du2GkIU2HCHwZmfRby3cd7fw5wZvPo0rcBO1panqowp+eDKyX0O5HqI/M3P/64R4iQ6sUji4+0JdwO+EiCwo1li7TFRUH9giYNxDgSLOccXZNlAbW2J0dJ+KajMf+GUhG0Q35tkZnN0tNylXvVDm1L3mE5bJHC+QdlfUMHXtNgxc3dzpzl90f2TysQkwJ+A8WGjxoC5MFDPpa8a2ZMcp05lrfpSs0CndE2K25bltRppFZSdXyY8igLXO4W1UWwmXxuTI8mEpsjLjyM30EAr5Lne8l+diWX4YOlMbJ1g1Usxjfw8uY1DGFqxZHNTakAFxGQM7UERrD9I=", "@CompresJSONSettings.EncryptionKey")))*@
+        console.log(Decompress(Decrypt(data, "@CompresJSONSettings.EncryptionKey")))*@
 
         $.ajax({
-            url: "/api/CardDesignItems/8386",
-            data: { "data": "U2FsdGVkX18GUWIJwoTfLKdI/iqNDszdCwsZHVo2/GRWxsabPRcQqlu+Htx58/9ltJ03PTMwVGkhUUQ3hPxwDwr0qi5nkRS5ZLeKXV4K1XZl3HID9duWnYNMvgWohMD3mAKkofwcd+wKmO6FHdbOspqjsYITqKrObImovzupBadjbsiL0bvA296ggvGjuCPrf2+mPOpdamELNcE8KqeFF661eW9QRQADOEpBy51cJyPSR3UjjPf9t4GO/NkmGeXodPL3CS6VmFyBhlTfyX1GHDpbuXCAQ7SIg3FKf8hJE37W30qEJ8eKGUWLvUu2wFNkqhdRcewW2Qh6ow8TahqT6GJAS5+Smi+VeXBYHjsACAY5VS2Quht6W5d18fr9IL4JrfiP4shRiRvmBu2FLS2vOGLHd/owN7gYshQnkWGuAb+fB4JDwHKEx+9+uPcCrvamnXyLrNNIR0kNNh59u+t0KDqm+9keZT2rL1eSQ/lEkDajiiRHAgriAgcyp18fzJCbnuMJjzgtJw2mswwmdRWthpVTOLur2gSjKiEx4wXJEEVPV8VdMxlSlGjFwS2ADn1Lhi289iTdp4eGAbdqTCHitU46/XhjM5ojnm7nGtC/O1qE2mMj9OIlF25vwcK2GyyNeblrpJUgBH7E4oI1gf0MdSNgwWTiQSHj1w0NtKTr0kyJf+pYgJ1ubHKBZhDyaEoqLzHOppWb46H9tkMX2AGQT2/zglzKoOoFzQ0RNuaBx7fvTD/mTdT0RMjTdjtQMpssd7Ba8XRjzpVuLgMxV77aPnV3W3zs63eU/tVikhrc06vubNmresAgkVE+QHFwOkSYXKsU6aMQQQZEJa9I3N1XSHu1tILL2wtd0xgi+72IOcA=" },
-            type: "PUT"
+            url: "/api/Customers",
+            data: { "skip": "0", "take": 15 },
+            type: "GET"
         }).done(function (result) {
             //console.log(result)
             var myobject = $.parseJSON(result);
             console.log('data:' + myobject.data)
-
+            //"@CompresJSONUtilities.EncryptAndCompressAsNecessary("[{\"key\": 5},{},{}]")"
             var a = Decrypt(myobject.data, "@CompresJSONSettings.EncryptionKey")
-            var b = Decompress(a);
+            //var a = myobject.data
+            //var b = Decompress(a);
 
-            console.log(a + '-' + b)
+            console.log(a)
             //console.log("result:" + result);
         });
 

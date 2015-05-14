@@ -11,42 +11,37 @@ namespace CompresJSON
         public static string EncryptAndCompressAsNecessary(string str)
         {
             //compress
-            string compressedString = Compressor.Compress(str);
+
+            if (CompresJSONSettings.shouldCompress)
+            {
+                str = Compressor.Compress(str);
+            }
 
             //encrypt
-            return Encrypter.Encrypt(compressedString);
+            if (CompresJSONSettings.shouldEncrypt)
+            {
+                str = Encrypter.Encrypt(str);
+            }
 
-            ////encrypt
-            //var encryptedString = Encrypter.Encrypt(str);
 
-            ////compress
-            //return Compressor.Compress(encryptedString).encodedOutput;
+            return str;
         }
 
         public static string DecryptAndDecompressAsNecessary(string str)
         {
             //decrypt
-            string decryptedString = Encrypter.Decrypt(str);
+            if (CompresJSONSettings.shouldEncrypt)
+            {
+                str = Encrypter.Decrypt(str);
+            }
 
             //decompress
-            //return Compressor.Decompress(new CompressedResult
-            //{
-            //    encodingMethod = CompresJSONSettings.encodingMethod,
-            //    compressionMethod = CompresJSONSettings.compressionMethod,
-            //    encodedOutput = decryptedString
-            //}).decompressedOutput;
-            return Compressor.Decompress(decryptedString);
+            if (CompresJSONSettings.shouldCompress)
+            {
+                str = Compressor.Decompress(str);
+            }
 
-            ////decompress
-            //var decompressedString = Compressor.Decompress(new CompressedResult
-            //{
-            //    encodingMethod = CompresJSONSettings.encodingMethod,
-            //    compressionMethod = CompresJSONSettings.compressionMethod,
-            //    encodedOutput = str
-            //}).decompressedOutput;
-
-            ////decrypt
-            //return Encrypter.Decrypt(decompressedString);
+            return str;
         }
 
     }

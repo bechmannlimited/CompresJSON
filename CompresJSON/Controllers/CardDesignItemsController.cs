@@ -36,7 +36,7 @@ namespace CompresJSON.Controllers
 
             //return Json(items);
 
-            return Json(db.CardDesignItems.Take(5));
+            return Json(db.CardDesignItems.OrderByDescending(x => x.CardDesignItemID).Skip(0).Take(20).ToList());
         }
 
         // GET: api/CardDesignItems/5

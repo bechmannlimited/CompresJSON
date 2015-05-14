@@ -104,3 +104,4 @@ C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.xml
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.WebHost.xml
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.dll
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.pdb
+C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.csprojResolveAssemblyReference.cache

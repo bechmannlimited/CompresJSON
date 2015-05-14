@@ -11,6 +11,8 @@ using System.Web.Script.Serialization;
 
 namespace CompresJSON
 {
+    [EncryptAndCompressAsNecessaryWebApi]
+    [DecryptAndDecompressAsNecessaryWebApi]
     public class EncryptAndCompressAsNecessaryWebApi : ActionFilterAttribute
     {
 

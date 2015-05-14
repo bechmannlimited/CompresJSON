@@ -169,23 +169,39 @@
 
     function go() {
 
-        var str = "{ #FontID# :15 }"
+        @*var str = "[{\"CustomerID\":0,\"CustomerName\":\"New\",\"EMail\":null,\"Password\":null,\"CurrencyCode\":\\"GBP\\",\\"Address1\\":null,\\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":0.0,\"Orders\":[]},{\"CustomerID\":2,\"CustomerName\":\"Torben\",\"EMail\":\"torben@bechmann-ltd.com\",\"Password\":\"trefork\",\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":\"UK\",\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":3,\"CustomerName\":\"Fiona\",\"EMail\":\"fiona@bechmann-ltd.com\",\"Password\":\"klavier\",\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":4,\"CustomerName\":\"Alex\",\"EMail\":\"alex@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":\"DK\",\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":5,\"CustomerName\":\"Sebastian\",\"EMail\":\"sebra54@gmail.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":6,\"CustomerName\":\"Natalie\",\"EMail\":\"natalie@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":7,\"CustomerName\":\"Worldwidecards\",\"EMail\":\"wwc@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":8,\"CustomerName\":\"David Bridge\",\"EMail\":null,\"Password\":null,\"CurrencyCode\":null,\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":25.0,\"Orders\":[]}]\"
+       // str = "[{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null}]"
         //var str = ""
-
+        
         var data = Compress(str);
         console.log(data);
         data = Encrypt(data, "@CompresJSONSettings.EncryptionKey");
         console.log(data)
+        console.log(Decompress(Decrypt(data, "@CompresJSONSettings.EncryptionKey")))*@
 
         $.ajax({
-            url: "/api/CardDesignItems",
-            data: { "data": data }, // "U2FsdGVkX19YuGeVCwskBpIk3+WLjZ2+q15hA/DYhTRKNh1i/5eaFv5iJQg/TRUlXAZzFkRHyBvjDutIlVI1OEpNDgs6hrWUnE5CvkD665FaU57ZzITGvURFvwUrhWpqD/WNHaLC8H9hxzo//AK73LWHXrjXcBfy+UhYGxLhsLdO9fdhX9gNqXDRvE9PJ0aEOxOoobel1Iwzne6Uh7tPfW9IOKQFeGFj5cprBuGjF1ZyjY8o9dCfl65m9K2blVYK" },
-            type: "POST"
+            url: "/api/Customers",
+            data: { "skip": "0", "take": 15 },
+            type: "GET"
         }).done(function (result) {
+            //console.log(result)
+            var myobject = $.parseJSON(result);
+            console.log('data:' + myobject.data)
+            //"@CompresJSONUtilities.EncryptAndCompressAsNecessary("[{\"key\": 5},{},{}]")"
+            var a = Decrypt(myobject.data, "@CompresJSONSettings.EncryptionKey")
+            //var a = myobject.data
+            //var b = Decompress(a);
+
+            console.log(a)
             //console.log("result:" + result);
         });
 
 
     }
     go()
+
+    @*var a = Decrypt("U2FsdGVkX1+/XBh4mS5oFBmuIngyVKy82T0h90gv1fLS7DNGHC8ASEl25PZA7fOgycQtxFf6DPtA571nwdA0RAU4oEcjhOPcLnvqx64ldvv5vhChd6Qu7mPUTr7mcGCFhHbWbo7nNZzazuBw/mCXI8pIg/VoXTF45EDQuKS7LpI7ITCF2CIzXJks5Uf/cqjYvYS9IMogDo7ib6FJWAHVSPS1+8OrKmDC6nSo7DA+1Bo=", "@CompresJSONSettings.EncryptionKey")
+    var b = Decompress(a);
+
+    console.log(a + '-' + b)*@
 </script>
