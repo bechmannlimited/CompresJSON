@@ -132,3 +132,4 @@ C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\System.Web.Http.WebHo
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.dll
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.pdb
+C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Jint.dll

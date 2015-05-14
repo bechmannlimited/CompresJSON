@@ -10,7 +10,7 @@ namespace CompresJSON
     {
         public static string EncryptionKey = "7e4bac048ef766e83f0ec8c079e1f90c2eb690a9"; //"1234567891123456";
 
-        public static bool shouldCompress = false;
+        public static bool shouldCompress = true;
         public static bool shouldEncrypt = true;
 
         public static CompressionMethod compressionMethod = CompressionMethod.LZ77;

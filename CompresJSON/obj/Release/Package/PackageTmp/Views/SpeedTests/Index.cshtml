@@ -181,7 +181,7 @@
 
         $.ajax({
             url: "/api/CardDesignItems",
-            data: { "data": "U2FsdGVkX18TCcelXHDZs7x8i6tRvI5KbCUJZvEUlFwrrAOE/shgBg30rvlSgHf1FJS5cGVamkTEme9f6pTyqQ4XIIPYkket5E+iV1PEXiMvcbgWKRHNfiTvoV7ajII7" },
+            //data: { "data": "U2FsdGVkX18TCcelXHDZs7x8i6tRvI5KbCUJZvEUlFwrrAOE/shgBg30rvlSgHf1FJS5cGVamkTEme9f6pTyqQ4XIIPYkket5E+iV1PEXiMvcbgWKRHNfiTvoV7ajII7" },
             type: "GET"
         }).done(function (result) {
             //console.log(result)
@@ -190,9 +190,9 @@
            
             var a = Decrypt(myobject.data, "@CompresJSONSettings.EncryptionKey")
             //var a = myobject.data
-            //var b = Decompress(a);
+            var b = Decompress(a);
 
-            console.log(a)
+            console.log(a + '-' + b)
             //console.log("result:" + result);
         });
 

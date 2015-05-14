@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
 using lz_string_csharp;
+using System.IO;
+using Jint;
 
 namespace CompresJSON
 {
@@ -104,6 +106,19 @@ namespace CompresJSON
 
         public static string Compress(string str)
         {
+            StreamReader streamReader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Scripts/compresjson_scripts/encryptor_compressor.js");
+            string script = streamReader.ReadToEnd();
+            streamReader.Close();
+
+            var js = new Engine()
+                .SetValue("x", str) // define a new variable
+                .Execute(script + " Compress(x);") // execute a statement
+                .GetCompletionValue() // get the latest statement completion value
+                .ToObject() // converts the value to .NET
+            ;
+
+            return js.ToString();
+
             var compressed = LZString.compress(str);
             var compressedData = Converter.StringToBytes(compressed);
             return Convert.ToBase64String(compressedData);
@@ -111,9 +126,24 @@ namespace CompresJSON
 
         public static string Decompress(string str)
         {
+            StreamReader streamReader = new StreamReader(AppDomain.CurrentDomain.BaseDirectory + "/Scripts/compresjson_scripts/encryptor_compressor.js");
+            string script = streamReader.ReadToEnd();
+            streamReader.Close();
+
+            var js = new Engine()
+                .SetValue("x", str) // define a new variable
+                .Execute(script + " Decompress(x);") // execute a statement
+                .GetCompletionValue() // get the latest statement completion value
+                .ToObject() // converts the value to .NET
+            ;
+
+            return js.ToString();
+
             var compressedData = Convert.FromBase64String(str);
             var compressed = Converter.BytesToString(compressedData);
             return LZString.decompress(compressed);
         }
+
+        
     }
 }

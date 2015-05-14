@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Jint</id>
+    <version>2.4.0</version>
+    <authors>Sebastien Ros</authors>
+    <owners>Sebastien Ros</owners>
+    <licenseUrl>https://raw.githubusercontent.com/sebastienros/jint/master/LICENSE.txt</licenseUrl>
+    <projectUrl>http://github.com/sebastienros/jint</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Javascript Interpreter for .NET</description>
+    <releaseNotes>Fixing important bug related to Json parsing. Added params arguments support for .NET methods. Added Windows Phone 8.1 target support.</releaseNotes>
+    <language>en-US</language>
+    <tags>javascript interpreter jint</tags>
+  </metadata>
+</package>
