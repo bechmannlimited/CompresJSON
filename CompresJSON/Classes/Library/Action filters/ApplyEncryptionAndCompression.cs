@@ -20,7 +20,7 @@ namespace CompresJSON
                 JsonResult result = (JsonResult)filterContext.Result;
 
                 string serializedString = (new JavaScriptSerializer()).Serialize(result.Data);
-                string encryptedString = CompresJSONUtilities.EncryptAndCompressAsNecessary(serializedString);
+                string encryptedString = CompresJSON.EncryptAndCompressAsNecessary(serializedString);
 
                 var rc = new Dictionary<string, object>();
                 rc["data"] = encryptedString;
@@ -53,7 +53,7 @@ namespace CompresJSON
             {
                 //assume encrypted + compressed for now
 
-                string json = CompresJSONUtilities.DecryptAndDecompressAsNecessary(httpBodyDictionary["data"]);
+                string json = CompresJSON.DecryptAndDecompressAsNecessary(httpBodyDictionary["data"]);
                 var dict = new JavaScriptSerializer().Deserialize<Dictionary<string, string>>(json);
 
                 foreach (var key in dict.Keys)

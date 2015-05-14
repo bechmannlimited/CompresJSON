@@ -5,7 +5,7 @@ using System.Web;
 
 namespace CompresJSON
 {
-    public class CompresJSONUtilities
+    public class CompresJSON
     {
         
         public static string EncryptAndCompressAsNecessary(string str)

@@ -15,14 +15,14 @@ namespace CompresJSON.Controllers
         {
             var message = "hello really";
 
-            //message = CompresJSONUtilities.EncryptAndCompressAsNecessary(message);
+            //message = CompresJSON.EncryptAndCompressAsNecessary(message);
 
             var rc = new Dictionary<string, object>();
             rc["original"] = message;
             rc["compr"] = Compressor.Compress(message);
             rc["encr"] = Encrypter.Encrypt(message);
-            rc["all"] = CompresJSONUtilities.EncryptAndCompressAsNecessary(message);
-            //return Json(CompresJSONUtilities.DecryptAndDecompressAsNecessary("U2FsdGVkX19D1Ho3AHgtNTPtSK22whMKAapnsi5HY8AeUO4mbjIuCp7Edfj07QZo9/Gg9o+VSmzK42LYGZCnu1um7i8NXRjZB5Gece9uMPIEWpqHN9X7SGZ3wPR/8NJRWGOJ1jpNx3ICBg9NUU+GCw=="), JsonRequestBehavior.AllowGet);
+            rc["all"] = CompresJSON.EncryptAndCompressAsNecessary(message);
+            //return Json(CompresJSON.DecryptAndDecompressAsNecessary("U2FsdGVkX19D1Ho3AHgtNTPtSK22whMKAapnsi5HY8AeUO4mbjIuCp7Edfj07QZo9/Gg9o+VSmzK42LYGZCnu1um7i8NXRjZB5Gece9uMPIEWpqHN9X7SGZ3wPR/8NJRWGOJ1jpNx3ICBg9NUU+GCw=="), JsonRequestBehavior.AllowGet);
             return View();
         }
 
@@ -78,7 +78,7 @@ namespace CompresJSON.Controllers
         public JsonResult decrypt(String str)
         {
             //str = HttpUtility.UrlDecode(str);
-            return Json(CompresJSONUtilities.EncryptAndCompressAsNecessary(str), JsonRequestBehavior.AllowGet);
+            return Json(CompresJSON.EncryptAndCompressAsNecessary(str), JsonRequestBehavior.AllowGet);
         }
     }
 }

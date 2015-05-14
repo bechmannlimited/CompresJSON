@@ -39,7 +39,7 @@ namespace CompresJSON.Controllers
         {
             ViewBag.Controller = CompresJSONRouteManager.EncryptSecretUrlComponent("Receiver");
             ViewBag.Action = CompresJSONRouteManager.EncryptSecretUrlComponent("sendEncryptedData");
-            ViewBag.Json = CompresJSONUtilities.EncryptAndCompressAsNecessary("{ \"UserID\": 5, \"Name\": \"Alex\", \"testString\": \"hellooooo\", \"c\": \"Receiver\", \"a\": \"LookAtUser\" }");
+            ViewBag.Json = CompresJSON.EncryptAndCompressAsNecessary("{ \"UserID\": 5, \"Name\": \"Alex\", \"testString\": \"hellooooo\", \"c\": \"Receiver\", \"a\": \"LookAtUser\" }");
 
             return View();
         }

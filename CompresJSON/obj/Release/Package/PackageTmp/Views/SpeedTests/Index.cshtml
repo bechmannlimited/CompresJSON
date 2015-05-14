@@ -143,7 +143,7 @@
         $('#request' + requestID).text('loading...');
         var xhr = $.ajax({
             url: url,
-            //data: { "data": "@CompresJSONUtilities.EncryptAndCompressAsNecessary("{ \"CustomerID\" : \"5\" }")" },//"oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
+            //data: { "data": "@CompresJSON.EncryptAndCompressAsNecessary("{ \"CustomerID\" : \"5\" }")" },//"oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
             type: type
         }).done(function (result) {
             var elapsed = new Date().getTime() - startTime;
@@ -187,7 +187,7 @@
             //console.log(result)
             var myobject = $.parseJSON(result);
             console.log('data:' + myobject.data)
-            //"@CompresJSONUtilities.EncryptAndCompressAsNecessary("[{\"key\": 5},{},{}]")"
+           
             var a = Decrypt(myobject.data, "@CompresJSONSettings.EncryptionKey")
             //var a = myobject.data
             //var b = Decompress(a);

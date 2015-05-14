@@ -21,7 +21,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/12/2015 21:29:30</publishTime>
     </File>
     <File Include="bin/CompresJSON.dll">
-      <publishTime>05/14/2015 16:35:12</publishTime>
+      <publishTime>05/14/2015 17:41:31</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/12/2015 21:29:31</publishTime>
@@ -141,7 +141,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/12/2015 20:18:00</publishTime>
     </File>
     <File Include="Views/SpeedTests/Index.cshtml">
-      <publishTime>05/14/2015 16:32:34</publishTime>
+      <publishTime>05/14/2015 17:37:51</publishTime>
     </File>
     <File Include="Views/Test/Index.cshtml">
       <publishTime>05/12/2015 20:18:00</publishTime>
