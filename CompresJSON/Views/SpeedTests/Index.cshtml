@@ -180,8 +180,8 @@
         console.log(Decompress(Decrypt(data, "@CompresJSONSettings.EncryptionKey")))*@
 
         $.ajax({
-            url: "/api/Customers",
-            data: { "skip": "0", "take": 15 },
+            url: "/api/CardDesignItems",
+            data: { "data": "U2FsdGVkX18TCcelXHDZs7x8i6tRvI5KbCUJZvEUlFwrrAOE/shgBg30rvlSgHf1FJS5cGVamkTEme9f6pTyqQ4XIIPYkket5E+iV1PEXiMvcbgWKRHNfiTvoV7ajII7" },
             type: "GET"
         }).done(function (result) {
             //console.log(result)
