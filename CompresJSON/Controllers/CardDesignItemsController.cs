@@ -36,7 +36,7 @@ namespace CompresJSON.Controllers
 
             //return Json(items);
 
-            return Json(db.CardDesignItems.Take(10));
+            return Json(db.CardDesignItems.Take(5));
         }
 
         // GET: api/CardDesignItems/5
