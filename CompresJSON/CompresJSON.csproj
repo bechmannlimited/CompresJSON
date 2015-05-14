@@ -208,6 +208,7 @@
     <Compile Include="Classes\Library\Compressor\zlib\ZStream.cs" />
     <Compile Include="Classes\Library\Compressor\zlib\ZStreamException.cs" />
     <Compile Include="Classes\Library\Encryption\SwiftNETEncrypt\EncryptedString.cs" />
+    <Compile Include="Classes\Library\JavaScriptAnalyzer.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptMVCRouteHandler.cs" />
     <Compile Include="Classes\Library\RouteHandlers\DecryptWebApiRouteHandler.cs" />
     <Compile Include="Classes\Library\Extensions\EF_Extension.cs" />
