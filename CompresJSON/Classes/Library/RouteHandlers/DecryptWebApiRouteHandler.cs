@@ -18,10 +18,17 @@ namespace CompresJSON
         protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var routeValues = request.GetRequestContext().RouteData.Values;
-            var c = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
 
+            string c = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
             routeValues["c"] = null;
-            routeValues["Controller"] = Encrypter.Decrypt(c);
+            routeValues["Controller"] = c;
+
+            if (routeValues.ContainsKey("id"))
+            {
+                string id = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["id"].ToString());
+                routeValues["id"] = null;
+                routeValues["id"] = id;
+            }
 
             return base.SendAsync(request, cancellationToken);
         }
