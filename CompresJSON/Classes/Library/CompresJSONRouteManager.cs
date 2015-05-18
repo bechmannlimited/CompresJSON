@@ -43,7 +43,10 @@ namespace CompresJSON
         {
             //return Convert.ToBase64String(Encrypter.Encrypt(str));
             //NOT UPDATED YET
-            return HttpUtility.UrlEncode(Encrypter.Encrypt(str)).Replace("%", "!");
+            var d = Encrypter.Encrypt(str);
+            var data = Converter.StringToBytes(d);
+            return Convert.ToBase64String(data);
+            //return HttpUtility.UrlEncode(Encrypter.Encrypt(str)).Replace("%", "!");
         }
 
         public static string DecryptSecretUrlComponent(string str)

@@ -148,8 +148,11 @@
             //data: { "data": "@CompresJSON.EncryptAndCompressAsNecessary("{ \"CustomerID\" : \"5\" }")" },//"oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
             type: type
         }).done(function (result) {
+
+            var data = $.parseJSON(result).data;
+
             var elapsed = new Date().getTime() - startTime;
-            console.log(result);
+            console.log(data);
             $('#request' + requestID).text('time: ' + elapsed + 'ms | '
                 + xhr.getResponseHeader('Content-Length') + ' bytes'
             );
@@ -181,7 +184,7 @@
         console.log(data)
         console.log(Decompress(Decrypt(data, "@CompresJSONSettings.EncryptionKey")))*@
 
-        $.ajax({
+        @*$.ajax({
             url: "/api/CardDesignItems",
             //data: { "data": "U2FsdGVkX18TCcelXHDZs7x8i6tRvI5KbCUJZvEUlFwrrAOE/shgBg30rvlSgHf1FJS5cGVamkTEme9f6pTyqQ4XIIPYkket5E+iV1PEXiMvcbgWKRHNfiTvoV7ajII7" },
             type: "GET"
@@ -196,7 +199,7 @@
 
             console.log(a + '-' + b)
             //console.log("result:" + result);
-        });
+        });*@
 
 
     }

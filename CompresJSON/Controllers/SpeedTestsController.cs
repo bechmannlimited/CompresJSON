@@ -13,72 +13,43 @@ namespace CompresJSON.Controllers
         // GET: SpeedTests
         public ActionResult Index()
         {
-            var message = "hello really";
-
-            //message = CompresJSON.EncryptAndCompressAsNecessary(message);
-
-            var rc = new Dictionary<string, object>();
-            rc["original"] = message;
-            rc["compr"] = Compressor.Compress(message);
-            rc["encr"] = Encrypter.Encrypt(message);
-            rc["all"] = CompresJSON.EncryptAndCompressAsNecessary(message);
-            //return Json(CompresJSON.DecryptAndDecompressAsNecessary("U2FsdGVkX19D1Ho3AHgtNTPtSK22whMKAapnsi5HY8AeUO4mbjIuCp7Edfj07QZo9/Gg9o+VSmzK42LYGZCnu1um7i8NXRjZB5Gece9uMPIEWpqHN9X7SGZ3wPR/8NJRWGOJ1jpNx3ICBg9NUU+GCw=="), JsonRequestBehavior.AllowGet);
             return View();
         }
 
         //Results
 
-        public JsonResult GetOneUserUnencrypted()
+        public JsonResult GetItemsUnencrypted(int take)
         {
-            return Json(OneUser());
+            return Json(ManyItems(take));
         }
 
         [EncryptAndCompressAsNecessary]
-        public JsonResult GetOneUserEncrypted()
+        public JsonResult GetItemsEncrypted(int take)
         {
-            return Json(OneUser());
-        }
-
-        public JsonResult GetManyUsersUnencrypted()
-        {
-            return Json(ManyUsers());
-        }
-
-        [EncryptAndCompressAsNecessary]
-        public JsonResult GetManyUsersEncrypted()
-        {
-            return Json(ManyUsers());
+            return Json(ManyItems(take));
         }
 
 
         //Factory
 
-        private User OneUser()
+        private CardDesignItem OneItem()
         {
-            return new User
-            {
-                Name = "Alex",
-                AdLine1 = "Address line 1",
-                UserID = 4934
-            };
+            return AlexDbEntities.JsonDB().CardDesignItems.Take(100).FirstOrDefault();
         }
 
-        private List<User> ManyUsers()
+        private List<CardDesignItem> ManyItems(int take)
         {
-            var rc = new List<User>();
+            return AlexDbEntities.JsonDB().CardDesignItems.Take(take).ToList();
 
-            for (int i = 0; i < 3000; i++)
-            {
-                rc.Add(OneUser());
-            }
-
-            return rc;
+            //var rc = AlexDbEntities.JsonDB().Customers.Take(take).ToList();
+            //rc.ForEach(x => x.Orders = AlexDbEntities.JsonDB().Orders.Take(20).ToList());
+            //return rc;
         }
 
         public JsonResult decrypt(String str)
         {
             //str = HttpUtility.UrlDecode(str);
-            return Json(CompresJSON.EncryptAndCompressAsNecessary(str), JsonRequestBehavior.AllowGet);
+            return Json(CompresJSON.DecryptAndDecompressAsNecessary(str), JsonRequestBehavior.AllowGet);
         }
     }
 }
@@ -92,6 +63,7 @@ namespace CompresJSON
         public bool encryptResponse = false;
         public bool encryptUrl = false;
         public string type = "POST";
+        public int take = 0;
     }
 
     public class SpeedTestWebApi
@@ -102,5 +74,6 @@ namespace CompresJSON
         public bool encryptUrl = false;
         public string data = "";
         public string type = "POST";
+        public int take = 0;
     }
 }
