@@ -5,208 +5,221 @@
 
 @System.Web.Optimization.Scripts.Render("~/Scripts/compresjson")
 
-
-
-<script>
-
-</script>
-
 @{
     ViewBag.Title = "Index";
 
-    List<SpeedTest> tests = new List<SpeedTest>()
-    {
-        new SpeedTest
-        {
-            action = "GetOneUserUnencrypted",
-            description = "Get one user",
-            encryptResponse = false,
-            encryptUrl = false
-        },
-        new SpeedTest
-        {
-            action = "GetOneUserEncrypted",
-            description = "Get one user (encrypted)",
-            encryptResponse = true,
-            encryptUrl = false
-        },
-        new SpeedTest
-        {
-            action = "GetOneUserEncrypted",
-            description = "Get one user (encrypted + encrypted url)",
-            encryptResponse = true,
-            encryptUrl = true
-        },
-        new SpeedTest
-        {
-            action = "GetManyUsersUnencrypted",
-            description = "Get many users",
-            encryptResponse = true,
-            encryptUrl = false
-        },
-        new SpeedTest
-        {
-            action = "GetManyUsersEncrypted",
-            description = "Get many users (encrypted)",
-            encryptResponse = false,
-            encryptUrl = false
-        },
-        new SpeedTest
-        {
-            action = "GetManyUsersEncrypted",
-            description = "(encrypted + encrypted url)",
-            encryptResponse = true,
-            encryptUrl = true
-        },
+    List<SpeedTest> tests = new List<SpeedTest>();
+    
+    var takes = new List<int>() {
+        1, 2, 5, 10, 20, 40, 80, 160, 240, 480
     };
-
-    List<SpeedTestWebApi> webApiTests = new List<SpeedTestWebApi>()
-    {
-        new SpeedTestWebApi
-        {
-            table = "Customers",
-            description = "Get many customers",
-            type = "GET",
-            encryptUrl = true
-        }
-
-    };
-
 }
 
 <h2>Index</h2>
 
-<table class="table table-striped">
-    <caption>Speed tests</caption>
+<p id="1"></p>
+
+<table class="table table-bordered">
+    <caption>Standard requests</caption>
     <thead>
         <tr>
-            <th>Description</th>
-            <th></th>
-            <th>Request info</th>
+            <td>func</td>
         </tr>
     </thead>
     <tbody>
-        @{ int i = 0;}
-        @foreach (var test in tests)
+        @foreach (var take in takes)
         {
-            var url = test.encryptUrl ?
-                CompresJSONRouteManager.SecretUrlPrefix + "/" + CompresJSONRouteManager.EncryptSecretUrlComponent("SpeedTests") + "/" + CompresJSONRouteManager.EncryptSecretUrlComponent(test.action) :
-                "SpeedTests/" + test.action;
-
             <tr>
-                <td>@test.description</td>
+                <td>Get @take items (20 requests) <br />
+                    <b><span id="loading-@take"></span></b></td>
                 <td>
-                    <a class="btn btn-default" href="#!" onclick="getJSON(@i, '/@url', '@test.type')">
-                        Send request
-                    </a>
+                    <a onclick="fireUnencrypted(@take)" class="btn btn-primary">Normal</a>
+                    <div id="unenc-@take">
+                        <p class="time"></p>
+                        <p class="bytes"></p>
+                    </div>
                 </td>
                 <td>
-                    <p id="request@(i)"></p>
+                    <a onclick="fireEncrypted(@take)" class="btn btn-primary">Processed</a>
+                    <div id="enc-@take">
+                        <p class="time"></p>
+                        <p class="bytes"></p>
+                    </div>
                 </td>
             </tr>
-            i++;
         }
     </tbody>
 </table>
 
-<table class="table table-striped">
-    <caption>Web api Speed tests</caption>
-    <thead>
-        <tr>
-            <th>Description</th>
-            <th></th>
-            <th>Request info</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var test in webApiTests)
-        {
-            var url = "apih/" + CompresJSONRouteManager.EncryptSecretUrlComponent(test.table);
-
-            <tr>
-                <td>@test.description</td>
-                <td>
-                    <a class="btn btn-default" href="#!" onclick="getJSON(@i, '/@url', '@test.type')">
-                        Send request
-                    </a>
-                </td>
-                <td>
-                    <p id="request@(i)"></p>
-                </td>
-            </tr>
-            i++;
-        }
-    </tbody>
-</table>
 
 <script>
-    function getJSON(requestID, url, type) {
-        var startTime = new Date().getTime();;
-        $('#request' + requestID).text('loading...');
+    var UnencryptedResultTime = {};
+    var EncryptedResultTime = {};
+    var requestIsActive = false
+
+    function getManyItemsUnencrypted(take, i, total) {
+
+        $('#loading-' + take).text('request ' + (i + 1) + ' of ' + total)
+
+        var startTime = new Date().getTime();
         var xhr = $.ajax({
-            url: url,
-            //data: { "data": "@CompresJSON.EncryptAndCompressAsNecessary("{ \"CustomerID\" : \"5\" }")" },//"oAY+y5q5m0U/CksKQM/tKMY/9aUinDkcuTC4tsx6vDjanpAMkb8W9px7ns3JjC37/BDpDqJPRL3aeZ1gCLodDA==" },
-            type: type
+            url: "@Url.Action("GetItemsUnencrypted", "SpeedTests")",
+            data: { take: take },
+            type: "POST",
+            //async: false
         }).done(function (result) {
 
-            var data = $.parseJSON(result).data;
+            var elapsed = (new Date().getTime() - startTime) ;
+            UnencryptedResultTime[take].push(elapsed);
+            console.log(elapsed);
 
-            var elapsed = new Date().getTime() - startTime;
-            console.log(data);
-            $('#request' + requestID).text('time: ' + elapsed + 'ms | '
-                + xhr.getResponseHeader('Content-Length') + ' bytes'
-            );
+            //sum
+            var sum = 0;
+            for (var i = 0; i < UnencryptedResultTime[take].length; i++) {
+                sum += parseInt(UnencryptedResultTime[take][i]); //don't forget to add the base
+            }
+
+            var sum = sum / UnencryptedResultTime[take].length;
+
+            $('#unenc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
+            
+
+            var bytes = xhr.getResponseHeader('Content-Length');
+            $('#unenc-' + take).children('.bytes').text('bytes: ' + bytes);
+
+            if (currentRequestID < requests -1) {
+
+                currentRequestID++;
+                getManyItemsUnencrypted(take, currentRequestID, requests);
+            }
+
+            else {
+                requestIDs = [];
+                requestIsActive = false
+                updateRequestingUI();
+            }
         });
+
     }
 
-    @{var str = "hello ksldafjklasdj flasjdklf jaklsdjf klasjdfl "; var com = Compressor.Compress(str);}
+    function getManyItemsEncrypted(take, i, total) {
+        var startTime = new Date().getTime();
 
-    @*function go() {
-        var string = "@str";
-        //alert("Size of sample is: " + string.length); //compressToBase64  /decompressFromBase64
-        var compressed = LZString.compress(string);
-        console.log(compressed + "-" + "@Compressor.Compress(str)");
-        //alert("Size of compressed sample is: " + compressed.length);
-        string = LZString.decompress("@Compressor.Compress(str)");
-        console.log(string);
-        //alert("Sample is: " + string);
-    }*@
+        $('#loading-' + take).text('request ' + (i+1) + ' of ' + total)
 
-    function go() {
-
-        @*var str = "[{\"CustomerID\":0,\"CustomerName\":\"New\",\"EMail\":null,\"Password\":null,\"CurrencyCode\":\\"GBP\\",\\"Address1\\":null,\\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":0.0,\"Orders\":[]},{\"CustomerID\":2,\"CustomerName\":\"Torben\",\"EMail\":\"torben@bechmann-ltd.com\",\"Password\":\"trefork\",\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":\"UK\",\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":3,\"CustomerName\":\"Fiona\",\"EMail\":\"fiona@bechmann-ltd.com\",\"Password\":\"klavier\",\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":4,\"CustomerName\":\"Alex\",\"EMail\":\"alex@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":\"DK\",\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":5,\"CustomerName\":\"Sebastian\",\"EMail\":\"sebra54@gmail.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":6,\"CustomerName\":\"Natalie\",\"EMail\":\"natalie@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":7,\"CustomerName\":\"Worldwidecards\",\"EMail\":\"wwc@bechmann-ltd.com\",\"Password\":null,\"CurrencyCode\":\"GBP\",\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":100.0,\"Orders\":[]},{\"CustomerID\":8,\"CustomerName\":\"David Bridge\",\"EMail\":null,\"Password\":null,\"CurrencyCode\":null,\"Address1\":null,\"Address2\":null,\"Address3\":null,\"Address4\":null,\"Address5\":null,\"CountryCode\":null,\"Discount\":25.0,\"Orders\":[]}]\"
-       // str = "[{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null},{#CardDesignItemID#:0,#CardDesignID#:null,#CardDesignItem1#:null,#FontID#:null,#ColourID#:null,#FontSizeID#:null,#ItemText#:#hello#,#ItemAttributes#:null,#CardDesign#:null}]"
-        //var str = ""
-        
-        var data = Compress(str);
-        console.log(data);
-        data = Encrypt(data, "@CompresJSONSettings.EncryptionKey");
-        console.log(data)
-        console.log(Decompress(Decrypt(data, "@CompresJSONSettings.EncryptionKey")))*@
-
-        @*$.ajax({
-            url: "/api/CardDesignItems",
-            //data: { "data": "U2FsdGVkX18TCcelXHDZs7x8i6tRvI5KbCUJZvEUlFwrrAOE/shgBg30rvlSgHf1FJS5cGVamkTEme9f6pTyqQ4XIIPYkket5E+iV1PEXiMvcbgWKRHNfiTvoV7ajII7" },
-            type: "GET"
+        var xhr = $.ajax({
+            url: "@Url.Action("GetItemsEncrypted", "SpeedTests")",
+            data: { take: take },
+            type: "POST",
+            //async: false
         }).done(function (result) {
-            //console.log(result)
-            var myobject = $.parseJSON(result);
-            console.log('data:' + myobject.data)
-           
-            var a = Decrypt(myobject.data, "@CompresJSONSettings.EncryptionKey")
-            //var a = myobject.data
-            var b = Decompress(a);
 
-            console.log(a + '-' + b)
-            //console.log("result:" + result);
-        });*@
+            var elapsed = (new Date().getTime() - startTime);
+            EncryptedResultTime[take].push(elapsed);
+
+            //sum
+            var sum = 0;
+            for( var i = 0; i < EncryptedResultTime[take].length; i++ ){
+                sum += parseInt(EncryptedResultTime[take][i]); //don't forget to add the base
+            }
+
+            var sum = sum / EncryptedResultTime[take].length;
+
+            $('#enc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
+            
+
+            var data = result.data;
+
+            var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
+            var decompressed = Decompress(decrypted);
+
+            var bytes = xhr.getResponseHeader('Content-Length');
+            $('#enc-' + take).children('.bytes').text('bytes: ' + bytes);
 
 
+            if (currentRequestID < requests - 1) {
+
+                currentRequestID++;
+                getManyItemsEncrypted(take, currentRequestID, requests);
+            }
+
+            else {
+                requestIDs = [];
+                requestIsActive = false
+                updateRequestingUI();
+            }
+        });
+
+        
     }
-    go()
 
-    @*var a = Decrypt("U2FsdGVkX1+/XBh4mS5oFBmuIngyVKy82T0h90gv1fLS7DNGHC8ASEl25PZA7fOgycQtxFf6DPtA571nwdA0RAU4oEcjhOPcLnvqx64ldvv5vhChd6Qu7mPUTr7mcGCFhHbWbo7nNZzazuBw/mCXI8pIg/VoXTF45EDQuKS7LpI7ITCF2CIzXJks5Uf/cqjYvYS9IMogDo7ib6FJWAHVSPS1+8OrKmDC6nSo7DA+1Bo=", "@CompresJSONSettings.EncryptionKey")
-    var b = Decompress(a);
+    var requests = 20;
 
-    console.log(a + '-' + b)*@
+    var currentRequestID = 0;
+    var requestIDs = [];
+
+    function fireUnencrypted(take) {
+
+        if (!requestIsActive) {
+
+            currentRequestID = 0
+            requestIsActive = true
+            updateRequestingUI();
+            UnencryptedResultTime[take] = []
+
+            $.when(function () {
+
+                $('#loading-' + take).text('loading')
+
+            }).done(function () {
+
+                for (var i = 0; i < requests; i++) {
+
+                    requestIDs.push(i)
+
+                }
+
+                getManyItemsUnencrypted(take, currentRequestID, requests);
+            })
+        }
+    }
+
+    function fireEncrypted(take) {
+
+        if (!requestIsActive) {
+
+            currentRequestID = 0
+            requestIsActive = true
+            updateRequestingUI();
+            EncryptedResultTime[take] = []
+
+            $.when(function () {
+
+                $('#loading-' + take).text('loading')
+
+            }).done(function () {
+
+                for (var i = 0; i < requests; i++) {
+
+                    requestIDs.push(i)
+                }
+
+                getManyItemsEncrypted(take, currentRequestID, requests);
+            })
+        }
+
+        
+    }
+
+    function updateRequestingUI() {
+
+        if (requestIsActive) {
+
+            $('.btn').addClass('disabled');
+        }
+        else {
+            $('.btn').removeClass('disabled');
+        }
+    }
+
 </script>
