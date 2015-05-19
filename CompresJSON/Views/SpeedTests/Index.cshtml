@@ -100,7 +100,7 @@
 
             $('#unenc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
             
-            var percent = (i / requests) * 100; 
+            var percent = ((i+1) / requests) * 100; 
             $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
            
 
@@ -148,13 +148,13 @@
 
             $('#enc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
             
-            var percent = (i / requests) * 100;
+            var percent = ((i+1) / requests) * 100;
             $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
 
-            var data = result.data;
+            //var data = result.data;
 
-            var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
-            var decompressed = Decompress(decrypted);
+            //var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
+            //var decompressed = Decompress(decrypted);
 
             var bytes = xhr.getResponseHeader('Content-Length') / 1024 ;
             $('#enc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
