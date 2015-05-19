@@ -106,3 +106,4 @@ C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.d
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.pdb
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Release\CompresJSON.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Jint.dll
+E:\Source\GitHub\CompresJSON\CompresJSON\bin\Jint.dll

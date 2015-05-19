@@ -13,6 +13,6 @@ namespace CompresJSON
         public static bool shouldCompress = true;
         public static bool shouldEncrypt = true;
 
-        public static CompressionMethod compressionMethod = CompressionMethod.LZ77;
+        public static CompressionMethod compressionMethod = CompressionMethod.LZString;
     }
 }

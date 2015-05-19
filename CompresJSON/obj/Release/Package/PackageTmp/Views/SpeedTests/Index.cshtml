@@ -25,6 +25,9 @@
 
 <p id="1"></p>
 
+Settings: <br />
+<b>Compressed:</b> @CompresJSONSettings.shouldCompress.ToString() | <b>Method:</b> @CompresJSONSettings.compressionMethod.ToString() | <b>Encrypted:</b> @CompresJSONSettings.shouldEncrypt.ToString()<br />
+
 <table class="table table-bordered" style="max-width: 650px;">
     <caption></caption>
     <thead>
@@ -154,7 +157,8 @@
             //var data = result.data;
 
             //var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
-            //var decompressed = Decompress(decrypted);
+            //var decompressed = Decompress(data);
+            //console.log(decompressed);
 
             var bytes = xhr.getResponseHeader('Content-Length') / 1024 ;
             $('#enc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
