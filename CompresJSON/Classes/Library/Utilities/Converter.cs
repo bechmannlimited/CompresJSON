@@ -28,6 +28,16 @@ namespace CompresJSON
             return Tools.ToDictionary<string, string>(nvc);
         }
 
+        public string StringToBase64String(string str)
+        {
+            var data = StringToBytes(str);
+            return Convert.ToBase64String(data);
+        }
+
+        public string Base64StringFromString(string str) {
+            var data = Convert.FromBase64String(str);
+            return BytesToString(data);
+        }
     }
 
 }

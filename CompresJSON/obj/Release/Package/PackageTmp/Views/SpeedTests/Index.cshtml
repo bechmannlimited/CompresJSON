@@ -3,6 +3,12 @@
 <script src="~/Scripts/compresjson_scripts/Base64.js"></script>
 <script src="~/Scripts/compresjson_scripts/Compressor.js"></script>*@
 
+<style>
+    .progress {
+        height: 4px;
+    }
+</style>
+
 @System.Web.Optimization.Scripts.Render("~/Scripts/compresjson")
 
 @{
@@ -19,28 +25,38 @@
 
 <p id="1"></p>
 
-<table class="table table-bordered">
-    <caption>Standard requests</caption>
+<table class="table table-bordered" style="max-width: 650px;">
+    <caption></caption>
     <thead>
         <tr>
             <td>func</td>
+            <td>Unprocessed</td>
+            <td>Processed</td>
         </tr>
     </thead>
     <tbody>
         @foreach (var take in takes)
         {
             <tr>
-                <td>Get @take items (20 requests) <br />
-                    <b><span id="loading-@take"></span></b></td>
                 <td>
-                    <a onclick="fireUnencrypted(@take)" class="btn btn-primary">Normal</a>
+                    Get @take items (20 requests) <br />
+                    <b><span id="loading-@take"></span></b>
+                    <div style="display:none;" class="progress" id="progress-@take">
+                        <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="00" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                            <span class="sr-only">0% Complete (success)</span>
+                        </div>
+                    </div>
+                </td>
+
+                <td style="width:200px;">
+                    <a onclick="fireUnencrypted(@take)" class="btn btn-primary btn-block">Normal</a>
                     <div id="unenc-@take">
                         <p class="time"></p>
                         <p class="bytes"></p>
                     </div>
                 </td>
-                <td>
-                    <a onclick="fireEncrypted(@take)" class="btn btn-primary">Processed</a>
+                <td style="width:200px;">
+                    <a onclick="fireEncrypted(@take)" class="btn btn-success btn-block">Processed</a>
                     <div id="enc-@take">
                         <p class="time"></p>
                         <p class="bytes"></p>
@@ -60,6 +76,7 @@
     function getManyItemsUnencrypted(take, i, total) {
 
         $('#loading-' + take).text('request ' + (i + 1) + ' of ' + total)
+        $('#progress-' + take).show();
 
         var startTime = new Date().getTime();
         var xhr = $.ajax({
@@ -71,7 +88,7 @@
 
             var elapsed = (new Date().getTime() - startTime) ;
             UnencryptedResultTime[take].push(elapsed);
-            console.log(elapsed);
+            //console.log(elapsed);
 
             //sum
             var sum = 0;
@@ -83,9 +100,12 @@
 
             $('#unenc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
             
+            var percent = ((i+1) / requests) * 100; 
+            $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
+           
 
-            var bytes = xhr.getResponseHeader('Content-Length');
-            $('#unenc-' + take).children('.bytes').text('bytes: ' + bytes);
+            var bytes = xhr.getResponseHeader('Content-Length') / 1024;
+            $('#unenc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
 
             if (currentRequestID < requests -1) {
 
@@ -106,6 +126,7 @@
         var startTime = new Date().getTime();
 
         $('#loading-' + take).text('request ' + (i+1) + ' of ' + total)
+        $('#progress-' + take).show();
 
         var xhr = $.ajax({
             url: "@Url.Action("GetItemsEncrypted", "SpeedTests")",
@@ -127,14 +148,16 @@
 
             $('#enc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
             
+            var percent = ((i+1) / requests) * 100;
+            $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
 
-            var data = result.data;
+            //var data = result.data;
 
-            var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
-            var decompressed = Decompress(decrypted);
+            //var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
+            //var decompressed = Decompress(decrypted);
 
-            var bytes = xhr.getResponseHeader('Content-Length');
-            $('#enc-' + take).children('.bytes').text('bytes: ' + bytes);
+            var bytes = xhr.getResponseHeader('Content-Length') / 1024 ;
+            $('#enc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
 
 
             if (currentRequestID < requests - 1) {
@@ -148,6 +171,8 @@
                 requestIsActive = false
                 updateRequestingUI();
             }
+
+
         });
 
         
@@ -161,6 +186,8 @@
     function fireUnencrypted(take) {
 
         if (!requestIsActive) {
+
+            $('.progress').hide();
 
             currentRequestID = 0
             requestIsActive = true
@@ -188,6 +215,7 @@
 
         if (!requestIsActive) {
 
+            $('.progress').hide();
             currentRequestID = 0
             requestIsActive = true
             updateRequestingUI();
@@ -218,6 +246,8 @@
             $('.btn').addClass('disabled');
         }
         else {
+            $('.progress').hide();
+            $('.progress').children('.progress-bar').css('width', '0%');
             $('.btn').removeClass('disabled');
         }
     }

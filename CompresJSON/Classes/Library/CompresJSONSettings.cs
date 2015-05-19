@@ -14,7 +14,5 @@ namespace CompresJSON
         public static bool shouldEncrypt = true;
 
         public static CompressionMethod compressionMethod = CompressionMethod.LZ77;
-        public static EncodingMethod encodingMethod = EncodingMethod.Base64;
-        public static Encoding encoder = UTF8Encoding.UTF8;
     }
 }

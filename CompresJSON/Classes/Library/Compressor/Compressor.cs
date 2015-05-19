@@ -14,20 +14,55 @@ namespace CompresJSON
 
         public static string Compress(string str)
         {
-            Dictionary<string, object> args = new Dictionary<string, object>() {
-                { "x" , str }
-            };
-            return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Compress", args).ToString();
+            if (CompresJSONSettings.compressionMethod == CompressionMethod.LZ77)
+            {
+                var data = Converter.StringToBytes(str);
+                var compressedData = LZ77.Compress(data);
+                return Convert.ToBase64String(compressedData);
+            }
+
+            else if (CompresJSONSettings.compressionMethod == CompressionMethod.GZip)
+            {
+                var data = Converter.StringToBytes(str);
+                var compressedData = GZip.Compress(data);
+                return Convert.ToBase64String(compressedData);
+            }
+
+            else if (CompresJSONSettings.compressionMethod == CompressionMethod.LZString)
+            {
+                Dictionary<string, object> args = new Dictionary<string, object>() {
+                    { "x" , str }
+                };
+                return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Compress", args).ToString();
+            }
+
+            return "";
         }
 
         public static string Decompress(string str)
         {
-            Dictionary<string, object> args = new Dictionary<string, object>() {
-                { "x" , str }
-            };
-            return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Decompress", args).ToString();
-        }
+            if (CompresJSONSettings.compressionMethod == CompressionMethod.LZ77)
+            {
+                var data = Convert.FromBase64String(str);
+                var decompressedData = LZ77.Decompress(data);
+                return Converter.BytesToString(decompressedData);
+            }
 
-        
+            else if (CompresJSONSettings.compressionMethod == CompressionMethod.GZip)
+            {
+                var data = Convert.FromBase64String(str);
+                var decompressedData = GZip.Decompress(data);
+                return Converter.BytesToString(decompressedData);
+            }
+
+            else if (CompresJSONSettings.compressionMethod == CompressionMethod.LZString)
+            {
+                Dictionary<string, object> args = new Dictionary<string, object>() {
+                    { "x" , str }
+                };
+                return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Decompress", args).ToString();
+            }
+            return "";
+        } 
     }
 }
