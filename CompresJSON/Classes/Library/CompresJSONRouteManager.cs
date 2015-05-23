@@ -10,7 +10,7 @@ namespace CompresJSON
 {
     public class CompresJSONRouteManager
     {
-        public static string SecretUrlPrefix = Encrypter.Encrypt("hide");
+        public static string SecretUrlPrefix = EncryptSecretUrlComponent("hide"); // Encrypter.Encrypt("hide");
 
         //MVC route setup
         public static void RegisterRoutes(RouteCollection routes)
@@ -41,20 +41,12 @@ namespace CompresJSON
 
         public static string EncryptSecretUrlComponent(string str)
         {
-            //return Convert.ToBase64String(Encrypter.Encrypt(str));
-            //NOT UPDATED YET
-            var d = Encrypter.Encrypt(str);
-            var data = Converter.StringToBytes(d);
-            return Convert.ToBase64String(data);
-            //return HttpUtility.UrlEncode(Encrypter.Encrypt(str)).Replace("%", "!");
+            return Encryptor.Encrypt(str);
         }
 
         public static string DecryptSecretUrlComponent(string str)
         {
-            var data = Convert.FromBase64String(str);
-            var rc = Converter.BytesToString(data);
-            return Encrypter.Decrypt(rc);
-            //return HttpUtility.UrlDecode(Encrypter.Decrypt(str).Replace("!", "%"));
+            return Encryptor.Decrypt(str);
         }
     }
 }

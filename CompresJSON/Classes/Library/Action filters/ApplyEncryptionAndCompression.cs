@@ -45,7 +45,6 @@ namespace CompresJSON
             Stream req = filterContext.HttpContext.Request.InputStream;
             req.Seek(0, System.IO.SeekOrigin.Begin);
             string httpbody = new StreamReader(req).ReadToEnd();
-            //httpbody = Encrypter.Decrypt(httpbody);
 
             Dictionary<string, string> httpBodyDictionary = Converter.QueryStringToDictionary(httpbody);
 
@@ -65,7 +64,7 @@ namespace CompresJSON
 
                 foreach (var parameter in mvcActionModelParameters)
                 {
-                    string typeName = parameter.ParameterType.FullName; // "System.String";
+                    string typeName = parameter.ParameterType.FullName; 
                     var o = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(typeName);
                     o = Tools.ToObject(filterContext.ActionParameters, o);
 

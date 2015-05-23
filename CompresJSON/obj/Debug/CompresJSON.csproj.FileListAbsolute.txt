@@ -134,3 +134,4 @@ C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.dll
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\obj\Debug\CompresJSON.pdb
 C:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Jint.dll
 E:\Source\GitHub\CompresJSON\CompresJSON\bin\Jint.dll
+E:\Users\Alex\Documents\GitHub\CompresJSON\CompresJSON\bin\Jint.dll

@@ -13,14 +13,11 @@ namespace CompresJSON
         {
             var routeValues = requestContext.RouteData.Values;
 
-            var c = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
-            var a = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["a"].ToString());
+            routeValues["Controller"] = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
+            routeValues["Action"] = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["a"].ToString());
 
             routeValues["c"] = null;
             routeValues["a"] = null;
-
-            routeValues["Controller"] = Encrypter.Decrypt(c);
-            routeValues["Action"] = Encrypter.Decrypt(a);
 
             var mvcRouteHandler = new MvcRouteHandler();
             return (mvcRouteHandler as IRouteHandler).GetHttpHandler(requestContext);

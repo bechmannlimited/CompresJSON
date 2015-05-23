@@ -223,7 +223,7 @@
     <Compile Include="Classes\Library\Encoder\EncodingMethod.cs" />
     <Compile Include="Classes\Library\Compressor\GZip.cs" />
     <Compile Include="Classes\Library\Compressor\LZ77.cs" />
-    <Compile Include="Classes\Library\Encryption\Encrypter.cs" />
+    <Compile Include="Classes\Library\Encryption\Encryptor.cs" />
     <Compile Include="Classes\Library\CompresJSONRouteManager.cs" />
     <Compile Include="Classes\Library\CompresJSON.cs" />
     <Compile Include="Classes\Library\TEMP\Mapper.cs" />

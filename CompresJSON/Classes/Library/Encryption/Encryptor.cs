@@ -6,7 +6,7 @@ using AESCryptoTest;
 
 namespace CompresJSON
 {
-    public class Encrypter
+    public class Encryptor
     {
 
         public static string Encrypt(string str)
@@ -18,7 +18,8 @@ namespace CompresJSON
             //return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Encrypt", args).ToString();
 
             var p = new CryptoJS();
-            return p.OpenSSLEncrypt(str, CompresJSONSettings.EncryptionKey);
+            var encrypted = p.OpenSSLEncrypt(str, CompresJSONSettings.EncryptionKey);
+            return Converter.Base64Encode(encrypted);
         }
 
         public static string Decrypt(string str)
@@ -28,8 +29,10 @@ namespace CompresJSON
             //    { "y", CompresJSONSettings.EncryptionKey}
             //};
             //return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Decrypt", args).ToString();
+
             var p = new CryptoJS();
-            return p.OpenSSLDecrypt(str, CompresJSONSettings.EncryptionKey);
+            var decoded = Converter.Base64Decode(str);
+            return p.OpenSSLDecrypt(decoded, CompresJSONSettings.EncryptionKey);
         }
       
 

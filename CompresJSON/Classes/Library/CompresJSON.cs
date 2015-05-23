@@ -20,7 +20,7 @@ namespace CompresJSON
             //encrypt
             if (CompresJSONSettings.shouldEncrypt)
             {
-                str = Encrypter.Encrypt(str);
+                str = Encryptor.Encrypt(str);
             }
 
 
@@ -32,7 +32,7 @@ namespace CompresJSON
             //decrypt
             if (CompresJSONSettings.shouldEncrypt)
             {
-                str = Encrypter.Decrypt(str);
+                str = Encryptor.Decrypt(str);
             }
 
             //decompress
