@@ -25,7 +25,13 @@
 
 <hr />
 <h5>Encrypted URL Web API Route</h5>
-<a href="/apih@(Url.Action(CompresJSONRouteManager.EncryptSecretUrlComponent("5"), CompresJSONRouteManager.EncryptSecretUrlComponent("CardDesignItems")))">/apih@(Url.Action(CompresJSONRouteManager.EncryptSecretUrlComponent("5"), CompresJSONRouteManager.EncryptSecretUrlComponent("CardDesignItems")))</a>
+@{
+    string prefix = CompresJSONRouteManager.WebApiSecretUrlPrefix;
+    string id = CompresJSONRouteManager.EncryptSecretUrlComponent("5");
+    string controller = CompresJSONRouteManager.EncryptSecretUrlComponent("CardDesignItems");
+    string url = "/" + prefix + "/" + controller + "/" + id;
+}
+<a href="@url">@url</a>
 <hr />
 
 <p id="1"></p>
@@ -94,7 +100,7 @@ Settings: <br />
             //async: false
         }).done(function (result) {
 
-            var elapsed = (new Date().getTime() - startTime) ;
+            var elapsed = (new Date().getTime() - startTime);
             UnencryptedResultTime[take].push(elapsed);
             //console.log(elapsed);
 
@@ -107,15 +113,15 @@ Settings: <br />
             var sum = sum / UnencryptedResultTime[take].length;
 
             $('#unenc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
-            
-            var percent = ((i+1) / requests) * 100; 
+
+            var percent = ((i + 1) / requests) * 100;
             $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
-           
+
 
             var bytes = xhr.getResponseHeader('Content-Length') / 1024;
             $('#unenc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
 
-            if (currentRequestID < requests -1) {
+            if (currentRequestID < requests - 1) {
 
                 currentRequestID++;
                 getManyItemsUnencrypted(take, currentRequestID, requests);
@@ -133,7 +139,7 @@ Settings: <br />
     function getManyItemsEncrypted(take, i, total) {
         var startTime = new Date().getTime();
 
-        $('#loading-' + take).text('request ' + (i+1) + ' of ' + total)
+        $('#loading-' + take).text('request ' + (i + 1) + ' of ' + total)
         $('#progress-' + take).show();
 
         var xhr = $.ajax({
@@ -148,22 +154,19 @@ Settings: <br />
 
             //sum
             var sum = 0;
-            for( var i = 0; i < EncryptedResultTime[take].length; i++ ){
+            for (var i = 0; i < EncryptedResultTime[take].length; i++) {
                 sum += parseInt(EncryptedResultTime[take][i]); //don't forget to add the base
             }
 
             var sum = sum / EncryptedResultTime[take].length;
 
             $('#enc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
-            
-            var percent = ((i+1) / requests) * 100;
+
+            var percent = ((i + 1) / requests) * 100;
             $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
 
-            //var data = result.data;
-
-            //var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
-            //var decompressed = Decompress(data);
-            //console.log(decompressed);
+            var data = result.data;
+            console.log(DecryptAndDecompress(data, '@CompresJSONSettings.EncryptionKey'));
 
             var bytes = xhr.getResponseHeader('Content-Length') / 1024 ;
             $('#enc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
@@ -184,7 +187,7 @@ Settings: <br />
 
         });
 
-        
+
     }
 
     var requests = 20;
@@ -245,7 +248,7 @@ Settings: <br />
             })
         }
 
-        
+
     }
 
     function updateRequestingUI() {
@@ -260,5 +263,25 @@ Settings: <br />
             $('.btn').removeClass('disabled');
         }
     }
+
+    $(function () {
+
+        @{
+            var m = "lkajsdfklajskldf {{{ dkfj aklsfj\"\" aslkdfjaslkdf; ";
+            var en = CompresJSON.EncryptAndCompressAsNecessary(m);
+            var x = CompresJSON.DecryptAndDecompressAsNecessary("VTJGc2RHVmtYMS9laGVZRUt4SGtzV2laSWg0UWZ5WS9rYjVSWmxOSTJ5R1pZaGFJWEo0eU5GUzQ4VGliUHE5WTM1dGdwazRpMmVSQTVxUnNGaXRPY2FIdXBuL0NJVGZrMkdzUW9ENHF5V25JTi96bFJsQWNOSFdLMTU0WXFTUjN5ZzVFYUJ1d0pyRmxaUFNBMzdNK3RRPT0=");
+        }
+
+        var str = "@m"
+        str = Compress(str);
+        str = JSEncrypt(str, "7e4bac048ef766e83f0ec8c079e1f90c2eb690a9");
+        console.log(str);
+
+        var de = JSDecrypt("@en", "7e4bac048ef766e83f0ec8c079e1f90c2eb690a9");
+        de = Decompress(de);
+        console.log(de);
+
+        console.log('de: @x')
+    })
 
 </script>

@@ -11,6 +11,7 @@ namespace CompresJSON
     public class CompresJSONRouteManager
     {
         public static string SecretUrlPrefix = EncryptSecretUrlComponent("hide"); // Encrypter.Encrypt("hide");
+        public static string WebApiSecretUrlPrefix = EncryptSecretUrlComponent("api");
 
         //MVC route setup
         public static void RegisterRoutes(RouteCollection routes)
@@ -32,7 +33,7 @@ namespace CompresJSON
 
             config.Routes.MapHttpRoute(
                 name: "SecretDefaultApi",
-                routeTemplate: "apih/{c}/{id}",
+                routeTemplate: WebApiSecretUrlPrefix + "/{c}/{id}",
                 defaults: new { id = RouteParameter.Optional },
                 constraints: null,
                 handler: new DecryptWebApiRouteHandler(GlobalConfiguration.Configuration)
