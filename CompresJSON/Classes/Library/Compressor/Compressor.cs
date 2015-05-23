@@ -19,6 +19,11 @@ namespace CompresJSON
                 var data = Converter.StringToBytes(str);
                 var compressedData = LZ77.Compress(data);
                 return Convert.ToBase64String(compressedData);
+
+                //Dictionary<string, object> args = new Dictionary<string, object>() {
+                //    { "x" , str }
+                //};
+                //return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Deflate", args).ToString();
             }
 
             else if (CompresJSONSettings.compressionMethod == CompressionMethod.GZip)
@@ -46,6 +51,11 @@ namespace CompresJSON
                 var data = Convert.FromBase64String(str);
                 var decompressedData = LZ77.Decompress(data);
                 return Converter.BytesToString(decompressedData);
+
+                //Dictionary<string, object> args = new Dictionary<string, object>() {
+                //    { "x" , str }
+                //};
+                //return JavaScriptAnalyzer.runJavaScriptFunctionWithArgs("Inflate", args).ToString();
             }
 
             else if (CompresJSONSettings.compressionMethod == CompressionMethod.GZip)

@@ -11,11 +11,12 @@ namespace CompresJSON.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/Scripts/compresjson").Include(
-                "~/Scripts/compresjson_scripts/base64-string.js",
+                //"~/Scripts/compresjson_scripts/base64-string.js",
                 "~/Scripts/compresjson_scripts/Base64.js",
                 "~/Scripts/compresjson_scripts/lz-string.js",
                 "~/Scripts/compresjson_scripts/aes.js",
                 "~/Scripts/compresjson_scripts/pbkdf2.js",
+                "~/Scripts/compresjson_scripts/js-deflate.js",
                 "~/Scripts/compresjson_scripts/Compress_Encrypt.js"
            ));
 

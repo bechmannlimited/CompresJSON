@@ -7,6 +7,16 @@
     .progress {
         height: 4px;
     }
+
+    pre {
+        font-size: 8pt;
+        max-height: 180px;
+        overflow-y:scroll;
+    }
+
+    pre.actual {
+        max-height: 95px;
+    }
 </style>
 
 @System.Web.Optimization.Scripts.Render("~/Scripts/compresjson")
@@ -23,12 +33,29 @@
 
 <h2>Index</h2>
 
+<hr />
+<h4>Encrypted URL Web API Route</h4>
+@{
+    string prefix = CompresJSONRouteManager.WebApiSecretUrlPrefix;
+    string id = CompresJSONRouteManager.EncryptSecretUrlComponent("5");
+    string controller = CompresJSONRouteManager.EncryptSecretUrlComponent("CardDesignItems");
+    string url = "/" + prefix + "/" + controller + "/" + id;
+}
+
+<b>Normal: </b><br />
+<a href="/api/CardDesignItems/5">/api/CardDesignItems/5</a><br />
+<b>Encrypted: </b> <br />
+<a href="@url">@url</a>
+<hr />
+
 <p id="1"></p>
+
+<h4>Request speed tests</h4>
 
 Settings: <br />
 <b>Compressed:</b> @CompresJSONSettings.shouldCompress.ToString() | <b>Method:</b> @CompresJSONSettings.compressionMethod.ToString() | <b>Encrypted:</b> @CompresJSONSettings.shouldEncrypt.ToString()<br />
 
-<table class="table table-bordered" style="max-width: 650px;">
+<table class="table table-bordered" style="max-width: 750px;margin-top:20px;">
     <caption></caption>
     <thead>
         <tr>
@@ -51,18 +78,24 @@ Settings: <br />
                     </div>
                 </td>
 
-                <td style="width:200px;">
+                <td style="width:260px;">
                     <a onclick="fireUnencrypted(@take)" class="btn btn-primary btn-block">Normal</a>
                     <div id="unenc-@take">
                         <p class="time"></p>
                         <p class="bytes"></p>
+                        <h5>Data in request:</h5>
+                        <pre></pre>
                     </div>
                 </td>
-                <td style="width:200px;">
+                <td style="width:260px;">
                     <a onclick="fireEncrypted(@take)" class="btn btn-success btn-block">Processed</a>
                     <div id="enc-@take">
                         <p class="time"></p>
                         <p class="bytes"></p>
+                        <h5>Data in request:</h5>
+                        <pre class="actual"></pre>
+                        <h5>Decrypted/Decompressed data:</h5>
+                        <pre></pre>
                     </div>
                 </td>
             </tr>
@@ -89,7 +122,7 @@ Settings: <br />
             //async: false
         }).done(function (result) {
 
-            var elapsed = (new Date().getTime() - startTime) ;
+            var elapsed = (new Date().getTime() - startTime);
             UnencryptedResultTime[take].push(elapsed);
             //console.log(elapsed);
 
@@ -102,15 +135,15 @@ Settings: <br />
             var sum = sum / UnencryptedResultTime[take].length;
 
             $('#unenc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
-            
-            var percent = ((i+1) / requests) * 100; 
+
+            var percent = ((i + 1) / requests) * 100;
             $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
-           
+
 
             var bytes = xhr.getResponseHeader('Content-Length') / 1024;
             $('#unenc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
 
-            if (currentRequestID < requests -1) {
+            if (currentRequestID < requests - 1) {
 
                 currentRequestID++;
                 getManyItemsUnencrypted(take, currentRequestID, requests);
@@ -121,6 +154,9 @@ Settings: <br />
                 requestIsActive = false
                 updateRequestingUI();
             }
+
+            console.log(result);
+            $('#unenc-' + take).children('pre').text(JSON.stringify(result, null, ' '))
         });
 
     }
@@ -128,7 +164,7 @@ Settings: <br />
     function getManyItemsEncrypted(take, i, total) {
         var startTime = new Date().getTime();
 
-        $('#loading-' + take).text('request ' + (i+1) + ' of ' + total)
+        $('#loading-' + take).text('request ' + (i + 1) + ' of ' + total)
         $('#progress-' + take).show();
 
         var xhr = $.ajax({
@@ -143,22 +179,24 @@ Settings: <br />
 
             //sum
             var sum = 0;
-            for( var i = 0; i < EncryptedResultTime[take].length; i++ ){
+            for (var i = 0; i < EncryptedResultTime[take].length; i++) {
                 sum += parseInt(EncryptedResultTime[take][i]); //don't forget to add the base
             }
 
             var sum = sum / EncryptedResultTime[take].length;
 
             $('#enc-' + take).children('.time').text('avg: ' + (sum / 1000).toFixed(2) + ' seconds');
-            
-            var percent = ((i+1) / requests) * 100;
+
+            var percent = ((i + 1) / requests) * 100;
             $('#progress-' + take).children('.progress-bar').css('width', percent + '%');
 
-            //var data = result.data;
+            var data = result.data;
+            var processed = DecryptAndDecompress(data, '@CompresJSONSettings.EncryptionKey')
+            console.log(JSON.parse(processed));
 
-            //var decrypted = Decrypt(data, '@CompresJSONSettings.EncryptionKey')
-            //var decompressed = Decompress(data);
-            //console.log(decompressed);
+            $('#enc-' + take).children('pre').text(JSON.stringify(JSON.parse(processed), null, ' '))
+            $('#enc-' + take).children('pre.actual').text(JSON.stringify(result), null, ' ')
+            
 
             var bytes = xhr.getResponseHeader('Content-Length') / 1024 ;
             $('#enc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
@@ -175,11 +213,7 @@ Settings: <br />
                 requestIsActive = false
                 updateRequestingUI();
             }
-
-
         });
-
-        
     }
 
     var requests = 20;
@@ -239,8 +273,6 @@ Settings: <br />
                 getManyItemsEncrypted(take, currentRequestID, requests);
             })
         }
-
-        
     }
 
     function updateRequestingUI() {
@@ -255,5 +287,4 @@ Settings: <br />
             $('.btn').removeClass('disabled');
         }
     }
-
 </script>

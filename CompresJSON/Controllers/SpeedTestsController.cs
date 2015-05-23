@@ -13,6 +13,10 @@ namespace CompresJSON.Controllers
         // GET: SpeedTests
         public ActionResult Index()
         {
+            //var d = Compressor.Compress("jkasldfj kla;sjdf;kl ajsdl;f jasd;lfk jaskl;df jaw3iorj2oifj{{{ {} } } } }\" z\" ()89023849024 :  KLFJD:LKF J:LF J:L J:: :) :) :)");
+            //var y = Compressor.Decompress(d);
+            //var x = Compressor.Decompress("VTJGc2RHVmtYMStiOHZGMEJFNW9oR2FiNWpJajVrcUpub1FEelYvV3dIVHFBQ2dvSHNyZVlZRXkvMkNia3JUaFZQZFZBT2xYVGZNa1hQM3RQWnVUeGcvYXBkWjVuRFd4QnhKRitRMlRPTHFmSC84TGR3VWNWVG9kalhwN0plc0lSeWFSRDJNV01LS1lsYWxway9KQUEwZXJJazZydlpmdWtsODMveC9JVXR4YTF1RldGVEhyM3AyRW9KbTZpZmJxV29DckNiWkQwUTN4bS9IMnJEQkhqQT09");
+
             return View();
         }
 
