@@ -288,3 +288,10 @@ Settings: <br />
         }
     }
 </script>
+
+<script>
+    var a = JXG.decompress("@ViewBag.compressed");
+    var original = "@ViewBag.original";
+    console.log(a);
+    console.log(JXG.compress(original))
+</script>

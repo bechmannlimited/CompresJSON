@@ -36,5 +36,6 @@ function EncryptAndCompress(str, key) {
 }
 
 function DecryptAndDecompress(str, key) {
-    return Decompress(JSDecrypt(str, key));
+    //return Decompress(JSDecrypt(str, key));
+    return JXG.decompress(JSDecrypt(str, key));
 }

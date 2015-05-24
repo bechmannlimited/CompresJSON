@@ -9,97 +9,97 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   </PropertyGroup>
   <ItemGroup>
     <File Include="AlexDb.edmx.diagram">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:24</publishTime>
     </File>
     <File Include="App_Data/NORTHWND.MDF">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:15</publishTime>
     </File>
     <File Include="App_Data/NORTHWND_log.ldf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:15</publishTime>
     </File>
     <File Include="bin/Antlr3.Runtime.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:26</publishTime>
     </File>
     <File Include="bin/CompresJSON.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/24/2015 14:15:38</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:26</publishTime>
     </File>
     <File Include="bin/EntityFramework.SqlServer.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:26</publishTime>
     </File>
     <File Include="bin/Jint.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/Newtonsoft.Json.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Http.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Http.WebHost.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Mvc.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Optimization.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Razor.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Deployment.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/System.Web.Webpages.Razor.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="bin/WebGrease.dll">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:27</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:15</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:15</publishTime>
     </File>
     <File Include="Content/Site.css">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:15</publishTime>
     </File>
     <File Include="Controllers/CardDesignItemsController.cs">
       <publishTime>01/01/0001 00:00:00</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.eot">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.svg">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.ttf">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="fonts/glyphicons-halflings-regular.woff">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:15</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:26</publishTime>
     </File>
     <File Include="Scripts/bootstrap.js">
       <publishTime>05/20/2015 00:15:16</publishTime>
@@ -117,10 +117,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Scripts/compresjson_scripts/Compress_Encrypt.js">
-      <publishTime>05/23/2015 14:52:13</publishTime>
+      <publishTime>05/24/2015 12:25:19</publishTime>
     </File>
     <File Include="Scripts/compresjson_scripts/encryptor_compressor.js">
       <publishTime>05/20/2015 00:15:24</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/js-deflate.js">
+      <publishTime>05/23/2015 21:55:19</publishTime>
+    </File>
+    <File Include="Scripts/compresjson_scripts/jsxcompressor.min.js">
+      <publishTime>05/24/2015 12:20:58</publishTime>
     </File>
     <File Include="Scripts/compresjson_scripts/lz-string.js">
       <publishTime>05/20/2015 00:15:16</publishTime>
@@ -141,25 +147,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Views/Receiver/sendEncryptedData.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Views/SpeedTests/Index.cshtml">
-      <publishTime>05/23/2015 15:44:03</publishTime>
+      <publishTime>05/24/2015 12:30:09</publishTime>
     </File>
     <File Include="Views/Test/Index.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Views/web.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Views/_ViewStart.cshtml">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/20/2015 00:15:16</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>01/01/0001 00:00:00</publishTime>
+      <publishTime>05/23/2015 17:49:10</publishTime>
     </File>
   </ItemGroup>
 </Project>

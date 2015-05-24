@@ -10,6 +10,7 @@ namespace CompresJSON
         None,
         GZip,
         LZ77,
-        LZString
+        LZString,
+        GZipAndLZString
     };
 }

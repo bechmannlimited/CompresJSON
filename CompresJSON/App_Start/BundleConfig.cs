@@ -16,7 +16,8 @@ namespace CompresJSON.App_Start
                 "~/Scripts/compresjson_scripts/lz-string.js",
                 "~/Scripts/compresjson_scripts/aes.js",
                 "~/Scripts/compresjson_scripts/pbkdf2.js",
-                "~/Scripts/compresjson_scripts/js-deflate.js",
+                //"~/Scripts/compresjson_scripts/js-deflate.js",
+                "~/Scripts/compresjson_scripts/jsxcompressor.min.js",
                 "~/Scripts/compresjson_scripts/Compress_Encrypt.js"
            ));
 
