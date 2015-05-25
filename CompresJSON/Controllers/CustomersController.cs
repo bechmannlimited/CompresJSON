@@ -34,7 +34,7 @@ namespace CompresJSON.Controllers
                 return NotFound();
             }
 
-            return Ok(customer);
+            return Json(customer);
         }
 
         // PUT api/Customers/5
@@ -68,7 +68,7 @@ namespace CompresJSON.Controllers
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Json(customer);
         }
 
         // POST api/Customers
@@ -98,7 +98,7 @@ namespace CompresJSON.Controllers
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = customer.CustomerID }, customer);
+            return Json(customer);
         }
 
         // DELETE api/Customers/5

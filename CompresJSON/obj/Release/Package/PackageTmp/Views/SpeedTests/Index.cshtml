@@ -283,8 +283,21 @@ Settings: <br />
 </script>
 
 <script>
-    var a = JXG.decompress("@ViewBag.compressed");
-    var original = "@ViewBag.original";
-    console.log(a);
-    console.log(JXG.compress(original))
+    
+    function go() {
+        $.ajax({
+            url: "@Url.Action("test", "SpeedTests")",
+            data: { data : "@CompresJSON.EncryptAndCompressAsNecessary("{\"DateOfBirth\": \"20/09/1991\", \"CustomerID\": 5}")" },
+                    type: "POST",
+                //async: false
+        }).done(function (result) {
+            console.log(result);
+            var a = Decrypt(result.data + "", '@CompresJSONSettings.EncryptionKey');
+            console.log(a)
+            var b = Decompress(a);
+                        console.log(b);
+                    })
+            }
+        go()
+
 </script>

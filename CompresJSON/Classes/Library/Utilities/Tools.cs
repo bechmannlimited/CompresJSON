@@ -44,6 +44,10 @@ namespace CompresJSON
                         {
                             targetProperty.SetValue(someObject, item.Value);
                         }
+                        else if (targetProperty.PropertyType.FullName == "System.DateTime") // == typeof(string))
+                        {
+                            targetProperty.SetValue(someObject, DateTime.Parse((string)item.Value));
+                        }
                         else if (targetProperty.PropertyType.GenericTypeArguments.Count() > 0)
                         {
                             if (targetProperty.PropertyType.GenericTypeArguments.FirstOrDefault().FullName == "System.Int32")

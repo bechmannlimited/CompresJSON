@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -19,7 +20,11 @@ namespace CompresJSON
             {
                 JsonResult result = (JsonResult)filterContext.Result;
 
-                string serializedString = (new JavaScriptSerializer()).Serialize(result.Data);
+                var settings = new JsonSerializerSettings() {
+                    DateFormatString = CompresJSONSettings.DateFormat
+                };
+
+                string serializedString = JsonConvert.SerializeObject(result.Data, settings);
                 string encryptedString = CompresJSON.EncryptAndCompressAsNecessary(serializedString);
 
                 var rc = new Dictionary<string, object>();

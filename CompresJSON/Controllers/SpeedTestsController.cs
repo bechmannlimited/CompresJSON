@@ -59,11 +59,21 @@ namespace CompresJSON.Controllers
             //str = HttpUtility.UrlDecode(str);
             return Json(CompresJSON.DecryptAndDecompressAsNecessary(str), JsonRequestBehavior.AllowGet);
         }
+
+        [EncryptAndCompressAsNecessary]
+        [DecryptAndDecompressAsNecessary]
+        public JsonResult test(Customer customer)
+        {
+            return Json(customer);
+        }
     }
 }
 
 namespace CompresJSON
 {
+    public partial class Customer {
+        public DateTime DateOfBirth { get; set; }
+    }
     public class SpeedTest
     {
         public string description = "";

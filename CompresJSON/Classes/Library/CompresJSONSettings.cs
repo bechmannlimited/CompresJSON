@@ -14,5 +14,6 @@ namespace CompresJSON
         public static bool shouldEncrypt = true;
 
         public static CompressionMethod compressionMethod = CompressionMethod.LZString;
+        public static string DateFormat = DateFormatter.Date;
     }
 }
