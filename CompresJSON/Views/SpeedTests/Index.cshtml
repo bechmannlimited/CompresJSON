@@ -1,9 +1,4 @@
-﻿@*<script src="~/Scripts/compresjson_scripts/base64-string.js"></script>
-<script src="~/Scripts/compresjson_scripts/lz-string.js"></script>
-<script src="~/Scripts/compresjson_scripts/Base64.js"></script>
-<script src="~/Scripts/compresjson_scripts/Compressor.js"></script>*@
-
-<style>
+﻿<style>
     .progress {
         height: 4px;
     }
@@ -11,12 +6,12 @@
     pre {
         font-size: 8pt;
         max-height: 180px;
-        overflow-y:scroll;
+        overflow-y: scroll;
     }
 
-    pre.actual {
-        max-height: 95px;
-    }
+        pre.actual {
+            max-height: 95px;
+        }
 </style>
 
 @System.Web.Optimization.Scripts.Render("~/Scripts/compresjson")
@@ -24,8 +19,6 @@
 @{
     ViewBag.Title = "Index";
 
-    List<SpeedTest> tests = new List<SpeedTest>();
-    
     var takes = new List<int>() {
         1, 2, 5, 10, 20, 40, 80, 160, 240, 480
     };
@@ -39,11 +32,11 @@
     string prefix = CompresJSONRouteManager.WebApiSecretUrlPrefix;
     string id = CompresJSONRouteManager.EncryptSecretUrlComponent("5");
     string controller = CompresJSONRouteManager.EncryptSecretUrlComponent("CardDesignItems");
-    string url = "/" + prefix + "/" + controller + "/" + id;
+    string url = Tools.Domain(Request.RequestContext) + "/" + prefix + "/" + controller + "/" + id;
 }
 
 <b>Normal: </b><br />
-<a href="/api/CardDesignItems/5">/api/CardDesignItems/5</a><br />
+<a href="@Tools.Domain(Request.RequestContext)/api/CardDesignItems/5">@Tools.Domain(Request.RequestContext)/api/CardDesignItems/5</a><br />
 <b>Encrypted: </b> <br />
 <a href="@url">@url</a>
 <hr />
@@ -196,9 +189,9 @@ Settings: <br />
 
             $('#enc-' + take).children('pre').text(JSON.stringify(JSON.parse(processed), null, ' '))
             $('#enc-' + take).children('pre.actual').text(JSON.stringify(result), null, ' ')
-            
 
-            var bytes = xhr.getResponseHeader('Content-Length') / 1024 ;
+
+            var bytes = xhr.getResponseHeader('Content-Length') / 1024;
             $('#enc-' + take).children('.bytes').text('size: ' + bytes.toFixed(2) + 'kb');
 
 

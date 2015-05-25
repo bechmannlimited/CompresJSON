@@ -77,5 +77,27 @@ namespace CompresJSON
 
             return null;
         }
+
+        public static string Domain(System.Web.Routing.RequestContext context)
+        {
+            var domain = new Uri(System.Web.HttpContext.Current.Request.Url.AbsoluteUri);
+            var extra = new UrlHelper(context).Action("A", "C").Replace("/C/A", "");
+
+            var rc = (domain + extra);
+            rc = RemoveFromEnd(rc, "/");
+            return rc == null ? "" : rc;
+        }
+
+        public static string RemoveFromEnd(this string s, string suffix)
+        {
+            if (s.EndsWith(suffix))
+            {
+                return s.Substring(0, s.Length - suffix.Length);
+            }
+            else
+            {
+                return s;
+            }
+        }
     }
 }
