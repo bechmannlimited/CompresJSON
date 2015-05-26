@@ -21,7 +21,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/20/2015 00:15:26</publishTime>
     </File>
     <File Include="bin/CompresJSON.dll">
-      <publishTime>05/26/2015 00:24:37</publishTime>
+      <publishTime>05/26/2015 14:53:27</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>05/20/2015 00:15:26</publishTime>

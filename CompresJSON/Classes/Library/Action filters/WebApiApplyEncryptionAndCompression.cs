@@ -74,7 +74,7 @@ namespace CompresJSON
                     if (!typeName.Contains("System"))
                     {
                         o = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(typeName);
-                        o = Tools.ToObject(actionContext.ControllerContext.RouteData.Values, o);
+                        o = Mapper.ToObject(actionContext.ControllerContext.RouteData.Values, o);
                     }
 
                     if (o != null)

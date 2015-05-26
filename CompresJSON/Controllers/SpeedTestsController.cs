@@ -64,7 +64,7 @@ namespace CompresJSON.Controllers
         [DecryptAndDecompressAsNecessary]
         public JsonResult test(Customer customer)
         {
-            return Json(customer);
+            return Json(customer, JsonRequestBehavior.AllowGet);
         }
     }
 }

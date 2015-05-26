@@ -71,7 +71,7 @@ namespace CompresJSON
                 {
                     string typeName = parameter.ParameterType.FullName; 
                     var o = System.Reflection.Assembly.GetExecutingAssembly().CreateInstance(typeName);
-                    o = Tools.ToObject(filterContext.ActionParameters, o);
+                    o = Mapper.ToObject(filterContext.ActionParameters, o);
 
                     if (o != null)
                     {
