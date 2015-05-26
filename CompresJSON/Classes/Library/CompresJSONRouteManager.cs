@@ -10,8 +10,8 @@ namespace CompresJSON
 {
     public class CompresJSONRouteManager
     {
-        public static string SecretUrlPrefix = EncryptSecretUrlComponent("hide"); // Encrypter.Encrypt("hide");
-        public static string WebApiSecretUrlPrefix = EncryptSecretUrlComponent("api");
+        public static string SecretUrlPrefix = "routeh";
+        public static string WebApiSecretUrlPrefix = "apih";
 
         //MVC route setup
         public static void RegisterRoutes(RouteCollection routes)

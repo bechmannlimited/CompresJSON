@@ -16,6 +16,12 @@ namespace CompresJSON
             routeValues["Controller"] = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["c"].ToString());
             routeValues["Action"] = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["a"].ToString());
 
+            if (routeValues.ContainsKey("id"))
+            {
+                string id = CompresJSONRouteManager.DecryptSecretUrlComponent(routeValues["id"].ToString());
+                routeValues["id"] = id;
+            }
+
             routeValues["c"] = null;
             routeValues["a"] = null;
 
