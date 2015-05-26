@@ -190,54 +190,29 @@
     <Compile Include="Category.cs">
       <DependentUpon>AlexDb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Library\Action filters\ApplyEncryptionAndCompression.cs" />
-    <Compile Include="Classes\Library\Compressor\ClsCrypto.cs" />
-    <Compile Include="Classes\Library\Encryption\CryptoJS.cs" />
-    <Compile Include="Classes\Library\Compressor\LZString.cs" />
-    <Compile Include="Classes\Library\Compressor\ZLib.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\Adler32.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\Deflate.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\InfBlocks.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\InfCodes.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\Inflate.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\InfTree.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\StaticTree.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\SupportClass.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\Tree.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\ZInputStream.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\Zlib.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\ZOutputStream.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\ZStream.cs" />
-    <Compile Include="Classes\Library\Compressor\zlib\ZStreamException.cs" />
-    <Compile Include="Classes\Library\Encryption\SwiftNETEncrypt\EncryptedString.cs" />
-    <Compile Include="Classes\Library\JavaScriptAnalyzer.cs" />
-    <Compile Include="Classes\Library\RouteHandlers\DecryptMVCRouteHandler.cs" />
-    <Compile Include="Classes\Library\RouteHandlers\DecryptWebApiRouteHandler.cs" />
-    <Compile Include="Classes\Library\Extensions\EF_Extension.cs" />
-    <Compile Include="Classes\Library\CompresJSONSettings.cs" />
-    <Compile Include="Classes\Library\TEMP\CompressFilter.cs" />
-    <Compile Include="Classes\Library\Compressor\CompressedResult.cs" />
-    <Compile Include="Classes\Library\Compressor\CompressionMethod.cs" />
-    <Compile Include="Classes\Library\Compressor\Compressor.cs" />
-    <Compile Include="Classes\Library\Utilities\Converter.cs" />
-    <Compile Include="Classes\Cryptography.cs" />
-    <Compile Include="Classes\Library\Encoder\Encoder.cs" />
-    <Compile Include="Classes\Library\Encoder\EncodingMethod.cs" />
-    <Compile Include="Classes\Library\Compressor\GZip.cs" />
-    <Compile Include="Classes\Library\Compressor\LZ77.cs" />
-    <Compile Include="Classes\Library\Encryption\Encryptor.cs" />
-    <Compile Include="Classes\Library\CompresJSONRouteManager.cs" />
-    <Compile Include="Classes\Library\CompresJSON.cs" />
-    <Compile Include="Classes\Library\TEMP\Mapper.cs" />
-    <Compile Include="Classes\Library\Utilities\DateFormatter.cs" />
-    <Compile Include="Classes\Library\Utilities\Tools.cs" />
-    <Compile Include="Classes\Library\Action filters\WebApiApplyEncryptionAndCompression.cs" />
+    <Compile Include="CompresJSONLibrary\Action filters\ApplyEncryptionAndCompression.cs" />
+    <Compile Include="CompresJSONLibrary\Encryptor\Dependencies\CryptoJS.cs" />
+    <Compile Include="CompresJSONLibrary\Utilities\JavaScriptAnalyzer.cs" />
+    <Compile Include="CompresJSONLibrary\Router\RouteHandlers\DecryptMVCRouteHandler.cs" />
+    <Compile Include="CompresJSONLibrary\Router\RouteHandlers\DecryptWebApiRouteHandler.cs" />
+    <Compile Include="Classes\Extensions\EF_Extension.cs" />
+    <Compile Include="CompresJSONLibrary\CompresJSONSettings.cs" />
+    <Compile Include="CompresJSONLibrary\TEMP\CompressFilter.cs" />
+    <Compile Include="CompresJSONLibrary\Compressor\CompressionMethod.cs" />
+    <Compile Include="CompresJSONLibrary\Compressor\Compressor.cs" />
+    <Compile Include="CompresJSONLibrary\Utilities\Converter.cs" />
+    <Compile Include="CompresJSONLibrary\Compressor\Dependencies\GZip.cs" />
+    <Compile Include="CompresJSONLibrary\Compressor\Dependencies\LZ77.cs" />
+    <Compile Include="CompresJSONLibrary\Encryptor\Encryptor.cs" />
+    <Compile Include="CompresJSONLibrary\Router\CompresJSONRouteManager.cs" />
+    <Compile Include="CompresJSONLibrary\CompresJSON.cs" />
+    <Compile Include="CompresJSONLibrary\Utilities\Mapper.cs" />
+    <Compile Include="CompresJSONLibrary\Utilities\DateFormatter.cs" />
+    <Compile Include="CompresJSONLibrary\Utilities\Tools.cs" />
+    <Compile Include="CompresJSONLibrary\Action filters\WebApiApplyEncryptionAndCompression.cs" />
     <Compile Include="Controllers\CardDesignItemsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ReceiverController.cs" />
     <Compile Include="Controllers\SpeedTestsController.cs" />
-    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Customer.cs">
       <DependentUpon>AlexDb.tt</DependentUpon>
     </Compile>
@@ -264,12 +239,10 @@
     <Content Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Test\Index.cshtml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Receiver\sendEncryptedData.cshtml" />
     <Content Include="Views\SpeedTests\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -280,8 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Scripts\compresjson_scripts\dependencies\" />
-    <Folder Include="Views\Home\" />
-    <Folder Include="Views\Tests\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

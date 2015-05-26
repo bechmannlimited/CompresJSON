@@ -28,12 +28,7 @@ namespace CompresJSON
 
         public static string Domain(System.Web.Routing.RequestContext context)
         {
-            var domain = new Uri(System.Web.HttpContext.Current.Request.Url.AbsoluteUri);
-            var extra = new UrlHelper(context).Action("A", "C").Replace("/C/A", "");
-
-            var rc = (domain + extra);
-            rc = RemoveFromEnd(rc, "/");
-            return rc == null ? "" : rc;
+            return RemoveFromEnd(HttpContext.Current.Request.Url.GetLeftPart(UriPartial.Authority) + HttpContext.Current.Request.ApplicationPath, "/");
         }
 
         public static string RemoveFromEnd(this string s, string suffix)
