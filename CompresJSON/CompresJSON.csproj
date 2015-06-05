@@ -149,6 +149,7 @@
       <DependentUpon>AlexDb.edmx</DependentUpon>
       <LastGenOutput>AlexDb.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\compresjson_scripts\Compress_Encrypt.js" />
